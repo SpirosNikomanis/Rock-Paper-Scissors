@@ -105,7 +105,10 @@ function game() {
     console.log(`turn ${i}`);
     console.log(playerWins, computerWins);
   }
-  console.log(playerWins, computerWins);
+  if (playerWins > computerWins && playerWins != computerWins) {
+    console.log(`You win ${playerWins} : ${computerWins}`);
+  } else {
+    console.log(`You Lose ${computerWins} : ${playerWins}`);
+  }
 }
-
 game();
