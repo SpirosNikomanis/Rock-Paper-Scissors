@@ -1,21 +1,14 @@
 //Rock-Paper-Scissors
 
-//Declare variables for Rock,Paper,Scissors
 const Rock = "rock";
 const Paper = "paper";
 const Scissors = "scissors";
 
-//create variables for storing wins
 let playerWins = 0;
 let computerWins = 0;
 
-// declare variables for choices
 let playerSelection;
 let computerSelection;
-
-//Create function getComputerSelection to :
-//get random number from 0-2
-//check random number and match it to variable
 
 function getComputerChoice() {
   randomChoice = Math.floor(Math.random() * 3);
@@ -34,7 +27,6 @@ function getComputerChoice() {
   }
 }
 
-//create function getPlayerChoice to:
 //get input from user
 //validate selection and spellchecking
 
@@ -53,17 +45,6 @@ function getPlayerChoice() {
     console.log("Please pick rock paper or scissors");
   }
 }
-
-//create playRound
-//get players choice
-//get computers choice
-//if not null or undefined
-//if not tie
-//check winning conditions
-//else loss
-//else tie
-//console log a winning/loss message to player
-//store wins for player and computer to variables
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = getPlayerChoice();
@@ -91,13 +72,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 // playRound(playerSelection, computerSelection);
-
-//create game
-//loop 5 times
-//get playerchoice
-//get computerchoice
-//get single round
-//result
 
 function game() {
   for (let i = 0; i < 5; i++) {
