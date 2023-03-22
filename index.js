@@ -1,11 +1,12 @@
 //Rock-Paper-Scissors
 
-const buttonSelected = document.querySelectorAll("button");
+const buttonSelected = document.querySelectorAll(".button");
 const playerChoiceDisplay = document.querySelector(".player-selection");
 const computerChoiceDisplay = document.querySelector(".computer-selection");
 const outputDisplay = document.querySelector(".output-display");
 const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
+
 let playerWins = 0;
 let computerWins = 0;
 

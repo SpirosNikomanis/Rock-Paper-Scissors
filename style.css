@@ -11,6 +11,18 @@ body {
   flex-direction: column;
   justify-content: space-between;
 }
+.hidden {
+  display: none;
+}
+.endGame-fullscreen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  color: white;
+}
 
 .score-container {
   display: flex;
