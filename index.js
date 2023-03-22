@@ -31,7 +31,7 @@ function getComputerChoice() {
 //validate selection and spellchecking
 
 function getPlayerChoice() {
-  choiceInput = window.prompt("Pick : (Rock,Paper,Scissors)");
+  let choiceInput = window.prompt("Pick : (Rock,Paper,Scissors)");
   if (choiceInput !== null && choiceInput !== undefined) {
     if (
       choiceInput.toLowerCase() === "rock" ||
