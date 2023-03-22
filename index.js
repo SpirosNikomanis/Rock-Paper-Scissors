@@ -1,8 +1,11 @@
 //Rock-Paper-Scissors
 
-const playerSelection = document.querySelectorAll("button");
+const buttonSelected = document.querySelectorAll("button");
 const playerChoiceDisplay = document.querySelector(".player-selection");
 const computerChoiceDisplay = document.querySelector(".computer-selection");
+const outputDisplay = document.querySelector(".output-display");
+const playerScoreDisplay = document.querySelector(".player-score");
+const computerScoreDisplay = document.querySelector(".computer-score");
 let playerWins = 0;
 let computerWins = 0;
 
@@ -26,53 +29,54 @@ function getComputerChoice() {
 //pass choices as parameters to playRound function
 
 function getChoices(e) {
-  let player_Selection = e.target.parentNode.id;
-  let computer_Selection = getComputerChoice();
+  let playerSelection = e.target.parentNode.id;
+  let computerSelection = getComputerChoice();
   playerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `./assets/${player_Selection}-player.png`
+    `./assets/${playerSelection}-player.png`
   );
   computerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `./assets/${computer_Selection}-com.png`
+    `./assets/${computerSelection}-com.png`
   );
-  playRound(player_Selection, computer_Selection);
+  playRound(playerSelection, computerSelection);
 }
 
 //Checks win conditions per each round given the choices made.
 
 function playRound(player, computer) {
-  if (player !== computer) {
-    if (
-      (player === "Rock" && computer === "Scissors") ||
-      (player === "Paper" && computer === "Rock") ||
-      (player === "Scissors" && computer === "Paper")
-    ) {
-      console.log(`You win!${player} wins ${computer}`);
-      playerWins++;
-    } else {
-      console.log(`You lost!${player} loses to ${computer}`);
-      computerWins++;
-    }
+  if (player === computer) outputDisplay.textContent = `It's a tie!`;
+  if (
+    (player === "Rock" && computer === "Scissors") ||
+    (player === "Paper" && computer === "Rock") ||
+    (player === "Scissors" && computer === "Paper")
+  ) {
+    ++playerWins;
+    outputDisplay.textContent = "You Win!";
+    playerScoreDisplay.textContent = `Player : ${playerWins}`;
   } else {
-    console.log("tie");
+    ++computerWins;
+    outputDisplay.textContent = "You Lose!";
+    computerScoreDisplay.textContent = `Computer : ${computerWins}`;
   }
 }
 
 //Checks if game is over and announce Winner!
 
-function game(e) {
+function game() {
   if (playerWins === 5 || computerWins === 5) {
-    this.disabled = true;
+    buttonSelected.forEach((button) => (button.disabled = true));
     playerWins > computerWins
       ? console.log("winnerPlayer")
       : console.log("winnerPC");
   }
 }
 
-playerSelection.forEach((button) => {
+//Button Listeners
+
+buttonSelected.forEach((button) => {
   button.addEventListener("click", getChoices);
 });
-playerSelection.forEach((button) => {
+buttonSelected.forEach((button) => {
   button.addEventListener("click", game);
 });
