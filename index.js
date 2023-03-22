@@ -25,50 +25,41 @@ function getComputerChoice() {
 //Display choices
 //return choices
 function getChoices(e) {
-  let playerSelection = e.target.parentNode.id;
-  let computerSelection = getComputerChoice();
+  let player_Selection = e.target.parentNode.id;
+  let computer_Selection = getComputerChoice();
   playerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `./assets/${playerSelection}-player.png`
+    `./assets/${player_Selection}-player.png`
   );
   computerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `./assets/${computerSelection}-com.png`
+    `./assets/${computer_Selection}-com.png`
   );
+  playRound(player_Selection, computer_Selection);
 }
 
-playerSelection.forEach((button) => {
-  button.addEventListener("click", getChoices);
-});
-
-// function playRound(getPlayerChoice, getComputerChoice) {
-//   if (playerSelection !== null && playerSelection !== undefined) {
-//     if (playerSelection !== computerSelection) {
-//       if (
-//         (playerSelection === "rock" && computerSelection === "scissors") ||
-//         (playerSelection === "paper" && computerSelection === "rock") ||
-//         (playerSelection === "scissors" && computerSelection === "paper")
-//       ) {
-//         console.log(`You win!${playerSelection} wins ${computerSelection}`);
-//         playerWins++;
-//       } else {
-//         console.log(`You lost!${computerSelection} wins ${playerSelection}`);
-//         computerWins++;
-//       }
-//     } else {
-//       console.log(`It's a tie!${playerSelection} ties to ${computerSelection}`);
-//       return;
-//     }
-//   } else {
-//     console.log(`Please type : rock, paper, scissors`);
-//     return;
-//   }
-// }
-// // playRound(playerSelection, computerSelection);
+//Function that checks win conditions per each round given the choices made.
+function playRound(player, computer) {
+  if (player !== computer) {
+    if (
+      (player === "Rock" && computer === "Scissors") ||
+      (player === "Paper" && computer === "Rock") ||
+      (player === "Scissors" && computer === "Paper")
+    ) {
+      console.log(`You win!${player} wins ${computer}`);
+      playerWins++;
+    } else {
+      console.log(`You lost!${player} loses to ${computer}`);
+      computerWins++;
+    }
+  } else {
+    console.log("tie");
+  }
+}
 
 // function game() {
 //   for (let i = 0; i < 5; i++) {
-//     let result = playRound(playerSelection, computerSelection);
+//     let result = playRound(player, computer);
 //     console.log(`turn ${i}`);
 //     console.log(playerWins, computerWins);
 //   }
@@ -79,3 +70,7 @@ playerSelection.forEach((button) => {
 //   }
 // }
 // // game();
+
+playerSelection.forEach((button) => {
+  button.addEventListener("click", getChoices);
+});
