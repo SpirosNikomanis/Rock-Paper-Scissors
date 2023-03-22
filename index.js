@@ -26,11 +26,19 @@ function getComputerChoice() {
 
 //Get player-computer choices!
 //Display choices
-//pass choices as parameters to playRound function
+//pass choices as parameters to round,display functions!
 
 function getChoices(e) {
   let playerSelection = e.target.parentNode.id;
   let computerSelection = getComputerChoice();
+  buttonSelected.forEach((button) => (button.disabled = true));
+  displayChoices(playerSelection, computerSelection);
+  playRound(playerSelection, computerSelection);
+}
+
+//Display Choices,hide Choices after x time!
+
+function displayChoices(playerSelection, computerSelection) {
   playerChoiceDisplay.firstElementChild.setAttribute(
     "src",
     `./assets/${playerSelection}-player.png`
@@ -39,40 +47,66 @@ function getChoices(e) {
     "src",
     `./assets/${computerSelection}-com.png`
   );
-  playRound(playerSelection, computerSelection);
+  setTimeout(() => {
+    computerChoiceDisplay.firstElementChild.removeAttribute("src");
+    playerChoiceDisplay.firstElementChild.removeAttribute("src");
+    buttonSelected.forEach((button) => (button.disabled = false));
+  }, 2500);
 }
 
-//Checks win conditions per each round given the choices made.
+//Checks output conditions per each round given the choices made.
 
 function playRound(player, computer) {
-  if (player === computer) outputDisplay.textContent = `It's a tie!`;
   if (
     (player === "Rock" && computer === "Scissors") ||
     (player === "Paper" && computer === "Rock") ||
     (player === "Scissors" && computer === "Paper")
   ) {
     ++playerWins;
-    outputDisplay.textContent = "You Win!";
-    playerScoreDisplay.textContent = `Player : ${playerWins}`;
+    displayScores();
+    displayOutput("Win");
+  } else if (player === computer) {
+    displayScores();
+    displayOutput("Tie");
   } else {
     ++computerWins;
-    outputDisplay.textContent = "You Lose!";
-    computerScoreDisplay.textContent = `Computer : ${computerWins}`;
+    displayScores();
+    displayOutput("Loss");
   }
 }
 
-//Checks if game is over and announce Winner!
+function displayScores() {
+  playerScoreDisplay.textContent = `Player : ${playerWins}`;
+  computerScoreDisplay.textContent = `Computer : ${computerWins}`;
+}
 
+function displayOutput(output) {
+  if (output === "Win") {
+    outputDisplay.textContent = `You Win!`;
+  } else if (output === "Loss") {
+    outputDisplay.textContent = `You Lose!`;
+  } else {
+    outputDisplay.textContent = `It's a Tie!`;
+  }
+  setTimeout(() => {
+    outputDisplay.textContent = " ";
+  }, 2500);
+}
+
+//Checks if game is over and announce Winner!
 function game() {
   if (playerWins === 5 || computerWins === 5) {
-    buttonSelected.forEach((button) => (button.disabled = true));
+    buttonSelected.forEach((button) =>
+      button.removeEventListener("click", getChoices)
+    );
+    buttonSelected.forEach((button) =>
+      button.removeEventListener("click", game)
+    );
     playerWins > computerWins
       ? console.log("winnerPlayer")
       : console.log("winnerPC");
   }
 }
-
-//Button Listeners
 
 buttonSelected.forEach((button) => {
   button.addEventListener("click", getChoices);
