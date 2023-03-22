@@ -23,7 +23,8 @@ function getComputerChoice() {
 
 //Get player-computer choices!
 //Display choices
-//return choices
+//pass choices as parameters to playRound function
+
 function getChoices(e) {
   let player_Selection = e.target.parentNode.id;
   let computer_Selection = getComputerChoice();
@@ -38,7 +39,8 @@ function getChoices(e) {
   playRound(player_Selection, computer_Selection);
 }
 
-//Function that checks win conditions per each round given the choices made.
+//Checks win conditions per each round given the choices made.
+
 function playRound(player, computer) {
   if (player !== computer) {
     if (
@@ -57,20 +59,20 @@ function playRound(player, computer) {
   }
 }
 
-// function game() {
-//   for (let i = 0; i < 5; i++) {
-//     let result = playRound(player, computer);
-//     console.log(`turn ${i}`);
-//     console.log(playerWins, computerWins);
-//   }
-//   if (playerWins > computerWins && playerWins != computerWins) {
-//     console.log(`You win ${playerWins} : ${computerWins}`);
-//   } else {
-//     console.log(`You Lose ${computerWins} : ${playerWins}`);
-//   }
-// }
-// // game();
+//Checks if game is over and announce Winner!
+
+function game(e) {
+  if (playerWins === 5 || computerWins === 5) {
+    this.disabled = true;
+    playerWins > computerWins
+      ? console.log("winnerPlayer")
+      : console.log("winnerPC");
+  }
+}
 
 playerSelection.forEach((button) => {
   button.addEventListener("click", getChoices);
+});
+playerSelection.forEach((button) => {
+  button.addEventListener("click", game);
 });
