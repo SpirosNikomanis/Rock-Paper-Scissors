@@ -6,10 +6,11 @@
 
 body {
   height: 100vh;
-  padding-top: 15px;
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: rgb(15, 9, 22);
 }
 .hidden {
   display: none;
@@ -37,10 +38,45 @@ body {
     #fc6806 100%
   );
   max-height: 30px;
-  margin: 17px 0px 0px 0px;
+  margin-top: 10px;
+  font-size: 30px;
 }
 .vs-icon {
   max-height: 200px;
   max-width: 200px;
   flex: 1;
+}
+
+.display-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 15px 0 15px;
+  gap: 150px;
+}
+
+.output-display {
+  display: flex;
+  height: 200px;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+  color: rgb(182, 180, 180);
+  font-size: 35px;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+.button {
+  padding: 10px 30px;
+  border-radius: 25px;
+  background-color: rgb(74, 51, 95);
+  color: rgb(204, 98, 48);
+  font-size: 25px;
+  text-align: center;
 }

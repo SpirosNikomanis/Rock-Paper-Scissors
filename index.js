@@ -30,9 +30,8 @@ function getComputerChoice() {
 //pass choices as parameters to round,display functions!
 
 function getChoices(e) {
-  let playerSelection = e.target.parentNode.id;
+  let playerSelection = e.target.id;
   let computerSelection = getComputerChoice();
-  buttonSelected.forEach((button) => (button.disabled = true));
   displayChoices(playerSelection, computerSelection);
   playRound(playerSelection, computerSelection);
 }
@@ -48,11 +47,6 @@ function displayChoices(playerSelection, computerSelection) {
     "src",
     `./assets/${computerSelection}-com.png`
   );
-  setTimeout(() => {
-    computerChoiceDisplay.firstElementChild.removeAttribute("src");
-    playerChoiceDisplay.firstElementChild.removeAttribute("src");
-    buttonSelected.forEach((button) => (button.disabled = false));
-  }, 2500);
 }
 
 //Checks output conditions per each round given the choices made.
@@ -89,9 +83,6 @@ function displayOutput(output) {
   } else {
     outputDisplay.textContent = `It's a Tie!`;
   }
-  setTimeout(() => {
-    outputDisplay.textContent = " ";
-  }, 2500);
 }
 
 //Checks if game is over and announce Winner!
