@@ -1,87 +1,72 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
-* {
-  margin: 0;
+*,
+*::before,
+*::after {
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
-}
-
-header {
-  position: relative;
 }
 
 body {
   height: 100vh;
-  padding: 30px 15px;
+  background: #000814;
   display: flex;
   flex-direction: column;
-  background: #000814;
-}
-
-.score-container {
-  display: flex;
-  align-items: center;
   justify-content: space-around;
-  margin-bottom: 100px;
-}
-
-.player-score,
-.computer-score {
-  font-family: "VT323", sans-serif;
-  font-size: 70px;
-  color: #ffc300;
-}
-.output-display {
-  display: flex;
   align-items: center;
-  justify-content: center;
-  color: wheat;
-  font-size: 60px;
-  font-family: "VT323", sans-serif;
-  height: 100px;
-  margin-bottom: 70px;
-}
-
-.display-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-}
-
-.vs-icon {
-  max-width: 200px;
-  max-height: 200px;
-}
-
-.button-container {
-  display: flex;
-  position: absolute;
-  bottom: 0;
-  margin-bottom: 15px;
-  align-self: center;
-  align-items: center;
-  justify-content: center;
-  gap: 100px;
-}
-
-.button {
-  font-size: 30px;
-  font-family: "VT323", serif;
-  padding: 10px 30px;
-  border-radius: 15px;
-  color: rgb(19, 18, 70);
-  background: linear-gradient(hsl(14, 75%, 35%), hsl(59, 85%, 47%));
-  width: 150px;
-}
-.hidden {
-  display: none;
-}
-.endGame-fullscreen {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  background-color: rgb(65 53 67 / 75%);
   color: white;
+}
+
+h1 {
+  font-family: "Press Start 2P", cursive;
+  font-size: 80px;
+  background: linear-gradient(
+    #fd004c 16.7%,
+    #fe9000 16.7%,
+    #fe9000 33.4%,
+    #fff020 33.4%,
+    #fff020 50.1%,
+    #3edf4b 50.1%,
+    #3edf4b 66.8%,
+    #3363ff 66.8%,
+    #3363ff 83.5%,
+    #b102b7 83.5%
+  );
+  -webkit-text-stroke: 0.02em #ffffff;
+  background: () no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.1em;
+  animation: rainbow 50s linear infinite;
+}
+@keyframes rainbow {
+  100% {
+    background-position: 0 30em;
+  }
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  gap: 30px;
+}
+
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+a {
+  font-size: 40px;
+  font-family: "VT323", sans-serif;
+}
+
+button {
+  padding: 10px 30px;
+  background: transparent;
+  color: #bd98e0;
 }

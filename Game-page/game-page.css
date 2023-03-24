@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  position: relative;
+}
+
+body {
+  height: 100vh;
+  padding: 30px 15px;
+  display: flex;
+  flex-direction: column;
+  background: #000814;
+}
+
+.score-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 100px;
+}
+
+.player-score,
+.computer-score {
+  font-family: "VT323", sans-serif;
+  font-size: 70px;
+  color: #ffc300;
+}
+.output-display {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: wheat;
+  font-size: 60px;
+  font-family: "VT323", sans-serif;
+  height: 100px;
+  margin-bottom: 70px;
+}
+
+.display-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.vs-icon {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.button-container {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 15px;
+  align-self: center;
+  align-items: center;
+  justify-content: center;
+  gap: 100px;
+}
+
+.button {
+  font-size: 30px;
+  font-family: "VT323", serif;
+  padding: 10px 30px;
+  border-radius: 15px;
+  color: rgb(19, 18, 70);
+  background: linear-gradient(hsl(14, 75%, 35%), hsl(59, 85%, 47%));
+  width: 150px;
+}
+.hidden {
+  display: none;
+}
+.endGame-fullscreen {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgb(65 53 67 / 75%);
+  color: white;
+}

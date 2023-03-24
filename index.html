@@ -4,39 +4,29 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Welcome Screen</title>
     <link rel="stylesheet" href="style.css" />
     <script src="index.js" defer></script>
   </head>
   <body>
-    <div class="score-container">
-      <div class="player-score">Player : 0</div>
-      <div class="computer-score">Computer : 0</div>
+    <div class="title-container">
+      <h1 class="title">ROCK SCISSORS PAPER</h1>
     </div>
-    <div class="output-display"></div>
-
-    <div class="display-container">
-      <div class="player-selection">
-        <img src="" alt="" />
-      </div>
-      <img class="vs-icon" src="./assets/Vs-icon.png" alt="Vs" />
-      <div class="computer-selection">
-        <img src="" alt="" />
-      </div>
+    <div class="icons-container">
+      <div class="rock-icon"></div>
+      <div class="scissors-icon"></div>
+      <div class="paper-icon"></div>
     </div>
-
+    <div class="options-container">
+      <ul class="options-list">
+        <li class="option-credits"><a href="">Credits</a></li>
+        <li class="option-info"><a href="">Information</a></li>
+        <li class="option-github"><a href="">Github</a></li>
+      </ul>
+    </div>
     <div class="button-container">
-      <button id="Rock" class="button">Rock</button>
-      <button id="Scissors" class="button">Scissors</button>
-      <button id="Paper" class="button">Paper</button>
+      <button class="game-start">Start Game</button>
     </div>
-
-    <div class="endGame-fullscreen hidden endGame-display">
-      <h1></h1>
-      <button class="replay-button"></button>
-      <button class="exit-button"></button>
-    </div>
-
     <script></script>
   </body>
 </html>
