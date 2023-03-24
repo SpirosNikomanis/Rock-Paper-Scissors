@@ -41,11 +41,11 @@ function getChoices(e) {
 function displayChoices(playerSelection, computerSelection) {
   playerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `./assets/${playerSelection}-player.png`
+    `../assets/${playerSelection}-player.png`
   );
   computerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `./assets/${computerSelection}-com.png`
+    `../assets/${computerSelection}-com.png`
   );
 }
 
