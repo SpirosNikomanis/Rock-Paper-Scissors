@@ -16,7 +16,7 @@ body {
   justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 20px;
+  padding: 80px;
 }
 
 h1 {
@@ -89,4 +89,5 @@ li {
 a {
   font-size: 40px;
   font-family: "VT323", sans-serif;
+  text-decoration: none;
 }
