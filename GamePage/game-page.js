@@ -1,6 +1,6 @@
 //Rock-Paper-Scissors
 
-const buttonSelected = document.querySelectorAll("button");
+const buttonSelected = document.querySelectorAll(".button-container button");
 const playerChoiceDisplay = document.querySelector(".playerSelection");
 const computerChoiceDisplay = document.querySelector(".computerSelection");
 const outputDisplay = document.querySelector(".output");
@@ -52,6 +52,7 @@ function displayScores() {
 }
 
 function displayOutput(output) {
+  outputDisplay.classList.remove("hidden");
   if (output === "Win") {
     outputDisplay.textContent = `You Win!`;
   } else if (output === "Loss") {
@@ -82,12 +83,10 @@ function playRound(player, computer) {
 
 function gameOver() {
   if (playerWins === 5 || computerWins === 5) {
-    buttonSelected.forEach((button) =>
-      button.removeEventListener("click", getChoices)
-    );
-    buttonSelected.forEach((button) =>
-      button.removeEventListener("click", gameOver)
-    );
+    buttonSelected.forEach((button) => {
+      button.removeEventListener("click", getChoices);
+      button.removeEventListener("click", gameOver);
+    });
     playerWins > computerWins
       ? console.log("winnerPlayer")
       : console.log("winnerPC");
