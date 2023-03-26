@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-direction: column;
   background: #2b0f54;
+  font-family: "VT323", sans-serif;
 }
 
 img {
@@ -229,6 +230,65 @@ img {
   bottom: 0;
   right: 0;
   left: 0;
-  background-color: rgb(65 53 67 / 75%);
+  background: #140727;
   color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 100px;
+}
+.endGame-fullscreen h1 {
+  font-family: "Press Start 2P", cursive;
+  font-size: 150px;
+  background: linear-gradient(
+    #fd004c 16.7%,
+    #fe9000 16.7%,
+    #fe9000 33.4%,
+    #fff020 33.4%,
+    #fff020 50.1%,
+    #3edf4b 50.1%,
+    #3edf4b 66.8%,
+    #3363ff 66.8%,
+    #3363ff 83.5%,
+    #b102b7 83.5%
+  );
+  -webkit-text-stroke: 0.02em #ffffff;
+  background: () no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.1em;
+  animation: rainbow 50s linear infinite;
+}
+@keyframes rainbow {
+  100% {
+    background-position: 0 30em;
+  }
+}
+
+.endGame-fullscreen h3 {
+  font-size: 80px;
+}
+
+.endGame-fullscreen p {
+  font-size: 30px;
+}
+.blinking-text {
+  color: darkgrey;
+  font-family: "VT323", sans-serif;
+  font-size: 30px;
+  animation: blink 2s linear infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }

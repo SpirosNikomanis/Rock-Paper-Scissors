@@ -87,9 +87,6 @@ function gameOver() {
       button.removeEventListener("click", getChoices);
       button.removeEventListener("click", gameOver);
     });
-    playerWins > computerWins
-      ? console.log("winnerPlayer")
-      : console.log("winnerPC");
   }
 }
 
