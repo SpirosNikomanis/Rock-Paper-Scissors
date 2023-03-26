@@ -1,9 +1,9 @@
 //Rock-Paper-Scissors
 
-const buttonSelected = document.querySelectorAll(".button");
-const playerChoiceDisplay = document.querySelector(".player-selection");
-const computerChoiceDisplay = document.querySelector(".computer-selection");
-const outputDisplay = document.querySelector(".output-display");
+const buttonSelected = document.querySelectorAll("button");
+const playerChoiceDisplay = document.querySelector(".playerSelection");
+const computerChoiceDisplay = document.querySelector(".computerSelection");
+const outputDisplay = document.querySelector(".output");
 const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
 
@@ -25,31 +25,41 @@ function getComputerChoice() {
   }
 }
 
-//Get player-computer choices!
-//Display choices
-//pass choices as parameters to round,display functions!
-
 function getChoices(e) {
   let playerSelection = e.target.id;
   let computerSelection = getComputerChoice();
+
   displayChoices(playerSelection, computerSelection);
   playRound(playerSelection, computerSelection);
 }
 
-//Display Choices,hide Choices after x time!
-
 function displayChoices(playerSelection, computerSelection) {
+  playerChoiceDisplay.firstElementChild.classList.remove("hidden");
   playerChoiceDisplay.firstElementChild.setAttribute(
     "src",
     `../assets/${playerSelection}-player.png`
   );
+  computerChoiceDisplay.firstElementChild.classList.remove("hidden");
   computerChoiceDisplay.firstElementChild.setAttribute(
     "src",
     `../assets/${computerSelection}-com.png`
   );
 }
 
-//Checks output conditions per each round given the choices made.
+function displayScores() {
+  playerScoreDisplay.textContent = `Player : ${playerWins}`;
+  computerScoreDisplay.textContent = `Computer : ${computerWins}`;
+}
+
+function displayOutput(output) {
+  if (output === "Win") {
+    outputDisplay.textContent = `You Win!`;
+  } else if (output === "Loss") {
+    outputDisplay.textContent = `You Lose!`;
+  } else {
+    outputDisplay.textContent = `It's a Tie!`;
+  }
+}
 
 function playRound(player, computer) {
   if (
@@ -70,29 +80,13 @@ function playRound(player, computer) {
   }
 }
 
-function displayScores() {
-  playerScoreDisplay.textContent = `Player : ${playerWins}`;
-  computerScoreDisplay.textContent = `Computer : ${computerWins}`;
-}
-
-function displayOutput(output) {
-  if (output === "Win") {
-    outputDisplay.textContent = `You Win!`;
-  } else if (output === "Loss") {
-    outputDisplay.textContent = `You Lose!`;
-  } else {
-    outputDisplay.textContent = `It's a Tie!`;
-  }
-}
-
-//Checks if game is over and announce Winner!
-function game() {
+function gameOver() {
   if (playerWins === 5 || computerWins === 5) {
     buttonSelected.forEach((button) =>
       button.removeEventListener("click", getChoices)
     );
     buttonSelected.forEach((button) =>
-      button.removeEventListener("click", game)
+      button.removeEventListener("click", gameOver)
     );
     playerWins > computerWins
       ? console.log("winnerPlayer")
@@ -102,7 +96,5 @@ function game() {
 
 buttonSelected.forEach((button) => {
   button.addEventListener("click", getChoices);
-});
-buttonSelected.forEach((button) => {
-  button.addEventListener("click", game);
+  button.addEventListener("click", gameOver);
 });

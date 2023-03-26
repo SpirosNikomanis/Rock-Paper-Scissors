@@ -9,26 +9,39 @@
     <script src="game-page.js" defer></script>
   </head>
   <body>
-    <div class="score-container">
-      <div class="player-score">Player : 0</div>
-      <div class="computer-score">Computer : 0</div>
-    </div>
-    <div class="output-display">You win</div>
-
-    <div class="display-container">
-      <div class="player-selection">
-        <img src="../assets/Rock-p.png" alt="" />
+    <div class="scoreBoard">
+      <div class="playerScoreDisplay">
+        <div class="playerImage">
+          <img src="../assets/users.png" alt="" />
+        </div>
+        <div class="player-score">Player : 0</div>
       </div>
-      <img class="vs-icon" src="../assets/vs-icon.png" alt="Vs" />
-      <div class="computer-selection">
-        <img src="../assets/paper-c.png" alt="" />
+      <div class="computerScoreDisplay">
+        <div class="playerImage">
+          <img src="../assets/monitor.png" alt="" />
+        </div>
+        <div class="computer-score">Computer : 0</div>
+      </div>
+    </div>
+
+    <div class="output">Round 1</div>
+
+    <div class="selections">
+      <div class="playerSelection">
+        <img src="../assets/Rock-player.png" alt="" class="hidden" />
+      </div>
+      <div class="vs-display">
+        <img class="vs-icon" src="../assets/vs-text-icon.png" alt="Vs" />
+      </div>
+      <div class="computerSelection">
+        <img src="../assets/Rock-com.png" alt="" class="hidden" />
       </div>
     </div>
 
     <div class="button-container">
-      <button id="Rock" class="button">Rock</button>
-      <button id="Scissors" class="button">Scissors</button>
-      <button id="Paper" class="button">Paper</button>
+      <button id="Rock" class="button-red">Rock</button>
+      <button id="Scissors" class="button-yellow">Scissors</button>
+      <button id="Paper" class="button-blue">Paper</button>
     </div>
 
     <div class="endGame-fullscreen hidden endGame-display">
