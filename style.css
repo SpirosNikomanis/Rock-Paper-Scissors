@@ -87,7 +87,8 @@ li {
 }
 
 a {
+  text-decoration: none;
   font-size: 40px;
   font-family: "VT323", sans-serif;
-  text-decoration: none;
+  color: #680696;
 }

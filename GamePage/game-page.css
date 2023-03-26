@@ -15,7 +15,7 @@ body {
   padding: 30px 15px;
   display: flex;
   flex-direction: column;
-  background: #000814;
+  background: #2b0f54;
 }
 
 .score-container {
@@ -25,18 +25,24 @@ body {
   margin-bottom: 100px;
 }
 
-.player-score,
+.player-score {
+  font-family: "VT323", sans-serif;
+  font-size: 50px;
+  color: #ffda45;
+}
+
 .computer-score {
   font-family: "VT323", sans-serif;
-  font-size: 70px;
-  color: #ffc300;
+  font-size: 50px;
+  color: #ff4f69;
 }
+
 .output-display {
   display: flex;
   align-items: center;
   justify-content: center;
-  color: wheat;
-  font-size: 60px;
+  color: #3368dc;
+  font-size: 80px;
   font-family: "VT323", sans-serif;
   height: 100px;
   margin-bottom: 70px;
@@ -49,8 +55,8 @@ body {
 }
 
 .vs-icon {
-  max-width: 200px;
-  max-height: 200px;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 .button-container {
@@ -69,8 +75,8 @@ body {
   font-family: "VT323", serif;
   padding: 10px 30px;
   border-radius: 15px;
-  color: rgb(19, 18, 70);
-  background: linear-gradient(hsl(14, 75%, 35%), hsl(59, 85%, 47%));
+  color: #18092e;
+  background: linear-gradient(#ff8142, #ffda45);
   width: 150px;
 }
 .hidden {
