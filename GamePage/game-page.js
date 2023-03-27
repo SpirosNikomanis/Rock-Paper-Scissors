@@ -7,6 +7,7 @@ const outputDisplay = document.querySelector(".output");
 const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
 const endGame = document.querySelector(".endGame-display");
+const gameWinner = document.querySelector(".winner");
 const timeLeft = document.querySelector("#timeLeft");
 
 let playerWins = 0;
@@ -60,7 +61,6 @@ function displayScores() {
 }
 
 function displayOutcome(outcome) {
-  outputDisplay.classList.remove("hidden");
   if (outcome === "Win") {
     outputDisplay.textContent = `You Win!`;
   } else if (outcome === "Loss") {
@@ -74,8 +74,15 @@ function countDown() {
   currentTime--;
   timeLeft.textContent = currentTime;
   if (currentTime === 0) {
-    clearInterval(timerId);
     window.location.href = "../index.html";
+  }
+}
+
+function announceMatchWinner() {
+  if (playerWins === 5) {
+    gameWinner.textContent = "Player Wins";
+  } else if (computerWins === 5) {
+    gameWinner.textContent = "Computer Wins";
   }
 }
 
@@ -100,16 +107,41 @@ function playRound(player, computer) {
   }
 }
 
-function gameOver(timerId) {
+function gameOver() {
   if (playerWins === 5 || computerWins === 5) {
     buttonSelected.forEach((button) => {
-      button.removeEventListener("click", getChoices);
-      button.removeEventListener("click", gameOver);
+      button.disabled = true;
     });
-    endGame.classList.remove("hidden");
-    timerId = setInterval(countDown, 1000);
+    endGame.classList.toggle("hidden");
+    announceMatchWinner();
+    resetGame();
+    setTimeout(() => {
+      timerId = setInterval(countDown, 1000);
+    }, 1500);
   }
 }
+
+function resetGame() {
+  window.addEventListener("keydown", function (e) {
+    if (e.key === "Enter") {
+      clearInterval(timerId);
+      playerWins = 0;
+      computerWins = 0;
+      currentTime = 60;
+      endGame.classList.toggle("hidden");
+      playerChoiceDisplay.firstElementChild.classList.add("hidden");
+      computerChoiceDisplay.firstElementChild.classList.add("hidden");
+      playerScoreDisplay.textContent = `Player : ${playerWins}`;
+      computerScoreDisplay.textContent = `Computer : ${computerWins}`;
+      outputDisplay.textContent = `Make your Selection`;
+      buttonSelected.forEach((button) => {
+        button.disabled = false;
+      });
+      resetGame();
+    }
+  });
+}
+//================Buttons Events==============//
 
 buttonSelected.forEach((button) => {
   button.addEventListener("click", getChoices);

@@ -95,6 +95,7 @@ img {
   align-items: center;
   padding: 50px;
 }
+
 .button-red {
   position: relative;
   appearance: none;
@@ -111,7 +112,7 @@ img {
   color: rgba(0, 0, 0, 0.781);
   text-shadow: 1px 1px rgba(255, 255, 255, 0.24);
   cursor: pointer;
-  margin: 6px 6px;
+  margin: 6px 16px;
   letter-spacing: 0.1em;
   transition: all 200ms ease;
   box-shadow: -1px -1px 1px hsl(351, 74%, 60%), 0 0 0 4px rgba(0, 0, 0, 0.3),
@@ -153,7 +154,7 @@ img {
   color: rgba(0, 0, 0, 0.781);
   text-shadow: 1px 1px rgba(255, 255, 255, 0.24);
   cursor: pointer;
-  margin: 6px 6px;
+  margin: 6px 16px;
   letter-spacing: 0.1em;
   transition: all 200ms ease;
   box-shadow: -1px -1px 1px hsl(48, 100%, 66%), 0 0 0 4px rgba(0, 0, 0, 0.3),
@@ -238,7 +239,7 @@ img {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 80px;
+  padding: 30px;
   transition: opacity 0.5s ease 1s;
 }
 .endGame-fullscreen h1 {
@@ -270,14 +271,22 @@ img {
   }
 }
 
-.endGame-fullscreen h3 {
-  font-size: 80px;
+.winner {
+  font-size: 90px;
+  color: #b102b7;
 }
 
-.endGame-fullscreen p {
-  font-size: 30px;
+.countDown {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.blinking-text {
+
+.endGame-fullscreen #timeLeft {
+  font-size: 40px;
+  color: rgb(170, 167, 167);
+}
+#rematchText {
   color: darkgrey;
   font-family: "VT323", sans-serif;
   font-size: 30px;
@@ -294,4 +303,9 @@ img {
   100% {
     opacity: 0;
   }
+}
+
+#rematchText,
+#timeLeft {
+  margin-bottom: 30px;
 }

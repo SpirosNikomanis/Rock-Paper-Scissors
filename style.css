@@ -16,9 +16,14 @@ body {
   justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 80px;
+  padding: 30px;
 }
-
+.title-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+}
 h1 {
   font-family: "Press Start 2P", cursive;
   font-size: 80px;
