@@ -6,9 +6,12 @@ const computerChoiceDisplay = document.querySelector(".computerSelection");
 const outputDisplay = document.querySelector(".output");
 const playerScoreDisplay = document.querySelector(".player-score");
 const computerScoreDisplay = document.querySelector(".computer-score");
+const endGame = document.querySelector(".endGame-display");
+const timeLeft = document.querySelector("#timeLeft");
 
 let playerWins = 0;
 let computerWins = 0;
+let currentTime = timeLeft.textContent;
 
 function getComputerChoice() {
   randomChoice = Math.floor(Math.random() * 3);
@@ -87,6 +90,17 @@ function gameOver() {
       button.removeEventListener("click", getChoices);
       button.removeEventListener("click", gameOver);
     });
+
+    // function countDown() {
+    //   currentTime--;
+    //   timeLeft.textContent = currentTime;
+    //   if (currentTime === 0) {
+    //     clearInterval(timerId);
+    //     window.location.href = "../index.html";
+    //   }
+    // }
+    endGame.classList.remove("hidden");
+    // let timerId = setInterval(countDown, 1000);
   }
 }
 

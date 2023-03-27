@@ -1,8 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap");
 
-* {
-  margin: 0;
+*,
+*::before,
+*::after {
   padding: 0;
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -234,13 +236,14 @@ img {
   color: white;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding: 100px;
+  padding: 80px;
+  transition: opacity 0.5s ease 1s;
 }
 .endGame-fullscreen h1 {
   font-family: "Press Start 2P", cursive;
-  font-size: 150px;
+  font-size: 80px;
   background: linear-gradient(
     #fd004c 16.7%,
     #fe9000 16.7%,
