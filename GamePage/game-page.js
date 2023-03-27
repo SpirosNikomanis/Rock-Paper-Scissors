@@ -12,6 +12,9 @@ const timeLeft = document.querySelector("#timeLeft");
 let playerWins = 0;
 let computerWins = 0;
 let currentTime = timeLeft.textContent;
+let timerId;
+
+//===============Choices Functions====================//
 
 function getComputerChoice() {
   randomChoice = Math.floor(Math.random() * 3);
@@ -36,16 +39,18 @@ function getChoices(e) {
   playRound(playerSelection, computerSelection);
 }
 
-function displayChoices(playerSelection, computerSelection) {
+//====================Display Functions===================//
+
+function displayChoices(playersChoice, computersChoice) {
   playerChoiceDisplay.firstElementChild.classList.remove("hidden");
   playerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `../assets/${playerSelection}-player.png`
+    `../assets/${playersChoice}-player.png`
   );
   computerChoiceDisplay.firstElementChild.classList.remove("hidden");
   computerChoiceDisplay.firstElementChild.setAttribute(
     "src",
-    `../assets/${computerSelection}-com.png`
+    `../assets/${computersChoice}-com.png`
   );
 }
 
@@ -54,16 +59,27 @@ function displayScores() {
   computerScoreDisplay.textContent = `Computer : ${computerWins}`;
 }
 
-function displayOutput(output) {
+function displayOutcome(outcome) {
   outputDisplay.classList.remove("hidden");
-  if (output === "Win") {
+  if (outcome === "Win") {
     outputDisplay.textContent = `You Win!`;
-  } else if (output === "Loss") {
+  } else if (outcome === "Loss") {
     outputDisplay.textContent = `You Lose!`;
   } else {
     outputDisplay.textContent = `It's a Tie!`;
   }
 }
+
+function countDown() {
+  currentTime--;
+  timeLeft.textContent = currentTime;
+  if (currentTime === 0) {
+    clearInterval(timerId);
+    window.location.href = "../index.html";
+  }
+}
+
+//================Game Functions=======================//
 
 function playRound(player, computer) {
   if (
@@ -73,34 +89,25 @@ function playRound(player, computer) {
   ) {
     ++playerWins;
     displayScores();
-    displayOutput("Win");
+    displayOutcome("Win");
   } else if (player === computer) {
     displayScores();
-    displayOutput("Tie");
+    displayOutcome("Tie");
   } else {
     ++computerWins;
     displayScores();
-    displayOutput("Loss");
+    displayOutcome("Loss");
   }
 }
 
-function gameOver() {
+function gameOver(timerId) {
   if (playerWins === 5 || computerWins === 5) {
     buttonSelected.forEach((button) => {
       button.removeEventListener("click", getChoices);
       button.removeEventListener("click", gameOver);
     });
-
-    // function countDown() {
-    //   currentTime--;
-    //   timeLeft.textContent = currentTime;
-    //   if (currentTime === 0) {
-    //     clearInterval(timerId);
-    //     window.location.href = "../index.html";
-    //   }
-    // }
     endGame.classList.remove("hidden");
-    // let timerId = setInterval(countDown, 1000);
+    timerId = setInterval(countDown, 1000);
   }
 }
 
