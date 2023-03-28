@@ -1,6 +1,7 @@
 //Rock-Paper-Scissors
 
 const buttonSelected = document.querySelectorAll(".button-container button");
+const resetButton = document.querySelector(".reset-icon");
 const playerChoiceDisplay = document.querySelector(".playerSelection");
 const computerChoiceDisplay = document.querySelector(".computerSelection");
 const outputDisplay = document.querySelector(".output");
@@ -80,7 +81,7 @@ function countDown() {
 
 function announceMatchWinner() {
   if (playerWins === 5) {
-    gameWinner.textContent = "Player Wins";
+    gameWinner.textContent = "Player Wins!";
   } else if (computerWins === 5) {
     gameWinner.textContent = "Computer Wins";
   }
@@ -112,7 +113,7 @@ function gameOver() {
     buttonSelected.forEach((button) => {
       button.disabled = true;
     });
-    endGame.classList.toggle("hidden");
+    endGame.classList.remove("hidden");
     announceMatchWinner();
     resetGame();
     setTimeout(() => {
@@ -127,8 +128,8 @@ function resetGame() {
       clearInterval(timerId);
       playerWins = 0;
       computerWins = 0;
-      currentTime = 60;
-      endGame.classList.toggle("hidden");
+      currentTime = 30;
+      endGame.classList.add("hidden");
       playerChoiceDisplay.firstElementChild.classList.add("hidden");
       computerChoiceDisplay.firstElementChild.classList.add("hidden");
       playerScoreDisplay.textContent = `Player : ${playerWins}`;
@@ -141,9 +142,12 @@ function resetGame() {
     }
   });
 }
+
 //================Buttons Events==============//
 
 buttonSelected.forEach((button) => {
   button.addEventListener("click", getChoices);
   button.addEventListener("click", gameOver);
 });
+
+resetButton.addEventListener("click", resetGame);

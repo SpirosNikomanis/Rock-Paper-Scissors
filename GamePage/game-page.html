@@ -9,6 +9,8 @@
     <script src="game-page.js" defer></script>
   </head>
   <body>
+    <!------------------- SCOREBOARD -------------------------->
+
     <div class="scoreBoard">
       <div class="playerScoreDisplay">
         <div class="playerImage">
@@ -24,6 +26,8 @@
       </div>
     </div>
 
+    <!------------------- DISPLAY -------------------------->
+
     <div class="output">Make your Selection</div>
 
     <div class="selections">
@@ -38,21 +42,35 @@
       </div>
     </div>
 
+    <!------------------- BUTTONS -------------------------->
+
     <div class="button-container">
       <button id="Rock" class="button-red">Rock</button>
       <button id="Scissors" class="button-yellow">Scissors</button>
       <button id="Paper" class="button-blue">Paper</button>
     </div>
 
+    <!------------------- FOOTER -------------------------->
+
+    <div class="footer">
+      <div class="reset-icon">
+        <a href="./game-page.html"><img src="../assets/reset.png" alt="" /></a>
+      </div>
+      <div class="home-link">
+        <a href="../index.html"><img src="../assets/home-icon.png" alt="" /></a>
+      </div>
+    </div>
+
+    <!------------------- ENDGAME MODULE -------------------------->
+
     <div class="endGame-fullscreen hidden endGame-display">
       <h1>GAME OVER</h1>
       <div class="winner">Player Wins</div>
       <div class="countDown">
         <p id="rematchText" class="blinking-text">Press Enter to play again</p>
-        <div id="timeLeft">60</div>
+        <div id="timeLeft">30</div>
       </div>
     </div>
-
     <script></script>
   </body>
 </html>

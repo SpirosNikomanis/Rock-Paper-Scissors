@@ -10,7 +10,7 @@
 
 body {
   height: 100vh;
-  background: #140727;
+  background: #2b0f54;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,7 +26,7 @@ body {
 }
 h1 {
   font-family: "Press Start 2P", cursive;
-  font-size: 80px;
+  font-size: 70px;
   background: linear-gradient(
     #fd004c 16.7%,
     #fe9000 16.7%,
@@ -78,22 +78,10 @@ h1 {
     opacity: 0;
   }
 }
-ul {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  align-items: center;
-  gap: 30px;
-}
-
-li {
-  text-decoration: none;
-  list-style-type: none;
-}
 
 a {
   text-decoration: none;
   font-size: 40px;
   font-family: "VT323", sans-serif;
-  color: #680696;
+  color: #a301a8;
 }

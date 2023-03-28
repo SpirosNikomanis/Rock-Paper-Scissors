@@ -45,13 +45,13 @@ img {
 
 .player-score {
   font-family: "VT323", sans-serif;
-  font-size: 50px;
+  font-size: 40px;
   color: hsl(48, 100%, 64%);
 }
 
 .computer-score {
   font-family: "VT323", sans-serif;
-  font-size: 50px;
+  font-size: 40px;
   color: #ff4f69;
 }
 
@@ -60,7 +60,7 @@ img {
   align-items: center;
   justify-content: center;
   color: #3268dc;
-  font-size: 80px;
+  font-size: 60px;
   font-family: "VT323", sans-serif;
   padding: 20px 0px;
   margin: 30px 0px;
@@ -93,7 +93,7 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 50px;
+  padding: 50px 0px 0px;
 }
 
 .button-red {
@@ -227,13 +227,26 @@ img {
   pointer-events: none;
 }
 
+.footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 25px;
+}
+
+.home-link,
+.reset-icon {
+  max-width: 18px;
+  max-height: 18px;
+}
+
 .endGame-fullscreen {
   position: absolute;
   top: 0;
   bottom: 0;
   right: 0;
   left: 0;
-  background: #140727;
+  background: #2b0f54;
   color: white;
   display: flex;
   flex-direction: column;
@@ -289,7 +302,8 @@ img {
 #rematchText {
   color: darkgrey;
   font-family: "VT323", sans-serif;
-  font-size: 30px;
+  font-size: 25px;
+  margin-bottom: 50px;
   animation: blink 2s linear infinite;
 }
 
