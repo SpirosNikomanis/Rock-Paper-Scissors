@@ -163,16 +163,20 @@ a {
 .username__input__container {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .keyboard {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  width: 800px;
 }
 
 button {
   background: transparent;
-  border: none;
+  border: 2px solid whitesmoke;
   display: inline-block;
   padding: 0.5rem 1rem;
   margin: 0.3rem;
@@ -207,6 +211,10 @@ textarea {
   background-color: #4e545a;
 }
 
+.delete,
+.caps {
+  width: 70px;
+}
 .upper {
   text-transform: uppercase;
 }
