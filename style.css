@@ -269,16 +269,13 @@ textarea {
                                   AVATAR SELECTION SECTION
 ******************************************************************************/
 
-.avatar__screen .intro__title {
-  margin-bottom: 6rem;
-}
-
 .avatar__prompt {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   flex: 1;
+  margin-top: 5rem;
 }
 .avatar__prompt__text {
   font-size: 2rem;
@@ -290,8 +287,7 @@ textarea {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5rem;
-  flex: 1;
+  gap: 3rem;
 }
 .avatar__img {
   width: 200px;
