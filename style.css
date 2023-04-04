@@ -1,330 +1,109 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
-
-*,
-*::before,
-*::after {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: 'Press Start 2P', cursive;
-}
-
-.fadeIn {
-  background-color: #17191b;
-  display: block;
-  pointer-events: all;
-  opacity: 1;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 1000;
-}
-
-.fadeOut {
-  opacity: 0;
-  display: none;
-  pointer-events: none;
-}
-
-.footer__container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  width: 100%;
-}
-
-.intro__title__container {
-  margin-top: 3em;
-}
-
-.intro__title {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 70px;
-  pointer-events: none;
-  background: linear-gradient(
-    #fd004c 16.7%,
-    #fe9000 16.7%,
-    #fe9000 33.4%,
-    #fff020 33.4%,
-    #fff020 50.1%,
-    #3edf4b 50.1%,
-    #3edf4b 66.8%,
-    #3363ff 66.8%,
-    #3363ff 83.5%,
-    #b102b7 83.5%
-  );
-  -webkit-text-stroke: 0.02em #ffffff;
-  background: () no-repeat;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  line-height: 1.1em;
-  animation: rainbow 50s linear infinite;
-}
-@keyframes rainbow {
-  100% {
-    background-position: 0 30em;
-  }
-}
-
-/******************************************************************************
-                                  INTRO SECTION
-******************************************************************************/
-
-.intro__screen,
-.username__screen,
-.avatar__screen,
-.game__screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  height: 100vh;
-  background-image: url(./assets/bg.jpg);
-}
-
-.intro__text {
-  font-family: 'Press Start 2P';
-  font-size: 25px;
-  color: #f1f0ee;
-  text-align: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  letter-spacing: 4px;
-  color: #6b3b6e;
-  text-shadow: 0 0 5px #ec41bf, 0 0 10px #8606b6, 0 0 15px #f1f0ee,
-    0 0 20px #921982, 0 0 25px #770067;
-  -webkit-text-fill-color: #f4ecff;
-  -webkit-text-stroke-color: #c546f7;
-  -webkit-text-stroke-width: 0;
-  text-decoration: none;
-  pointer-events: none;
-}
-
-.blinking-text {
-  animation-name: blink;
-  animation-duration: 3s;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
-
-  -webkit-animation-name: blink;
-  -webkit-animation-duration: 3s;
-  -webkit-animation-timing-function: linear;
-  -webkit-animation-iteration-count: infinite;
-}
-
-@-moz-keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@-webkit-keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes blink {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-a {
-  text-decoration: none;
-  font-size: 40px;
-  font-family: 'VT323', sans-serif;
-  color: #a301a8;
-}
-
-/******************************************************************************
-                                  USERNAME INPUT SECTION
-******************************************************************************/
-
-.username__input__title {
-  font-size: 1.5rem;
-  font-family: 'Press Start 2P', cursive;
-  color: #f1f0ee;
-}
-
-.username__input__container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex: 1;
-  gap: 3rem;
-}
-
-textarea {
-  font-family: 'Press Start 2P', cursive;
-  width: 750px;
-  height: 50px;
-  resize: none;
-  padding: 0.5rem;
-  font-size: 1.2rem;
-  outline: none;
-  border: 1px solid #f1f0ee;
-  border-radius: 0.5rem;
-  background-color: transparent;
-  color: #f1f0ee;
-}
-
-.username__textarea {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-}
-
-.username__keyboard {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 800px;
-}
-
-.action__btns,
-.submit__btn {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.action__btns__container {
-  width: 100%;
-  height: 60px;
-  padding: 0.5rem 1rem;
-  display: flex;
-  justify-content: space-between;
-}
-
-.btn {
-  font-family: 'Press Start 2P', cursive;
-  background: transparent;
-  border: none;
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  margin: 0.3rem;
-  font-size: 1.3rem;
-  color: #f1f0ee;
-  width: 50px;
-  height: 50px;
-  border-radius: 0.5rem;
-}
-
-.delete,
-.caps,
-.submit__btn {
-  font-family: 'Press Start 2P', cursive;
-  font-size: 1rem;
-  text-transform: capitalize;
-  background: transparent;
-  border: none;
-  display: inline-block;
-  padding: 0.6rem;
-  margin: 0.5rem;
-  font-size: 1.3rem;
-  color: #f1f0ee;
-  width: 80px;
-  height: 50px;
-  border-radius: 0.5rem;
-}
-
-.upper {
-  text-transform: uppercase;
-}
-
-.delete:hover,
-.caps:hover,
-.submit__btn:hover,
-.btn:hover {
-  background-color: #3edf4b;
-}
-
-.delete:active,
-.caps:active,
-.submit__btn:active,
-.btn:active {
-  background-color: #31ff42;
-}
-
-/******************************************************************************
-                                  AVATAR SELECTION SECTION
-******************************************************************************/
-
-.avatar__display__container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 60%;
-  flex: 1;
-}
-
-.avatar__prompt {
-  display: flex;
-  align-items: center;
-  margin-top: 1em;
-}
-.avatar__prompt__text {
-  font-size: 1.5rem;
-  color: #f1f0ee;
-  font-family: 'Press Start 2P', cursive;
-}
-
-.avatar__options__display {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 500px;
-  max-height: 500px;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-}
-.avatar__img {
-  width: 80px;
-  height: 80px;
-  border: 3px solid #f1f0ee;
-}
-
-.avatar__img:hover {
-  border: 1px solid #31ff42;
-}
-
-.avatar__img img,
-.avatar__display-full img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.btns__container button {
+  --size: 10;
+  --bezel: 0.8;
+  --fade: 0.7;
+  --hover-size: 0.03;
+  --hue: 10;
+  --shadow: calc(var(--hue) + 180);
+  --throw: 1px;
+  --saturation: 100%;
+  --lightness: 50%;
+  --button-size: calc(1rem * var(--size));
+  --font-size: calc(120% * var(--size) / 6);
   cursor: pointer;
+  position: relative;
+  outline: none;
+  border: 1px solid hsla(var(--shadow), var(--saturation), 20%, 0.9);
+  border-radius: 999px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  will-change: transform;
+  font-size: var(--font-size);
+  font-weight: bolder;
+  font-family: monospace;
+  text-shadow: 0 -1px 1px hsla(var(--hue), var(--saturation), 5%, 0.9),
+    0 1px 1px hsla(var(--hue), var(--saturation), 95%, 0.9);
+  color: hsla(var(--hue), var(--saturation), 5%, 0.95);
+  background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+  background-image: linear-gradient(
+    hsla(var(--hue), var(--saturation), 70%, 0.5),
+    hsla(var(--hue), var(--saturation), 30%, 0.5)
+  );
+  box-shadow: 0 var(--throw) 10px
+      hsla(var(--shadow), var(--saturation), 10%, 0.9),
+    0 calc(-1 * var(--throw)) hsla(var(--hue), var(--saturation), 20%, 0.9);
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 44px;
+  min-height: 44px;
+  width: calc(1rem * var(--size));
+  height: calc(1rem * var(--size));
+  margin: 10px;
+  box-sizing: border-box;
+  transition: transform 40ms ease-in, background 90ms ease-out,
+    box-shadow 120ms ease-out;
 }
-.avatar__display-full {
-  width: 300px;
-  height: 300px;
-  /* border: 3px solid #f1f0ee; */
+.btns__container button::before,
+.btns__container button::after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 100%;
+  transition: transform 40ms ease-in, opacity 90ms linear,
+    background 90ms ease-out, box-shadow 120ms ease-out;
 }
+.btns__container button::before {
+  --throw: 8px;
+  transform: scale(var(--fade));
+  background-image: linear-gradient(
+    hsla(var(--hue), var(--saturation), 30%, 1),
+    hsla(var(--hue), var(--saturation), 80%, 1)
+  );
+  opacity: 0.5;
+}
+.btns__container button::after {
+  --throw: 3px;
+  transform: scale(var(--bezel));
+  border: 2px solid hsla(var(--hue), var(--saturation), 15%, 0.6);
+  box-shadow: inset 0 1px var(--throw)
+      hsla(var(--hue), var(--saturation), 90%, 0.9),
+    inset 0 -1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3),
+    0 1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3),
+    0 -1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3);
+}
+.btns__container button:hover {
+  --lightness: 70%;
+}
+.btns__container button:active {
+  --saturation: 100%;
+  font-size: calc(var(--font-size) * (1 - var(--hover-size)));
+}
+.btns__container button:active::before {
+  --throw: 8px;
+  transform: scale(calc(var(--bezel)));
+  opacity: 0.41;
+  box-shadow: inset 0 -1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.9),
+    inset 0 1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3),
+    0 -1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.3),
+    0 1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.3);
+}
+.btns__container button:active::after {
+  --throw: 3px;
+  transform: scale(calc(var(--bezel) - var(--hover-size)));
+  border: 2px solid hsla(var(--hue), var(--saturation), 15%, 0.8);
+}
+.btns__container button:focus {
+  --lightness: 60%;
+}
+.btns__container button:disabled {
+  --hue: 270;
+  --saturation: 10%;
+  --lightness: 83%;
+  --hover-size: 0;
+  cursor: not-allowed;
+} /*# sourceMappingURL=style.css.map */
