@@ -7,7 +7,8 @@
   margin: 0;
   box-sizing: border-box;
   font-family: 'Press Start 2P', cursive;
-  /* overflow: hidden; */
+  overflow: hidden;
+  user-select: none;
 }
 
 .fadeIn {
@@ -309,8 +310,8 @@ textarea {
   gap: 1em;
 }
 .avatar__img {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   border: 3px solid #f1f0ee;
 }
 
@@ -328,7 +329,7 @@ textarea {
 .avatar__display-full {
   width: 300px;
   height: 300px;
-  /* border: 3px solid #f1f0ee; */
+  pointer-events: none;
 }
 
 .scoreboard {
@@ -434,4 +435,120 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.versus-container {
+  position: relative;
+  height: 100vh;
+}
+
+.fadeIn--transparent-bg {
+  background-color: transparent;
+  display: block;
+  pointer-events: all;
+  opacity: 1;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.versus__text {
+  height: 100px;
+  width: 10%;
+  font-size: 5rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 46%;
+}
+
+.right-half {
+  background-color: red;
+  height: 100%;
+  width: 50%;
+}
+.left-half {
+  background-color: rgb(89, 0, 255);
+  height: 100%;
+  width: 50%;
+}
+
+/* Element to be moved.*/
+.slide-left {
+  position: absolute;
+  left: 50%;
+
+  animation-name: slide-from-left;
+  animation-duration: 700ms;
+}
+
+/* Element to be moved.*/
+.slide-right {
+  position: absolute;
+  right: 50%;
+  animation-name: slide-from-right;
+  animation-duration: 700ms;
+}
+
+.slide-middle {
+  position: absolute;
+  top: 46%;
+  animation-name: slide-to-middle;
+  animation-duration: 1500ms;
+  /* animation-delay: 20ms; */
+}
+
+@keyframes slide-from-right {
+  from {
+    right: 100%;
+  }
+  to {
+    right: 50%;
+  }
+}
+
+@keyframes slide-to-middle {
+  from {
+    top: 0%;
+    opacity: 0;
+  }
+  to {
+    top: 46%;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+.versus-img {
+  height: 500px;
+  width: 500px;
+  position: absolute;
+  top: 25%;
+  left: 25%;
+}
+
+.show-avatar {
+  animation: show-avatar 2000ms ease;
+}
+
+@keyframes show-avatar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
