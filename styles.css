@@ -110,6 +110,14 @@
   pointer-events: none;
 }
 
+.intro__credits {
+  display: flex;
+  flex-direction: column;
+  height: 100px;
+  justify-content: space-around;
+  align-items: center;
+}
+
 .blinking-text {
   animation-name: blink;
   animation-duration: 3s;
