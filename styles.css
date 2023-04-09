@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+@font-face {
+  font-family: 'Press Start 2P';
+  src: url(./assets/fonts/pressstart2p-regular-webfont.woff2) format('woff2'),
+    url(./assets/fonts/pressstart2p-regular-webfont.woff) format('woff');
+}
 
 *,
 *::before,
@@ -355,7 +360,7 @@ textarea {
 .avatar__prompt {
   display: flex;
   align-items: center;
-  margin-top: 1em;
+  padding-top: 3em;
 }
 .avatar__prompt__text {
   font-size: 1.5rem;
@@ -376,10 +381,12 @@ textarea {
   width: 100px;
   height: 100px;
   border: 3px solid #f1f0ee;
+  cursor: pointer;
 }
 
 .avatar__img:hover {
   border: 1px solid #31ff42;
+  cursor: pointer;
 }
 
 .avatar__img img,
@@ -387,7 +394,6 @@ textarea {
   width: 100%;
   height: 100%;
   object-fit: contain;
-  cursor: pointer;
 }
 .avatar__display-full {
   width: 300px;
@@ -395,6 +401,49 @@ textarea {
   pointer-events: none;
 }
 
+.start__game__container {
+  display: flex;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  /* transition: opacity 1s linear; */
+}
+.start__button {
+  width: 120px;
+  height: 45px;
+  background: hsl(35, 89%, 59%);
+  border: 0px;
+  position: relative;
+  box-shadow: inset -2px 2px 1px 1px #ffd989, inset -2px -2px 1px 1px #9e4d20,
+    inset 2px 0px 1px 1px hsl(25, 88%, 57%);
+}
+
+.start__button:active {
+  top: 2px;
+}
+
+.start__button::after {
+  content: '';
+  background: #000;
+  position: absolute;
+  left: -2%;
+  top: 0;
+  width: 104%;
+  height: 100%;
+  z-index: -1;
+}
+
+.start__button::before {
+  content: '';
+  background: #000;
+  position: absolute;
+  left: 0;
+  top: -5%;
+  width: 100%;
+  height: 110%;
+  z-index: -2;
+}
 .scoreboard {
   display: flex;
   width: 100%;
@@ -414,7 +463,7 @@ textarea {
 .computer__avatar {
   width: 180px;
   height: 180px;
-  background-image: url('./assets/boy-1-full-size.svg');
+  background-image: url('./assets/boy-1.png');
   object-fit: contain;
 }
 .player__avatar img,
@@ -505,7 +554,7 @@ textarea {
   height: 100vh;
 }
 
-.fadeIn--transparent-bg {
+.fadeIn-transparent-bg {
   background-color: transparent;
   display: block;
   pointer-events: all;
@@ -517,7 +566,7 @@ textarea {
   bottom: 0;
   right: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 4000;
 }
 
 .versus__text {
@@ -545,9 +594,8 @@ textarea {
 .slide-left {
   position: absolute;
   left: 50%;
-
   animation-name: slide-from-left;
-  animation-duration: 700ms;
+  animation-duration: 1000ms;
 }
 
 /* Element to be moved.*/
@@ -555,7 +603,7 @@ textarea {
   position: absolute;
   right: 50%;
   animation-name: slide-from-right;
-  animation-duration: 700ms;
+  animation-duration: 1000ms;
 }
 
 .slide-middle {
@@ -563,7 +611,6 @@ textarea {
   top: 46%;
   animation-name: slide-to-middle;
   animation-duration: 1500ms;
-  /* animation-delay: 20ms; */
 }
 
 @keyframes slide-from-right {
@@ -615,7 +662,6 @@ textarea {
     opacity: 1;
   }
 }
-
 .hidden {
   opacity: 0;
   pointer-events: none;

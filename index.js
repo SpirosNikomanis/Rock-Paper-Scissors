@@ -5,6 +5,7 @@
 const introScreen = document.querySelector('.intro__screen');
 const userNameScreen = document.querySelector('.username__screen');
 const avatarScreen = document.querySelector('.avatar__screen');
+const vsScreen = document.querySelector('.versus-screen');
 
 window.addEventListener('keydown', function enterPressed(e) {
   console.log(e.key);
@@ -13,12 +14,11 @@ window.addEventListener('keydown', function enterPressed(e) {
   } else {
     introScreen.classList.add('fadeOut');
     userNameScreen.classList.remove('hidden');
-    setTimeout(() => {
-      userNameScreen.classList.add('fadeIn');
-    }, 0);
+    userNameScreen.classList.add('fadeIn');
+
     introScreen.addEventListener('animationend', () => {
       introScreen.classList.add('hidden');
-      this.window.removeEventListener('keydown', enterPressed);
+      window.removeEventListener('keydown', enterPressed);
     });
   }
 });
@@ -70,3 +70,30 @@ submitButton.addEventListener('click', () => {
 /////////////////////////////////////////////////////////////////////////////////////
 // // // // // // // // // // // AVATAR SECTION // // // // // // // // // // // //
 ////////////////////////////////////////////////////////////////////////////////////
+const avatarSelectionBox = document.querySelectorAll('.avatar__img');
+const avatarFullDisplayBox = document.querySelector('.full-image');
+const startGameButton = document.querySelector('.start__game__container');
+const vsLeftSide = document.querySelector('.left-half');
+const vsRightSide = document.querySelector('.right-half');
+const vsMiddleText = document.querySelector('.versus__text');
+
+avatarSelectionBox.forEach((box) => {
+  box.addEventListener('click', () => {
+    console.log(avatarFullDisplayBox.getAttribute('src'));
+    avatarFullDisplayBox.setAttribute('src', `./assets/${box.id}.png`);
+    startGameButton.style.opacity = 1;
+  });
+});
+
+startGameButton.addEventListener('click', () => {
+  avatarScreen.classList.add('fadeOut');
+  vsScreen.classList.remove('hidden');
+
+  avatarScreen.addEventListener('animationend', () => {
+    avatarScreen.classList.add('hidden');
+    vsScreen.classList.add('fadeIn');
+    vsLeftSide.classList.add('slide-right');
+    vsRightSide.classList.add('slide-left');
+    vsMiddleText.classList.add('slide-middle');
+  });
+});
