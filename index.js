@@ -12,11 +12,12 @@ window.addEventListener('keydown', function enterPressed(e) {
     return;
   } else {
     introScreen.classList.add('fadeOut');
+    userNameScreen.classList.remove('hidden');
     setTimeout(() => {
       userNameScreen.classList.add('fadeIn');
-    }, 1);
+    }, 0);
     introScreen.addEventListener('animationend', () => {
-      introScreen.style.display = 'none';
+      introScreen.classList.add('hidden');
       this.window.removeEventListener('keydown', enterPressed);
     });
   }
@@ -56,11 +57,13 @@ submitButton.addEventListener('click', () => {
   textarea.value = chars.join('');
   userName = chars.join('');
   userNameScreen.classList.add('fadeOut');
+
   setTimeout(() => {
+    avatarScreen.classList.remove('hidden');
     avatarScreen.classList.add('fadeIn');
   }, 1);
   userNameScreen.addEventListener('animationend', () => {
-    userNameScreen.style.display = 'none';
+    userNameScreen.classList.add('hidden');
   });
 });
 
