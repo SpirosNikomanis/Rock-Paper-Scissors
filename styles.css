@@ -77,9 +77,20 @@
 .footer__container {
   display: flex;
   align-items: flex-end;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   padding: 0 10px;
+  position: relative;
+}
+
+.footer__nav__container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  position: absolute;
+  bottom: 0;
+  right: 0;
 }
 
 .intro__title__container {
@@ -401,13 +412,169 @@ textarea {
   pointer-events: none;
 }
 
+.versus-container {
+  position: relative;
+  height: 100vh;
+}
+
+.versus__text {
+  height: 100px;
+  width: 10%;
+  font-size: 5rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 46%;
+}
+
+.right-half {
+  background-color: red;
+  height: 100%;
+  width: 50%;
+}
+.left-half {
+  background-color: rgb(89, 0, 255);
+  height: 100%;
+  width: 50%;
+}
+
+/* Element to be moved.*/
+.slide-left {
+  position: absolute;
+  left: 50%;
+  animation: slide-from-left 1000ms;
+}
+
+/* Element to be moved.*/
+.slide-right {
+  position: absolute;
+  right: 50%;
+  animation: slide-from-right 1000ms;
+}
+
+.slide-middle {
+  position: absolute;
+  top: 46%;
+  animation: slide-to-middle 1500ms;
+}
+
+/* Element to be moved.*/
+.slide-left-reversed {
+  position: absolute;
+  left: 50%;
+  animation: slide-from-left-reversed 1000ms 3s;
+}
+
+/* Element to be moved.*/
+.slide-right-reversed {
+  position: absolute;
+  right: 50%;
+  animation: slide-from-right-reversed 1000ms 3s;
+}
+
+.slide-middle-reversed {
+  position: absolute;
+  top: 46%;
+  animation: slide-to-middle-reversed 1000ms 3s;
+}
+@keyframes slide-from-right {
+  from {
+    right: 100%;
+  }
+  to {
+    right: 50%;
+  }
+}
+
+@keyframes slide-to-middle {
+  from {
+    top: 0%;
+    opacity: 0;
+  }
+  to {
+    top: 46%;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-left {
+  from {
+    left: 100%;
+  }
+  to {
+    left: 50%;
+  }
+}
+
+@keyframes slide-from-right-reversed {
+  from {
+    right: 50%;
+  }
+  to {
+    right: 100%;
+  }
+}
+
+@keyframes slide-to-middle-reversed {
+  from {
+    top: 46%;
+    opacity: 1;
+  }
+  to {
+    top: 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-left-reversed {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.versus-img-player {
+  height: 200px;
+  width: 150px;
+  position: absolute;
+  top: 38%;
+  left: 35%;
+  opacity: 0;
+}
+
+.versus-img-com {
+  height: 200px;
+  width: 150px;
+  position: absolute;
+  top: 38%;
+  right: 35%;
+  opacity: 0;
+}
+
+.show-avatar {
+  animation: show-avatar 300ms ease-in forwards;
+}
+
+@keyframes show-avatar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.reversed {
+  animation-direction: reverse;
+}
+
 .start__game__container {
   display: flex;
   height: 50px;
   justify-content: center;
   align-items: center;
   opacity: 0;
-  /* transition: opacity 1s linear; */
 }
 .start__button {
   width: 120px;
@@ -447,34 +614,47 @@ textarea {
 .scoreboard {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding-top: 15px;
 }
 .score {
   max-width: 50%;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
 }
 .reverse {
-  display: flex;
   flex-direction: row-reverse;
+  gap: 1rem;
 }
 
 .player__avatar,
 .computer__avatar {
-  width: 180px;
-  height: 180px;
-  background-image: url('./assets/boy-1.png');
-  object-fit: contain;
+  width: 90px;
+  height: 100px;
 }
 .player__avatar img,
 .computer__avatar img {
   width: 100%;
   height: 100%;
+  display: block;
+  object-fit: contain;
+}
+
+.userName-container {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 }
 
 .lives__left {
   display: flex;
-  height: 100px;
+  height: 30px;
 }
 
 .lives__left img {
@@ -492,20 +672,24 @@ textarea {
 }
 
 .choice__display {
-  width: 250px;
-  height: 250px;
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
 }
 
 .choice__display img {
-  width: 100%;
-  height: 100%;
+  width: 40%;
+  height: 40%;
   object-fit: contain;
+  display: block;
 }
 
 .outcome__display {
   font-size: 2rem;
-  width: 400px;
+  max-width: 400px;
   text-align: center;
+  flex: 1;
 }
 
 .btns__container {
@@ -513,15 +697,8 @@ textarea {
   justify-content: space-evenly;
 }
 
-.footer__nav__container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 1rem;
-}
-
 .nav__btn {
-  width: 80px;
+  width: 30px;
   height: 30px;
 }
 
@@ -549,119 +726,6 @@ textarea {
   object-fit: cover;
 }
 
-.versus-container {
-  position: relative;
-  height: 100vh;
-}
-
-.fadeIn-transparent-bg {
-  background-color: transparent;
-  display: block;
-  pointer-events: all;
-  opacity: 1;
-  height: 100%;
-  width: 100%;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  z-index: 4000;
-}
-
-.versus__text {
-  height: 100px;
-  width: 10%;
-  font-size: 5rem;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 46%;
-}
-
-.right-half {
-  background-color: red;
-  height: 100%;
-  width: 50%;
-}
-.left-half {
-  background-color: rgb(89, 0, 255);
-  height: 100%;
-  width: 50%;
-}
-
-/* Element to be moved.*/
-.slide-left {
-  position: absolute;
-  left: 50%;
-  animation-name: slide-from-left;
-  animation-duration: 1000ms;
-}
-
-/* Element to be moved.*/
-.slide-right {
-  position: absolute;
-  right: 50%;
-  animation-name: slide-from-right;
-  animation-duration: 1000ms;
-}
-
-.slide-middle {
-  position: absolute;
-  top: 46%;
-  animation-name: slide-to-middle;
-  animation-duration: 1500ms;
-}
-
-@keyframes slide-from-right {
-  from {
-    right: 100%;
-  }
-  to {
-    right: 50%;
-  }
-}
-
-@keyframes slide-to-middle {
-  from {
-    top: 0%;
-    opacity: 0;
-  }
-  to {
-    top: 46%;
-    opacity: 1;
-  }
-}
-
-@keyframes slide-from-left {
-  from {
-    left: 100%;
-  }
-  to {
-    left: 50%;
-  }
-}
-
-.versus-img {
-  height: 500px;
-  width: 500px;
-  position: absolute;
-  top: 25%;
-  left: 25%;
-}
-
-.show-avatar {
-  animation: show-avatar 2000ms ease;
-}
-
-@keyframes show-avatar {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 .hidden {
   opacity: 0;
   pointer-events: none;

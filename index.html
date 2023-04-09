@@ -11,7 +11,7 @@
     <script src="index.js" defer></script>
   </head>
   <body>
-    <section class="intro__screen">
+    <section class="intro__screen hidden">
       <div class="intro__title__container">
         <h1 class="intro__title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -151,39 +151,46 @@
     <section class="versus-screen hidden">
       <div class="versus-container">
         <div class="left-half">
-          <img class="versus-img show-avatar" src="./assets/boy-1.png" alt="" />
+          <img class="versus-img-player" src="./assets/boy-1.png" alt="" />
         </div>
         <div class="right-half">
-          <img class="versus-img show-avatar" src="./assets/Robot.png" alt="" />
+          <img class="versus-img-com" src="./assets/Robot.png" alt="" />
         </div>
         <div class="versus__text"><span>VS</span></div>
       </div>
     </section>
 
-    <section class="game__screen hidden">
+    <section class="game__screen fadeIn">
       <div class="scoreboard">
         <div class="score">
           <div class="player__avatar">
-            <img load="lazy" src="./assets/boy-1.png" alt="" />
+            <img src="./assets/boy-1.png" alt="" />
           </div>
-          <div class="lives__left">
-            <img load="lazy" src="./assets/Heart.png" alt="" />
-            <img load="lazy" src="./assets/Heart.png" alt="" />
-            <img load="lazy" src="./assets/Heart.png" alt="" />
-            <img load="lazy" src="./assets/Heart.png" alt="" />
-            <img load="lazy" src="./assets/Heart.png" alt="" />
+
+          <div class="userName-container">
+            <div class="userName">Mike</div>
+            <div class="lives__left">
+              <img load="lazy" src="./assets/Heart.png" alt="" />
+              <img load="lazy" src="./assets/Heart.png" alt="" />
+              <img load="lazy" src="./assets/Heart.png" alt="" />
+              <img load="lazy" src="./assets/Heart.png" alt="" />
+              <!-- <img load="lazy" src="./assets/Heart.png" alt="" /> -->
+            </div>
           </div>
         </div>
         <div class="score reverse">
           <div class="computer__avatar">
             <img src="./assets/Robot.png" alt="" />
           </div>
-          <div class="lives__left">
-            <img src="./assets/Heart.png" alt="" />
-            <img src="./assets/Heart.png" alt="" />
-            <img src="./assets/Heart.png" alt="" />
-            <img src="./assets/Heart.png" alt="" />
-            <img src="./assets/Heart.png" alt="" />
+          <div class="userName-container">
+            <div class="userName">Computer</div>
+            <div class="lives__left">
+              <img src="./assets/Heart.png" alt="" />
+              <img src="./assets/Heart.png" alt="" />
+              <img src="./assets/Heart.png" alt="" />
+              <img src="./assets/Heart.png" alt="" />
+              <!-- <img src="./assets/Heart.png" alt="" /> -->
+            </div>
           </div>
         </div>
       </div>
@@ -193,7 +200,7 @@
           <img src="./assets/scissors.png" alt="" />
         </div>
 
-        <span class="outcome__display">You Win!</span>
+        <div class="outcome__display">You Win!</div>
         <div class="choice__display" style="transform: rotateY(180deg)">
           <img src="./assets/srock.png" alt="" />
         </div>
@@ -202,10 +209,15 @@
       <div class="footer__container">
         <div class="footer__nav__container">
           <div id="home-icon">
-            <img class="nav__btn" id="home" src="" alt="" />
+            <img
+              class="nav__btn"
+              id="home"
+              src="./assets/home-icon.png"
+              alt=""
+            />
           </div>
           <div class="reset-icon">
-            <img class="nav__btn" id="reset" src="" alt="" />
+            <img id="reset" class="nav__btn" src="./assets/reset.png" alt="" />
           </div>
         </div>
 
@@ -214,11 +226,6 @@
           <button style="--size: 6; --hue: 80">Paper</button>
           <button style="--size: 6; --hue: 45">Scissors</button>
           <!-- <button style="--size: 5; --hue: 45" , disabled>2UP</button> -->
-        </div>
-
-        <div class="coins__display__container">
-          <img class="coins__img" src="./assets/Coin.png" alt="" />
-          <span>Coins x ?</span>
         </div>
       </div>
     </section>
