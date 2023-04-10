@@ -6,9 +6,10 @@ const introScreen = document.querySelector('.intro__screen');
 const userNameScreen = document.querySelector('.username__screen');
 const avatarScreen = document.querySelector('.avatar__screen');
 const vsScreen = document.querySelector('.versus-screen');
+const homeButton = document.querySelector('.home');
+const resetButton = document.querySelector('.reset-icon');
 
 window.addEventListener('keydown', function enterPressed(e) {
-  console.log(e.key);
   if (e.key !== 'Enter') {
     return;
   } else {
@@ -128,3 +129,14 @@ vsComAvatar.addEventListener('animationend', () => {
     });
   });
 });
+
+/////////////////////////////////////////////////////////////////////////////////////
+// // // // // // // // // // // GAME SECTION // // // // // // // // // // // //
+////////////////////////////////////////////////////////////////////////////////////
+
+const playerSelectionDisplay = document.querySelector('#player-choice');
+const comSelectionDisplay = document.querySelector('#com-choice');
+const userNameDisplay = document.querySelector('.userName');
+const opponentNameDisplay = document.querySelector('.opponentName');
+const outcomeDisplay = document.querySelector('.outcome__display');
+const selectionButtons = document.querySelectorAll('.selection-button');
