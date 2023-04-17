@@ -152,7 +152,8 @@
 }
 .username__screen,
 .avatar__screen,
-.game__screen {
+.game__screen,
+.gameOver-screen {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -415,6 +416,7 @@ textarea {
 .versus-container {
   position: relative;
   height: 100vh;
+  width: 100%;
 }
 
 .versus__text {
@@ -425,93 +427,87 @@ textarea {
   position: absolute;
   top: 50%;
   left: 46%;
+  opacity: 0;
 }
 
 .right-half {
   background-color: red;
   height: 100%;
   width: 50%;
+  opacity: 0;
 }
 .left-half {
   background-color: rgb(89, 0, 255);
   height: 100%;
   width: 50%;
+  opacity: 0;
 }
 
 /* Element to be moved.*/
 .slide-left {
   position: absolute;
   left: 50%;
-  animation: slide-from-left 1000ms;
+  animation: 2000ms slide-from-left forwards,
+    5000ms slide-from-left-reversed 5000ms forwards;
 }
 
 /* Element to be moved.*/
 .slide-right {
   position: absolute;
   right: 50%;
-  animation: slide-from-right 1000ms;
+  animation: 2000ms slide-from-right forwards,
+    5000ms slide-from-right-reversed 5000ms forwards;
 }
 
 .slide-middle {
   position: absolute;
   top: 46%;
-  animation: slide-to-middle 1500ms;
+  animation: 2000ms slide-to-middle forwards,
+    5000ms slide-to-middle-reversed 5000ms forwards;
 }
 
-/* Element to be moved.*/
-.slide-left-reversed {
-  position: absolute;
-  left: 50%;
-  animation: slide-from-left-reversed 1000ms 3s;
-}
-
-/* Element to be moved.*/
-.slide-right-reversed {
-  position: absolute;
-  right: 50%;
-  animation: slide-from-right-reversed 1000ms 3s;
-}
-
-.slide-middle-reversed {
-  position: absolute;
-  top: 46%;
-  animation: slide-to-middle-reversed 1000ms 3s;
-}
 @keyframes slide-from-right {
-  from {
+  0% {
     right: 100%;
+    opacity: 0;
   }
-  to {
+  100% {
     right: 50%;
+    opacity: 1;
   }
 }
 
 @keyframes slide-to-middle {
-  from {
+  0% {
     top: 0%;
     opacity: 0;
   }
-  to {
+
+  100% {
     top: 46%;
     opacity: 1;
   }
 }
 
 @keyframes slide-from-left {
-  from {
+  0% {
     left: 100%;
+    opacity: 0;
   }
-  to {
+  100% {
     left: 50%;
+    opacity: 1;
   }
 }
 
 @keyframes slide-from-right-reversed {
   from {
     right: 50%;
+    opacity: 1;
   }
   to {
     right: 100%;
+    opacity: 0;
   }
 }
 
@@ -540,7 +536,7 @@ textarea {
   width: 150px;
   position: absolute;
   top: 38%;
-  left: 35%;
+  left: 25%;
   opacity: 0;
 }
 
@@ -549,7 +545,7 @@ textarea {
   width: 150px;
   position: absolute;
   top: 38%;
-  right: 35%;
+  right: 25%;
   opacity: 0;
 }
 
@@ -649,12 +645,19 @@ textarea {
   gap: 1rem;
 }
 
-.lives__left {
+.player-life-bar,
+.computer-life-bar {
   display: flex;
   height: 30px;
 }
 
-.lives__left img {
+.player-life-bar img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.computer-life-bar img {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -706,25 +709,37 @@ textarea {
   object-fit: contain;
 }
 
-.coins__display__container {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: -5px;
-}
-
-.coins__img {
-  width: 50px;
-  height: 60px;
-}
-
-.coins__img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .hidden {
   opacity: 0;
   pointer-events: none;
+}
+
+.game-over {
+  font-size: 6rem;
+}
+
+.victory-message {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 30px;
+  font-size: 3rem;
+}
+
+.message-icon {
+  width: 80px;
+  height: 80px;
+}
+.message-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.game-winner {
+  font-size: 2rem;
+}
+
+.visually-hidden {
+  opacity: 0;
 }
