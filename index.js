@@ -2,21 +2,21 @@
 // // // // // // // // // // // INTRO SECTION // // // // // // // // // // // // //
 ////////////////////////////////////////////////////////////////////////////////////
 
-const introScreen = document.querySelector(".intro__screen");
-const userNameScreen = document.querySelector(".username__screen");
-const avatarScreen = document.querySelector(".avatar__screen");
-const vsScreen = document.querySelector(".versus-screen");
-const homeButton = document.querySelector(".home");
-const resetButton = document.querySelector(".reset-icon");
-const startButton = document.querySelector(".start-game-button");
+const introScreen = document.querySelector('.intro__screen');
+const userNameScreen = document.querySelector('.username__screen');
+const avatarScreen = document.querySelector('.avatar__screen');
+const vsScreen = document.querySelector('.versus-screen');
+const homeButton = document.querySelector('.home');
+const resetButton = document.querySelector('.reset-icon');
+const startButton = document.querySelector('.start-game-button');
 
-startButton.addEventListener("click", () => {
-  introScreen.classList.add("fadeOut");
+startButton.addEventListener('click', () => {
+  introScreen.classList.add('fadeOut');
   introScreen.addEventListener(
-    "animationend",
+    'animationend',
     function endanimation() {
-      userNameScreen.classList.replace("hidden", "fadeIn");
-      introScreen.classList.replace("fadeOut", "hidden");
+      userNameScreen.classList.replace('hidden', 'fadeIn');
+      introScreen.classList.replace('fadeOut', 'hidden');
     },
     { once: true }
   );
@@ -25,45 +25,45 @@ startButton.addEventListener("click", () => {
 // // // // // // // // // // // KEYBOARD SECTION // // // // // // // // // // // //
 ////////////////////////////////////////////////////////////////////////////////////
 
-const keyboardButtons = document.querySelectorAll(".btn");
-const textarea = document.querySelector("textarea");
-const deleteButton = document.querySelector(".delete");
-const capsButton = document.querySelector(".caps");
-const submitButton = document.querySelector(".submit__btn");
-let userNameDisplay = document.querySelector(".userName");
+const keyboardButtons = document.querySelectorAll('.btn');
+const textarea = document.querySelector('textarea');
+const deleteButton = document.querySelector('.delete');
+const capsButton = document.querySelector('.caps');
+const submitButton = document.querySelector('.submit__btn');
+let userNameDisplay = document.querySelector('.userName');
 
 let chars = [];
-let userName = "Player 1";
+let userName = 'Player 1';
 
 keyboardButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener('click', () => {
     textarea.value += btn.innerText; //display buttons in textarea
-    chars = textarea.value.split("");
+    chars = textarea.value.split('');
   });
 });
 
-deleteButton.addEventListener("click", () => {
+deleteButton.addEventListener('click', () => {
   chars.pop();
-  textarea.value = chars.join("");
+  textarea.value = chars.join('');
 });
 
-capsButton.addEventListener("click", () => {
+capsButton.addEventListener('click', () => {
   keyboardButtons.forEach((btn) => {
-    btn.classList.toggle("lower");
+    btn.classList.toggle('lower');
   });
 });
-submitButton.addEventListener("click", () => {
-  textarea.value = chars.join("");
-  userName = chars.join("");
+submitButton.addEventListener('click', () => {
+  textarea.value = chars.join('');
+  userName = chars.join('');
   userNameDisplay.textContent = userName;
 
-  userNameScreen.classList.replace("fadeIn", "fadeOut");
+  userNameScreen.classList.replace('fadeIn', 'fadeOut');
 
   userNameScreen.addEventListener(
-    "animationend",
+    'animationend',
     function endanimation() {
-      avatarScreen.classList.replace("hidden", "fadeIn");
-      userNameScreen.classList.replace("fadeOut", "hidden");
+      avatarScreen.classList.replace('hidden', 'fadeIn');
+      userNameScreen.classList.replace('fadeOut', 'hidden');
     },
     { once: true }
   );
@@ -72,31 +72,31 @@ submitButton.addEventListener("click", () => {
 /////////////////////////////////////////////////////////////////////////////////////
 // // // // // // // // // // // AVATAR SECTION // // // // // // // // // // // //
 ////////////////////////////////////////////////////////////////////////////////////
-const avatarSelectionBox = document.querySelectorAll(".avatar__img");
-const avatarFullDisplayBox = document.querySelector(".full-image");
-const startGameButton = document.querySelector(".start__game__container");
-const vsLeftSide = document.querySelector(".left-half");
-const vsRightSide = document.querySelector(".right-half");
-const vsMiddleText = document.querySelector(".versus__text");
-const vsPlayerAvatar = document.querySelector(".versus-img-player");
-const vsComAvatar = document.querySelector(".versus-img-com");
-const gameScreen = document.querySelector(".game__screen");
+const avatarSelectionBox = document.querySelectorAll('.avatar__img');
+const avatarFullDisplayBox = document.querySelector('.full-image');
+const startGameButton = document.querySelector('.start__game__container');
+const vsLeftSide = document.querySelector('.left-half');
+const vsRightSide = document.querySelector('.right-half');
+const vsMiddleText = document.querySelector('.versus__text');
+const vsPlayerAvatar = document.querySelector('.versus-img-player');
+const vsComAvatar = document.querySelector('.versus-img-com');
+const gameScreen = document.querySelector('.game__screen');
 
 avatarSelectionBox.forEach((box) => {
-  box.addEventListener("click", () => {
-    avatarFullDisplayBox.setAttribute("src", `./assets/${box.id}.png`);
+  box.addEventListener('click', () => {
+    avatarFullDisplayBox.setAttribute('src', `./assets/${box.id}.png`);
     startGameButton.style.opacity = 1;
   });
 });
 
-startGameButton.addEventListener("click", () => {
-  avatarScreen.classList.add("fadeOut");
+startGameButton.addEventListener('click', () => {
+  avatarScreen.classList.add('fadeOut');
   avatarScreen.addEventListener(
-    "animationend",
+    'animationend',
     function endanimation() {
-      avatarScreen.classList.remove("fadeIn");
-      vsScreen.classList.replace("hidden", "fadeIn");
-      avatarScreen.classList.replace("fadeOut", "hidden");
+      avatarScreen.classList.remove('fadeIn');
+      vsScreen.classList.replace('hidden', 'fadeIn');
+      avatarScreen.classList.replace('fadeOut', 'hidden');
     },
     { once: true }
   );
@@ -106,49 +106,49 @@ startGameButton.addEventListener("click", () => {
   ////////////////////////////////////////////////////////////////////////////////////
 
   vsScreen.addEventListener(
-    "animationend",
+    'animationend',
     function endanimation() {
-      vsLeftSide.classList.add("slide-right");
-      vsRightSide.classList.add("slide-left");
-      vsMiddleText.classList.add("slide-middle");
+      vsLeftSide.classList.add('slide-right');
+      vsRightSide.classList.add('slide-left');
+      vsMiddleText.classList.add('slide-middle');
     },
     { once: true }
   );
 
   setTimeout(() => {
-    gameScreen.classList.replace("hidden", "fadeIn");
-    vsScreen.classList.replace("fadeIn", "hidden");
-    vsLeftSide.classList.remove("slide-right");
-    vsRightSide.classList.remove("slide-left");
-    vsMiddleText.classList.remove("slide-middle");
+    vsScreen.classList.replace('fadeIn', 'hidden');
+    vsLeftSide.classList.remove('slide-right');
+    vsRightSide.classList.remove('slide-left');
+    vsMiddleText.classList.remove('slide-middle');
+    gameScreen.classList.replace('hidden', 'fadeIn');
   }, 11000);
 });
 /////////////////////////////////////////////////////////////////////////////////////
 // // // // // // // // // // // GAME SECTION // // // // // // // // // // // //
 ////////////////////////////////////////////////////////////////////////////////////
 
-const playerSelectionDisplay = document.querySelector("#player-choice");
-const comSelectionDisplay = document.querySelector("#com-choice");
-const opponentNameDisplay = document.querySelector(".opponentName");
-const outcomeDisplay = document.querySelector(".outcome__display");
-const selectionButtons = document.querySelectorAll(".selection-button");
-const playerLivesBar = document.querySelector(".player-life-bar");
-const comLivesBar = document.querySelector(".computer-life-bar");
-const lives = document.querySelectorAll(".life");
-const gameOverScreen = document.querySelector(".gameOver-screen");
+const playerSelectionDisplay = document.querySelector('#player-choice');
+const comSelectionDisplay = document.querySelector('#com-choice');
+const opponentNameDisplay = document.querySelector('.opponentName');
+const outcomeDisplay = document.querySelector('.outcome__display');
+const selectionButtons = document.querySelectorAll('.selection-button');
+const playerLivesBar = document.querySelector('.player-life-bar');
+const comLivesBar = document.querySelector('.computer-life-bar');
+const lives = document.querySelectorAll('.life');
+const gameOverScreen = document.querySelector('.gameOver-screen');
 
 let playerWins = 0;
 let computerWins = 0;
-let playerSelection = "";
-let computerSelection = "";
+let playerSelection = '';
+let computerSelection = '';
 
 gameScreen.addEventListener(
-  "animationend",
+  'animationend',
   function endanimation() {
     lives.forEach((life) => {
-      let lifeimg = document.createElement("IMG");
-      lifeimg.setAttribute("src", "./assets/Heart.png");
-      lifeimg.className = "player-life-img";
+      let lifeimg = document.createElement('IMG');
+      lifeimg.setAttribute('src', './assets/Heart.png');
+      lifeimg.className = 'player-life-img';
       life.appendChild(lifeimg);
     });
   },
@@ -159,11 +159,11 @@ function getComputerChoice() {
   randomChoice = Math.floor(Math.random() * 3);
   switch (randomChoice) {
     case 0:
-      return "Rock";
+      return 'Rock';
     case 1:
-      return "Paper";
+      return 'Paper';
     case 2:
-      return "Scissors";
+      return 'Scissors';
     default:
       break;
   }
@@ -179,21 +179,21 @@ function getBothChoices(e) {
 
 function displayChoices(playerPick, computerPick) {
   playerSelectionDisplay.firstElementChild.setAttribute(
-    "src",
+    'src',
     `./assets/${playerPick}.png`
   );
 
   comSelectionDisplay.firstElementChild.setAttribute(
-    "src",
+    'src',
     `./assets/${computerPick}.png`
   );
 }
 
 function displayOutcome(outcome) {
-  if (outcome === "Win") {
+  if (outcome === 'Win') {
     outcomeDisplay.textContent = `You Win!`;
     comLivesBar.removeChild(comLivesBar.lastElementChild);
-  } else if (outcome === "Loss") {
+  } else if (outcome === 'Loss') {
     outcomeDisplay.textContent = `You Lose!`;
     playerLivesBar.removeChild(playerLivesBar.lastElementChild);
   } else {
@@ -203,28 +203,79 @@ function displayOutcome(outcome) {
 
 function playRound(player, computer) {
   if (
-    (player === "Rock" && computer === "Scissors") ||
-    (player === "Paper" && computer === "Rock") ||
-    (player === "Scissors" && computer === "Paper")
+    (player === 'Rock' && computer === 'Scissors') ||
+    (player === 'Paper' && computer === 'Rock') ||
+    (player === 'Scissors' && computer === 'Paper')
   ) {
     ++playerWins;
-    displayOutcome("Win");
+    displayOutcome('Win');
   } else if (player === computer) {
-    displayOutcome("Tie");
+    displayOutcome('Tie');
   } else {
     ++computerWins;
-    displayOutcome("Loss");
+    displayOutcome('Loss');
   }
 }
 
 function resetLifeBars() {
-  while (playerLivesBar.firstElementChild) {
-    playerLivesBar.removeChild(playerLivesBar.firstElementChild);
+  // while (playerLivesBar.childElementCount < 5) {
+  // lives.forEach((life) => {
+  //   let lifeimg = document.createElement("IMG");
+  //   lifeimg.setAttribute("src", "./assets/Heart.png");
+  //   lifeimg.className = "player-life-img";
+  //   life.appendChild(lifeimg);
+  // });
+  console.log(playerLivesBar.childElementCount);
+}
+// }
 
-    while (comLivesBar.firstElementChild) {
-      comLivesBar.removeChild(comLivesBar.firstElementChild);
-    }
+selectionButtons.forEach((button) => {
+  button.addEventListener('click', getBothChoices);
+});
+selectionButtons.forEach((button) => {
+  button.addEventListener('click', gameOver);
+});
+
+/////////////////////////////////////////////////////////////////////////////////////
+// // // // // // // // // // // GAME OVER SECTION // // // // // // // // // // // //
+////////////////////////////////////////////////////////////////////////////////////
+
+const gameWinnerDisplay = document.querySelector('.game-winner');
+let currentTime = timeLeft.textContent;
+let timerId;
+
+function countDown() {
+  timeLeft.textContent = currentTime;
+  currentTime--;
+  if (currentTime !== 0) {
+    return;
+  } else {
+    gameOverScreen.classList.replace('fadeIn', 'fadeOut');
+    introScreen.classList.remove('hidden');
+    restart();
+    clearInterval(timerId);
   }
+}
+function announceMatchWinner() {
+  if (playerWins === 5) {
+    gameWinnerDisplay.textContent = `${userNameDisplay.textContent} Wins!`;
+    timerId = setInterval(countDown, 1000);
+  } else if (computerWins === 5) {
+    gameWinnerDisplay.textContent = 'Computer Wins';
+    timerId = setInterval(countDown, 1000);
+  }
+}
+
+function restart() {
+  gameOverScreen.classList.replace('fadeOut', 'hidden');
+  playerWins = 0;
+  computerWins = 0;
+  timeLeft.textContent = 5;
+  resetLifeBars();
+  console.log('reset');
+  selectionButtons.forEach((button) => {
+    button.disabled = false;
+  });
 }
 
 function gameOver() {
@@ -232,12 +283,14 @@ function gameOver() {
     selectionButtons.forEach((button) => {
       button.disabled = true;
     });
-    gameScreen.classList.replace("fadeIn", "fadeOut");
-    gameOverScreen.classList.replace("hidden", "fadeIn");
+    announceMatchWinner();
+    gameScreen.classList.replace('fadeIn', 'fadeOut');
     gameScreen.addEventListener(
-      "animationend",
+      'animationend',
       function endanimation() {
-        resetLifeBars();
+        gameOverScreen.classList.replace('hidden', 'fadeIn');
+        gameScreen.classList.replace('fadeOut', 'hidden');
+        restart();
       },
       { once: true }
     );
@@ -245,49 +298,3 @@ function gameOver() {
     return;
   }
 }
-
-selectionButtons.forEach((button) => {
-  button.addEventListener("click", getBothChoices);
-});
-selectionButtons.forEach((button) => {
-  button.addEventListener("click", gameOver);
-});
-
-/////////////////////////////////////////////////////////////////////////////////////
-// // // // // // // // // // // GAME OVER SECTION // // // // // // // // // // // //
-////////////////////////////////////////////////////////////////////////////////////
-
-const gameWinnerDisplay = document.querySelector(".game-winner");
-let currentTime = timeLeft.textContent;
-let timerId;
-
-// function announceMatchWinner() {
-//   if (playerWins === 5) {
-//     gameWinnerDisplay.textContent = `${userNameDisplay.textContent} Wins!`;
-//     timerId = setInterval(countDown, 1000);
-//   } else if (computerWins === 5) {
-//     gameWinnerDisplay.textContent = "Computer Wins";
-//     timerId = setInterval(countDown, 1000);
-//   }
-// }
-
-// function countDown() {
-//   timeLeft.textContent = currentTime;
-//   currentTime--;
-//   if (currentTime !== 0) {
-//     return;
-//   } else {
-//     clearInterval(timerId);
-//     // resetLifeBar;
-//     console.log("end");
-//     gameOverScreen.classList.replace("fadeIn", "fadeOut");
-//     introScreen.classList.remove("hidden");
-//   }
-// }
-
-// function restart() {
-//   gameOverScreen.classList.replace('fadeOut', 'hidden');
-//   playerWins = 0;
-//   computerWins = 0;
-//   timeLeft.textContent = 5;
-// }
