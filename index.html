@@ -6,5 +6,208 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RockPaperScissors</title>
   </head>
-  <body></body>
+  <body>
+    <!-------- INTRO SECTION  -------->
+    <div class="intro-section">
+      <div class="game-title">
+        <h1 class="title">ROCK SCISSORS PAPER</h1>
+      </div>
+
+      <div class="blinking-text">
+        <p>Press Start to play</p>
+      </div>
+
+      <div class="start-button">Start</div>
+
+      <div class="intro-links">
+        <a href="#">Credits</a>
+        <a href="#">Highscores</a>
+      </div>
+    </div>
+    <!-------- USERNAME SECTION  -------->
+    <div class="username-section">
+      <div class="game-title">
+        <h1 class="title">ROCK SCISSORS PAPER</h1>
+      </div>
+      <div class="blinking-text">
+        <p>Enter your Name:</p>
+      </div>
+
+      <div class="username-textarea">
+        <textarea disabled></textarea>
+      </div>
+      <div class="username-keyboard">
+        <div class="keyboard-row">
+          <button class="btn">A</button>
+          <button class="btn">B</button>
+          <button class="btn">C</button>
+          <button class="btn">D</button>
+          <button class="btn">E</button>
+          <button class="btn">F</button>
+          <button class="btn">G</button>
+          <button class="btn">H</button>
+          <button class="btn">I</button>
+          <button class="btn">J</button>
+          <button class="btn">K</button>
+          <button class="btn">L</button>
+        </div>
+        <div class="keyboard-row">
+          <button class="btn">M</button>
+          <button class="btn">N</button>
+          <button class="btn">O</button>
+          <button class="btn">P</button>
+          <button class="btn">Q</button>
+          <button class="btn">R</button>
+          <button class="btn">S</button>
+          <button class="btn">T</button>
+          <button class="btn">Y</button>
+          <button class="btn">V</button>
+          <button class="btn">W</button>
+          <button class="btn">X</button>
+        </div>
+        <div class="keyboard-row">
+          <button class="btn">Y</button>
+          <button class="btn">Z</button>
+          <button class="btn">0</button>
+          <button class="btn">1</button>
+          <button class="btn">2</button>
+          <button class="btn">3</button>
+          <button class="btn">4</button>
+          <button class="btn">5</button>
+          <button class="btn">6</button>
+          <button class="btn">7</button>
+          <button class="btn">8</button>
+          <button class="btn">9</button>
+        </div>
+        <div class="keyboard-row action-btns-container">
+          <div class="action-btns">
+            <button class="delete">DEL</button>
+            <button class="caps">ABC</button>
+          </div>
+          <button class="submit">OK</button>
+        </div>
+      </div>
+    </div>
+    <!-------- AVATAR SECTION  -------->
+    <div class="avatar-section">
+      <div class="game-title">
+        <h1 class="title">ROCK SCISSORS PAPER</h1>
+      </div>
+      <div class="blinking-text">Select Your Avatar</div>
+      <div class="options-container">
+        <div class="options-display">
+          <div id="boy-1" class="option-img">
+            <img src="./assets/boy-1.png" alt="boy-1" />
+          </div>
+          <div id="boy-2" class="option-img">
+            <img src="./assets/boy-2.png" alt="boy-2" />
+          </div>
+          <div id="boy-3" class="option-img">
+            <img src="./assets/boy-3.png" alt="boy-3" />
+          </div>
+          <div id="boy-4" class="option-img">
+            <img src="./assets/boy-4.png" alt="boy-4" />
+          </div>
+          <div id="boy-5" class="option-img">
+            <img src="./assets/boy-5.png" alt="boy-5" />
+          </div>
+          <div id="girl-1" class="option-img">
+            <img src="./assets/girl-1.png" alt="girl-1" />
+          </div>
+          <div id="girl-2" class="option-img">
+            <img src="./assets/girl-2.png" alt="girl-2" />
+          </div>
+          <div id="girl-3" class="option-img">
+            <img src="./assets/girl-3.png" alt="girl-3" />
+          </div>
+          <div id="girl-4" class="option-img">
+            <img src="./assets/girl-4.png" alt="girl-4" />
+          </div>
+          <div id="girl-5" class="option-img">
+            <img src="./assets/girl-5.png" alt="girl-5" />
+          </div>
+          <div id="random" class="option-img">
+            <img src="" alt="random" />
+          </div>
+        </div>
+        <div class="fullDisplay-option">
+          <img src="./assets/boy-1.png" alt="full-image" class="full-image" />
+        </div>
+      </div>
+      <button class="start-button">Start</button>
+    </div>
+    <!-------- VERSUS SECTION  -------->
+    <div class="versus-section">
+      <div class="versus-container">
+        <div class="left-half">
+          <img class="versus-img-player" src="./assets/boy-1.png" alt="" />
+        </div>
+        <div class="right-half">
+          <img class="versus-img-com" src="./assets/Robot.png" alt="" />
+        </div>
+        <div class="versus__text">VS</div>
+      </div>
+    </div>
+    <!-------- GAME SECTION  -------->
+    <div class="game-section">
+      <div class="scoreboard">
+        <div class="player-scoreboard">
+          <div class="avatar-display"></div>
+          <div class="score-wrapper">
+            <div class="username-display"></div>
+            <div class="lifebar"></div>
+          </div>
+        </div>
+        <div class="computer-scoreboard">
+          <div class="score-wrapper">
+            <div class="username-display"></div>
+            <div class="lifebar"></div>
+          </div>
+          <div class="avatar-display"></div>
+        </div>
+      </div>
+
+      <div class="game-container">
+        <div class="playerChoice-display"></div>
+        <div class="outcome-display"></div>
+        <div class="computerChoice-display"></div>
+      </div>
+      <div class="btns__container">
+        <button id="Rock" class="selection-button" style="--size: 6; --hue: 10">
+          Rock
+        </button>
+        <button
+          id="Paper"
+          class="selection-button"
+          style="--size: 6; --hue: 80"
+        >
+          Paper
+        </button>
+        <button
+          id="Scissors"
+          class="selection-button"
+          style="--size: 6; --hue: 45"
+        >
+          Scissors
+        </button>
+        <!-- <button style="--size: 5; --hue: 45" , disabled>2UP</button> -->
+      </div>
+    </div>
+    <!-------- GAMEOVER SECTION  -------->
+    <div class="gameOver-section">
+      <div class="game-title">
+        <h1 class="title">Game Over</h1>
+      </div>
+      <div class="announcement-container">
+        <div class="trophy-img"></div>
+        <div class="announcement-text"></div>
+        <div class="trophy-img"></div>
+      </div>
+      <div class="gameWinner"></div>
+      <div class="countdown-timer">
+        <p class="blinking-text">Press Enter to play again</p>
+        <div class="timeLeft">5</div>
+      </div>
+    </div>
+  </body>
 </html>
