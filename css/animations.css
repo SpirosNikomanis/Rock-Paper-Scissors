@@ -21,7 +21,7 @@
   background-clip: text;
   color: transparent;
   line-height: 1.1em;
-  font-size: 4rem;
+  font-size: var(--fs-large);
   animation: rainbow 50s linear infinite;
 }
 @keyframes rainbow {
@@ -83,7 +83,7 @@
 }
 
 /* ============================================= 
-           VERSUS SCREEN ANIMATION
+           VERSUS SCREEN ANIMATIONS
 ==============================================*/
 
 .versus-container {
