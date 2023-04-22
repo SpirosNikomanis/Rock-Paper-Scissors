@@ -9,7 +9,7 @@ body {
   font-size: 16px;
 }
 
-h1 {
+.title {
   background: linear-gradient(
     #fd004c 16.7%,
     #fe9000 16.7%,
@@ -28,6 +28,7 @@ h1 {
   background-clip: text;
   color: transparent;
   line-height: 1.1em;
+  font-size: 4rem;
   animation: rainbow 50s linear infinite;
 }
 @keyframes rainbow {
