@@ -1,0 +1,219 @@
+/* ============================================= 
+            GAME TITLE ANIMATION
+==============================================*/
+
+.title {
+  background: linear-gradient(
+    #fd004c 16.7%,
+    #fe9000 16.7%,
+    #fe9000 33.4%,
+    #fff020 33.4%,
+    #fff020 50.1%,
+    #3edf4b 50.1%,
+    #3edf4b 66.8%,
+    #3363ff 66.8%,
+    #3363ff 83.5%,
+    #b102b7 83.5%
+  );
+  -webkit-text-stroke: 0.02em #ffffff;
+  background: () no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1.1em;
+  font-size: 4rem;
+  animation: rainbow 50s linear infinite;
+}
+@keyframes rainbow {
+  100% {
+    background-position: 0 30em;
+  }
+}
+
+/* ============================================= 
+            BLINKING TEXT ANIMATION
+==============================================*/
+
+.blinking-text {
+  animation-name: blink;
+  animation-duration: 3s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+
+  -webkit-animation-name: blink;
+  -webkit-animation-duration: 3s;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+}
+
+@-moz-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* ============================================= 
+           VERSUS SCREEN ANIMATION
+==============================================*/
+
+.versus-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.versus__text {
+  height: 100px;
+  width: 10%;
+  font-size: 5rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  opacity: 0;
+}
+
+.right-half {
+  background-color: red;
+  height: 100%;
+  width: 50%;
+  opacity: 0;
+}
+.left-half {
+  background-color: rgb(89, 0, 255);
+  height: 100%;
+  width: 50%;
+  opacity: 0;
+}
+
+/* Element to be moved.*/
+.slide-left {
+  position: absolute;
+  left: 50%;
+  animation: 2000ms slide-from-left forwards,
+    5000ms slide-from-left-reversed 5000ms forwards;
+}
+
+/* Element to be moved.*/
+.slide-right {
+  position: absolute;
+  right: 50%;
+  animation: 2000ms slide-from-right forwards,
+    5000ms slide-from-right-reversed 5000ms forwards;
+}
+
+/* Element to be moved.*/
+.slide-middle {
+  position: absolute;
+  top: 46%;
+  animation: 2000ms slide-to-middle forwards,
+    5000ms slide-to-middle-reversed 5000ms forwards;
+}
+
+@keyframes slide-from-right {
+  0% {
+    right: 100%;
+    opacity: 0;
+  }
+  100% {
+    right: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-to-middle {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+
+  100% {
+    top: 46%;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-left {
+  0% {
+    left: 100%;
+    opacity: 0;
+  }
+  100% {
+    left: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes slide-from-right-reversed {
+  from {
+    right: 50%;
+    opacity: 1;
+  }
+  to {
+    right: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-to-middle-reversed {
+  from {
+    top: 46%;
+    opacity: 1;
+  }
+  to {
+    top: 0%;
+    opacity: 0;
+  }
+}
+
+@keyframes slide-from-left-reversed {
+  from {
+    left: 50%;
+  }
+  to {
+    left: 100%;
+  }
+}
+
+.reveal-avatar {
+  animation: reveal-avatar 300ms ease-in forwards;
+}
+
+@keyframes reveal-avatar {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
