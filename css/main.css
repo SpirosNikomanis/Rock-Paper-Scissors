@@ -11,6 +11,11 @@
   margin: 0;
   box-sizing: border-box;
 }
+.hidden {
+  display: none;
+  pointer-events: none;
+}
+
 html {
   --ff: 'Press Start 2P', cursive;
   --fc: wheat;
@@ -25,8 +30,12 @@ html {
 body {
   font-family: var(--ff);
   font-size: var(--fs-normal);
+  background-image: url(../assets/bg.jpg);
 }
 
+/* ============================================= 
+            INTRO SECTION
+==============================================*/
 .intro-text {
   font-size: var(--fs-medium);
   text-align: center;
@@ -57,4 +66,87 @@ body {
 
 .link a {
   color: var(--bg-secondary);
+}
+
+/* ============================================= 
+            USERNAME SECTION
+==============================================*/
+
+textarea {
+  width: 850px;
+  height: 50px;
+  resize: none;
+  padding: 0.5rem;
+  font-size: var(--fs-normal);
+  outline: none;
+  border: 1px solid #f1f0ee;
+  border-radius: 0.5rem;
+  background-color: transparent;
+  color: #f1f0ee;
+}
+
+.username-keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 900px;
+}
+.keyboard-container {
+  position: absolute;
+  top: 50%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.keyboard-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+
+.action-btns-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 1rem;
+}
+
+.btn {
+  background: transparent;
+  border: none;
+  display: inline-block;
+  margin: 0.3rem;
+  font-size: 1.3rem;
+  color: #f1f0ee;
+  width: 50px;
+  height: 50px;
+  border-radius: 0.5rem;
+}
+
+.delete,
+.caps,
+.submit {
+  width: 80px;
+}
+
+.delete:hover,
+.caps:hover,
+.submit:hover,
+.btn:hover {
+  background-color: #3edf4b;
+}
+
+.delete:active,
+.caps:active,
+.submit:active,
+.btn:active {
+  background-color: #1cb129;
+}
+
+.lower {
+  text-transform: lowercase;
 }

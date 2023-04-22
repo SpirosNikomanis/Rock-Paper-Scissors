@@ -12,7 +12,7 @@
   </head>
   <body>
     <!-------- INTRO SECTION  -------->
-    <div class="intro-section">
+    <div class="intro-section hidden">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -29,71 +29,72 @@
       </ul>
     </div>
     <!-------- USERNAME SECTION  -------->
-    <div class="username-section">
+    <div class="username-section hidden">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
-      <div class="blinking-text">
-        <p>Enter your Name:</p>
-      </div>
-
-      <div class="username-textarea">
-        <textarea disabled></textarea>
-      </div>
-      <div class="username-keyboard">
-        <div class="keyboard-row">
-          <button class="btn">A</button>
-          <button class="btn">B</button>
-          <button class="btn">C</button>
-          <button class="btn">D</button>
-          <button class="btn">E</button>
-          <button class="btn">F</button>
-          <button class="btn">G</button>
-          <button class="btn">H</button>
-          <button class="btn">I</button>
-          <button class="btn">J</button>
-          <button class="btn">K</button>
-          <button class="btn">L</button>
-        </div>
-        <div class="keyboard-row">
-          <button class="btn">M</button>
-          <button class="btn">N</button>
-          <button class="btn">O</button>
-          <button class="btn">P</button>
-          <button class="btn">Q</button>
-          <button class="btn">R</button>
-          <button class="btn">S</button>
-          <button class="btn">T</button>
-          <button class="btn">Y</button>
-          <button class="btn">V</button>
-          <button class="btn">W</button>
-          <button class="btn">X</button>
-        </div>
-        <div class="keyboard-row">
-          <button class="btn">Y</button>
-          <button class="btn">Z</button>
-          <button class="btn">0</button>
-          <button class="btn">1</button>
-          <button class="btn">2</button>
-          <button class="btn">3</button>
-          <button class="btn">4</button>
-          <button class="btn">5</button>
-          <button class="btn">6</button>
-          <button class="btn">7</button>
-          <button class="btn">8</button>
-          <button class="btn">9</button>
-        </div>
-        <div class="keyboard-row action-btns-container">
-          <div class="action-btns">
-            <button class="delete">DEL</button>
-            <button class="caps">ABC</button>
+      <div class="keyboard-container">
+        <div class="username-textarea">
+          <div class="prompt-text">
+            <p>Enter your Name:</p>
           </div>
-          <button class="submit">OK</button>
+          <textarea maxlength="15" disabled></textarea>
+        </div>
+        <div class="username-keyboard">
+          <div class="keyboard-row">
+            <button class="btn">A</button>
+            <button class="btn">B</button>
+            <button class="btn">C</button>
+            <button class="btn">D</button>
+            <button class="btn">E</button>
+            <button class="btn">F</button>
+            <button class="btn">G</button>
+            <button class="btn">H</button>
+            <button class="btn">I</button>
+            <button class="btn">J</button>
+            <button class="btn">K</button>
+            <button class="btn">L</button>
+          </div>
+          <div class="keyboard-row">
+            <button class="btn">M</button>
+            <button class="btn">N</button>
+            <button class="btn">O</button>
+            <button class="btn">P</button>
+            <button class="btn">Q</button>
+            <button class="btn">R</button>
+            <button class="btn">S</button>
+            <button class="btn">T</button>
+            <button class="btn">Y</button>
+            <button class="btn">V</button>
+            <button class="btn">W</button>
+            <button class="btn">X</button>
+          </div>
+          <div class="keyboard-row">
+            <button class="btn">Y</button>
+            <button class="btn">Z</button>
+            <button class="btn">0</button>
+            <button class="btn">1</button>
+            <button class="btn">2</button>
+            <button class="btn">3</button>
+            <button class="btn">4</button>
+            <button class="btn">5</button>
+            <button class="btn">6</button>
+            <button class="btn">7</button>
+            <button class="btn">8</button>
+            <button class="btn">9</button>
+          </div>
+          <div class="keyboard-row action-btns-container">
+            <div class="action-btns">
+              <button class="delete btn">DEL</button>
+              <button class="caps btn">ABC</button>
+            </div>
+            <button class="submit btn">OK</button>
+          </div>
         </div>
       </div>
     </div>
     <!-------- AVATAR SECTION  -------->
-    <div class="avatar-section" hidden>
+    <div class="avatar-section">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -141,7 +142,7 @@
       <button class="start-button">Start</button>
     </div>
     <!-------- VERSUS SECTION  -------->
-    <div class="versus-section" hidden>
+    <div class="versus-section hidden">
       <div class="versus-container">
         <div class="left-half">
           <img class="versus-img-player" src="./assets/boy-1.png" alt="" />
@@ -153,7 +154,7 @@
       </div>
     </div>
     <!-------- GAME SECTION  -------->
-    <div class="game-section" hidden>
+    <div class="game-section hidden">
       <div class="scoreboard">
         <div class="player-scoreboard">
           <div class="avatar-display"></div>
@@ -198,7 +199,7 @@
       </div>
     </div>
     <!-------- GAMEOVER SECTION  -------->
-    <div class="gameOver-section" hidden>
+    <div class="gameOver-section hidden">
       <div class="game-title">
         <h1 class="title">Game Over</h1>
       </div>
