@@ -11,10 +11,6 @@
   margin: 0;
   box-sizing: border-box;
 }
-.hidden {
-  display: none;
-  pointer-events: none;
-}
 
 html {
   --ff: 'Press Start 2P', cursive;
@@ -32,6 +28,25 @@ body {
   font-family: var(--ff);
   font-size: var(--fs-normal);
   background-image: url(../assets/bg.jpg);
+  padding-top: 15em;
+}
+.intro-section,
+.username-section,
+.avatar-section,
+.versus-section,
+.game-section,
+.gameOver-section {
+  pointer-events: all;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: var(--spacer);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 img {
@@ -39,6 +54,10 @@ img {
   height: 100%;
 }
 
+.hidden {
+  display: none;
+  pointer-events: none;
+}
 /* ============================================= 
             INTRO SECTION
 ==============================================*/
@@ -310,10 +329,19 @@ label {
   text-align: center;
 }
 
+.username-display {
+  color: var(--bg-accent);
+}
+
 .lifebar {
   width: 300px;
   display: flex;
   justify-content: space-between;
+}
+
+.life {
+  width: 30px;
+  height: 30px;
 }
 
 .game-container {
