@@ -1,0 +1,118 @@
+.btns__container button {
+  --size: 10;
+  --bezel: 0.8;
+  --fade: 0.7;
+  --hover-size: 0.03;
+  --hue: 10;
+  --shadow: calc(var(--hue) + 180);
+  --throw: 1px;
+  --saturation: 100%;
+  --lightness: 50%;
+  --button-size: calc(1rem * var(--size));
+  /* --font-size: calc(100% * var(--size) / 6); */
+  cursor: pointer;
+  position: relative;
+  outline: none;
+  border: 1px solid hsla(var(--shadow), var(--saturation), 20%, 0.9);
+  border-radius: 999px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  will-change: transform;
+  font-size: var(--font-size);
+  font-weight: bolder;
+  font-family: monospace;
+  text-shadow: 0 -1px 1px hsla(var(--hue), var(--saturation), 5%, 0.9),
+    0 1px 1px hsla(var(--hue), var(--saturation), 95%, 0.9);
+  color: hsla(var(--hue), var(--saturation), 5%, 0.95);
+  background-color: hsl(var(--hue), var(--saturation), var(--lightness));
+  background-image: linear-gradient(
+    hsla(var(--hue), var(--saturation), 70%, 0.5),
+    hsla(var(--hue), var(--saturation), 30%, 0.5)
+  );
+  box-shadow: 0 var(--throw) 10px
+      hsla(var(--shadow), var(--saturation), 10%, 0.9),
+    0 calc(-1 * var(--throw)) hsla(var(--hue), var(--saturation), 20%, 0.9);
+  display: inline-block;
+  box-sizing: border-box;
+  min-width: 44px;
+  min-height: 44px;
+  width: calc(1rem * var(--size));
+  height: calc(1rem * var(--size));
+  margin: 10px;
+  box-sizing: border-box;
+  transition: transform 40ms ease-in, background 90ms ease-out,
+    box-shadow 120ms ease-out;
+}
+.btns__container button::before,
+.btns__container button::after {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 100%;
+  transition: transform 40ms ease-in, opacity 90ms linear,
+    background 90ms ease-out, box-shadow 120ms ease-out;
+}
+.btns__container button::before {
+  --throw: 8px;
+  transform: scale(var(--fade));
+  background-image: linear-gradient(
+    hsla(var(--hue), var(--saturation), 30%, 1),
+    hsla(var(--hue), var(--saturation), 80%, 1)
+  );
+  opacity: 0.5;
+}
+.btns__container button::after {
+  --throw: 3px;
+  transform: scale(var(--bezel));
+  border: 2px solid hsla(var(--hue), var(--saturation), 15%, 0.6);
+  box-shadow: inset 0 1px var(--throw)
+      hsla(var(--hue), var(--saturation), 90%, 0.9),
+    inset 0 -1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3),
+    0 1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3),
+    0 -1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3);
+}
+.btns__container button:hover {
+  --lightness: 70%;
+}
+.btns__container button:hover::before {
+  transform: scale(var(--bezel));
+}
+.btns__container button:hover::after {
+  background-image: linear-gradient(
+    hsla(var(--hue), var(--saturation), 30%, 0.3),
+    hsla(var(--hue), var(--saturation), 60%, 0.3)
+  );
+}
+.btns__container button:active {
+  --saturation: 100%;
+  font-size: calc(var(--font-size) * (1 - var(--hover-size)));
+}
+.btns__container button:active::before {
+  --throw: 8px;
+  transform: scale(calc(var(--bezel)));
+  opacity: 0.41;
+  box-shadow: inset 0 -1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.9),
+    inset 0 1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3),
+    0 -1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.3),
+    0 1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.3);
+}
+.btns__container button:active::after {
+  --throw: 3px;
+  transform: scale(calc(var(--bezel) - var(--hover-size)));
+  border: 2px solid hsla(var(--hue), var(--saturation), 15%, 0.8);
+}
+.btns__container button:focus {
+  --lightness: 60%;
+}
+.btns__container button:disabled {
+  --hue: 270;
+  --saturation: 10%;
+  --lightness: 83%;
+  --hover-size: 0;
+  cursor: not-allowed;
+} /*# sourceMappingURL=buttons.css.map */

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./css/normalize.css" />
     <link rel="stylesheet" href="./css/sections.css" />
     <link rel="stylesheet" href="./css/animations.css" />
+    <link rel="stylesheet" href="./css/buttons.css" />
     <link rel="stylesheet" href="./css/main.css" />
   </head>
   <body>
@@ -151,12 +152,14 @@
     <div class="versus-section hidden">
       <div class="versus-container">
         <div class="left-half">
-          <div class="versus-img-player">
+          <div class="versus-player avatar-img">
             <img src="./assets/boy-1.webp" alt="" />
           </div>
         </div>
         <div class="right-half">
-          <img class="versus-img-com" src="./assets/Robot.png" alt="" />
+          <div class="versus-com avatar-img">
+            <img src="./assets/Robot.png" alt="" />
+          </div>
         </div>
         <div class="versus__text">VS</div>
       </div>
@@ -165,26 +168,47 @@
     <div class="game-section">
       <div class="scoreboard">
         <div class="player-scoreboard">
-          <div class="avatar-display"></div>
+          <div class="avatar-img">
+            <img src="./assets/boy-1.webp" alt="" />
+          </div>
           <div class="score-wrapper">
-            <div class="username-display"></div>
-            <div class="lifebar"></div>
+            <div class="username-display">Mike</div>
+            <div class="lifebar">
+              <div class="life">A</div>
+              <div class="life">B</div>
+              <div class="life">C</div>
+              <div class="life">D</div>
+              <div class="life">E</div>
+            </div>
           </div>
         </div>
         <div class="computer-scoreboard">
-          <div class="score-wrapper">
-            <div class="username-display"></div>
-            <div class="lifebar"></div>
+          <div class="avatar-img">
+            <img src="./assets/Robot.png" alt="" />
           </div>
-          <div class="avatar-display"></div>
+          <div class="score-wrapper">
+            <div class="username-display">Computer</div>
+            <div class="lifebar">
+              <div class="life">A</div>
+              <div class="life">B</div>
+              <div class="life">C</div>
+              <div class="life">D</div>
+              <div class="life">E</div>
+            </div>
+          </div>
         </div>
       </div>
 
       <div class="game-container">
-        <div class="playerChoice-display"></div>
-        <div class="outcome-display"></div>
-        <div class="computerChoice-display"></div>
+        <div class="playerChoice-display">
+          <img src="" alt="?" />
+        </div>
+        <div class="outcome-display">Win</div>
+        <div class="computerChoice-display">
+          <img src="" alt="?" />
+        </div>
       </div>
+
       <div class="btns__container">
         <button id="Rock" class="selection-button" style="--size: 6; --hue: 10">
           Rock
