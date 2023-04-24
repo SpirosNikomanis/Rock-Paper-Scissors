@@ -150,3 +150,127 @@ textarea {
 .lower {
   text-transform: lowercase;
 }
+
+.select-prompt {
+  font-size: var(--fs-medium);
+  color: var(--bg-secondary);
+}
+
+.options-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 50%;
+}
+
+.options-row {
+  display: flex;
+  justify-content: space-evenly;
+  gap: var(--spacer);
+  padding: 0.2em;
+}
+
+.last-row {
+  display: flex;
+  gap: var(--spacer);
+  padding: 0.2em;
+}
+.option-img {
+  width: 80px;
+  height: 80px;
+  filter: grayscale(0.84);
+  background: rgba(73, 73, 73, 0.5);
+}
+
+.option-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  cursor: pointer;
+}
+
+#random img {
+  width: 50%;
+  height: 50%;
+  object-fit: contain;
+  cursor: pointer;
+  position: relative;
+}
+
+.option-img:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+}
+
+.active {
+  filter: grayscale(0);
+  outline: 4px solid rgb(68, 199, 28);
+  background: transparent;
+  animation: flash 300ms linear;
+}
+
+@keyframes flash {
+  0% {
+    filter: brightness(100%);
+  }
+  20% {
+    filter: brightness(150%);
+  }
+  40% {
+    filter: brightness(100%);
+  }
+  60% {
+    filter: brightness(150%);
+  }
+  80% {
+    filter: brightness(100%);
+  }
+  100% {
+    filter: brightness(150%);
+  }
+}
+
+.start-button {
+  width: 100px;
+  height: 30px;
+  background: #06c1de;
+  border: 0px;
+  position: relative;
+  box-shadow: inset -4px 2px 1px 1px grey, inset -4px -2px 1px 1px lightgray,
+    inset 4px 0px 1px 1px lightgray;
+}
+
+.start-button:hover {
+  cursor: pointer;
+  background-color: #06b6d1;
+}
+
+.start-button:active {
+  top: 5px;
+  box-shadow: -4px 2px 1px 1px grey, -4px -2px 1px 1px lightgray,
+    4px 0px 1px 1px lightgray;
+}
+
+.start-button::after {
+  content: '';
+  background: black;
+  position: absolute;
+  left: -2.5%;
+  top: 0;
+  width: 105%;
+  height: 100%;
+  z-index: -1;
+}
+
+.start-button::before {
+  content: '';
+  background: black;
+  position: absolute;
+  left: 0;
+  top: -6%;
+  width: 100%;
+  height: 115%;
+  z-index: -1;
+}
