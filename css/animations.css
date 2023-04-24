@@ -86,35 +86,7 @@
            VERSUS SCREEN ANIMATIONS
 ==============================================*/
 
-.versus-container {
-  position: relative;
-  height: 100vh;
-  width: 100%;
-}
 
-.versus__text {
-  height: 100px;
-  width: 10%;
-  font-size: 5rem;
-  color: white;
-  position: absolute;
-  top: 50%;
-  left: 46%;
-  opacity: 0;
-}
-
-.right-half {
-  background-color: red;
-  height: 100%;
-  width: 50%;
-  opacity: 0;
-}
-.left-half {
-  background-color: rgb(89, 0, 255);
-  height: 100%;
-  width: 50%;
-  opacity: 0;
-}
 
 /* Element to be moved.*/
 .slide-left {

@@ -274,3 +274,54 @@ textarea {
   height: 115%;
   z-index: -1;
 }
+
+.versus-container {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+}
+
+.versus__text {
+  height: 100px;
+  width: 10%;
+  font-size: 5rem;
+  color: white;
+  position: absolute;
+  top: 50%;
+  left: 46%;
+  opacity: 1;
+}
+
+.right-half {
+  background-color: red;
+  height: 100%;
+  width: 50%;
+  opacity: 1;
+  position: absolute;
+  left: 50%;
+  display: flex;
+  place-content: center;
+}
+.left-half {
+  background-color: rgb(89, 0, 255);
+  height: 100%;
+  width: 50%;
+  opacity: 1;
+  position: absolute;
+  right: 50%;
+}
+
+.versus-img-player {
+  width: 150px;
+  height: 300px;
+  position: absolute;
+  top: 35%;
+  left: 35%;
+}
+.versus-img-com {
+  width: 150px;
+  height: 300px;
+  position: absolute;
+  top: 35%;
+  right: 35%;
+}
