@@ -6,11 +6,15 @@
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
+ * 3. Remove userselection for all browsers
  */
 
 html {
   line-height: 1.15; /* 1 */
   -webkit-text-size-adjust: 100%; /* 2 */
+  user-select: none; /* 3 */
+  -moz-user-select: -moz-none; /* 3 */
+  -webkit-user-select: none; /* 3 */
 }
 
 /* Sections
@@ -353,3 +357,5 @@ template {
   display: none;
   pointer-events: none;
 }
+
+/* Remove userselect from all browsers  */

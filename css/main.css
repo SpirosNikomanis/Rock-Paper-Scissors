@@ -229,37 +229,39 @@ textarea {
   position: absolute;
   top: 50%;
   left: 46%;
-  opacity: 1;
+  opacity: 0;
 }
 
 .right-half {
   background-color: red;
   height: 100%;
   width: 50%;
-  opacity: 1;
+  opacity: 0;
   position: absolute;
   left: 50%;
-  display: flex;
-  place-content: center;
 }
+
 .left-half {
   background-color: rgb(89, 0, 255);
   height: 100%;
   width: 50%;
-  opacity: 1;
+  opacity: 0;
   position: absolute;
   right: 50%;
 }
 
 .versus-player {
   position: absolute;
-  top: 35%;
-  left: 35%;
+  top: 45%;
+  left: 45%;
+  opacity: 1;
 }
+
 .versus-com {
   position: absolute;
-  top: 35%;
-  right: 35%;
+  top: 45%;
+  right: 45%;
+  opacity: 1;
 }
 
 .full-image {
