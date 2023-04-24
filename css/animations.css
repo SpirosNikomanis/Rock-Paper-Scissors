@@ -83,10 +83,40 @@
 }
 
 /* ============================================= 
-           VERSUS SCREEN ANIMATIONS
+           AVATAR SCREEN ANIMATIONS
 ==============================================*/
 
+.active {
+  filter: grayscale(0);
+  outline: 4px solid rgb(68, 199, 28);
+  background: transparent;
+  animation: flash 300ms linear;
+}
 
+@keyframes flash {
+  0% {
+    filter: brightness(100%);
+  }
+  20% {
+    filter: brightness(150%);
+  }
+  40% {
+    filter: brightness(100%);
+  }
+  60% {
+    filter: brightness(150%);
+  }
+  80% {
+    filter: brightness(100%);
+  }
+  100% {
+    filter: brightness(150%);
+  }
+}
+
+/* ============================================= 
+           VERSUS SCREEN ANIMATIONS
+==============================================*/
 
 /* Element to be moved.*/
 .slide-left {

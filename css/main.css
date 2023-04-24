@@ -156,6 +156,10 @@ textarea {
   text-transform: lowercase;
 }
 
+/* ============================================= 
+            AVATAR SECTION
+==============================================*/
+
 .select-prompt {
   font-size: var(--fs-medium);
   color: var(--bg-secondary);
@@ -207,34 +211,6 @@ textarea {
   z-index: 100;
 }
 
-.active {
-  filter: grayscale(0);
-  outline: 4px solid rgb(68, 199, 28);
-  background: transparent;
-  animation: flash 300ms linear;
-}
-
-@keyframes flash {
-  0% {
-    filter: brightness(100%);
-  }
-  20% {
-    filter: brightness(150%);
-  }
-  40% {
-    filter: brightness(100%);
-  }
-  60% {
-    filter: brightness(150%);
-  }
-  80% {
-    filter: brightness(100%);
-  }
-  100% {
-    filter: brightness(150%);
-  }
-}
-
 .start-button {
   width: 100px;
   height: 30px;
@@ -277,6 +253,10 @@ textarea {
   height: 115%;
   z-index: -1;
 }
+
+/* ============================================= 
+            VERSUS SECTION
+==============================================*/
 
 .versus-container {
   position: relative;
@@ -325,10 +305,14 @@ textarea {
   right: 35%;
 }
 
-.avatar-img {
+.full-image {
   width: 75px;
   height: 150px;
 }
+
+/* ============================================= 
+            GAME SECTION
+==============================================*/
 
 .scoreboard {
   display: flex;
@@ -352,7 +336,9 @@ textarea {
   flex-direction: column;
   place-content: center;
   gap: var(--spacer);
+  text-align: center;
 }
+
 .lifebar {
   width: 300px;
   display: flex;
@@ -364,4 +350,26 @@ textarea {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  flex: 1;
+}
+
+/* ============================================= 
+            GAMEOVER SECTION
+==============================================*/
+
+.announcement-container {
+  width: 80%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacer);
+}
+.announcement-text {
+  font-size: var(--fs-medium);
+  color: var(--bg-secondary);
+}
+
+.trophy-img {
+  width: 75px;
+  height: 150px;
 }
