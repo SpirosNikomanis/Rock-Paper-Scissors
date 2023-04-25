@@ -170,24 +170,24 @@
 .slide-left {
   position: absolute;
   left: 50%;
-  animation: 2000ms slide-from-left forwards,
-    5000ms slide-from-left-reversed 5000ms forwards;
+  animation: 1500ms slide-from-left forwards,
+    4500ms slide-from-left-reversed 4500ms forwards;
 }
 
 /* Element to be moved.*/
 .slide-right {
   position: absolute;
   right: 50%;
-  animation: 2000ms slide-from-right forwards,
-    5000ms slide-from-right-reversed 5000ms forwards;
+  animation: 1500ms slide-from-right forwards,
+    4500ms slide-from-right-reversed 4500ms forwards;
 }
 
 /* Element to be moved.*/
 .slide-middle {
   position: absolute;
   top: 46%;
-  animation: 2000ms slide-to-middle forwards,
-    5000ms slide-to-middle-reversed 5000ms forwards;
+  animation: 1500ms slide-to-middle forwards,
+    4500ms slide-to-middle-reversed 4500ms forwards;
 }
 
 @keyframes slide-from-right {
@@ -249,14 +249,17 @@
 @keyframes slide-from-left-reversed {
   from {
     left: 50%;
+    opacity: 1;
   }
   to {
     left: 100%;
+    opacity: 0;
   }
 }
 
 .reveal-avatar {
-  animation: reveal-avatar 300ms ease-in-in forwards;
+  display: block;
+  animation: reveal-avatar 300ms ease-in 1500ms forwards;
 }
 
 @keyframes reveal-avatar {

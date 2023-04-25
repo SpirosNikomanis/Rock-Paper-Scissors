@@ -53,6 +53,9 @@ body {
 .intro-section {
   opacity: 1;
 }
+.versus-section {
+  padding: 0;
+}
 
 img {
   width: 100%;
@@ -157,7 +160,10 @@ label {
   padding: 0 var(--spacer);
 }
 
-.btn {
+.btn,
+.delete,
+.caps,
+.submit {
   background: transparent;
   border: none;
   display: inline-block;
@@ -225,9 +231,12 @@ label {
   width: 80px;
   height: 80px;
   filter: grayscale(0.84);
-  background: rgba(73, 73, 73, 0.5);
 }
 
+.option-img:focus,
+.option-img:active {
+  outline: 0;
+}
 .option-img img {
   object-fit: cover;
   object-position: top center;
@@ -258,19 +267,18 @@ label {
   width: 100%;
 }
 
-.versus__text {
+.versus-text {
   height: 100px;
   width: 10%;
   font-size: 5rem;
-  color: var(--bg-accent);
-  position: absolute;
+  color: white;
   top: 50%;
   left: 46%;
   opacity: 0;
 }
 
 .right-half {
-  background-color: red;
+  background-color: rgb(255, 0, 0);
   height: 100%;
   width: 50%;
   opacity: 0;
@@ -291,14 +299,14 @@ label {
   position: absolute;
   top: 45%;
   left: 45%;
-  opacity: 1;
+  opacity: 0;
 }
 
 .versus-com {
   position: absolute;
   top: 45%;
   right: 45%;
-  opacity: 1;
+  opacity: 0;
 }
 
 .full-image {
