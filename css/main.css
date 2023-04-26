@@ -27,7 +27,7 @@ html {
 body {
   font-family: var(--ff);
   font-size: var(--fs-normal);
-  background-image: url(../assets/bg.jpg);
+  background-image: url(../assets/img/bg.jpg);
   padding-top: 15em;
 }
 .intro-section,
@@ -50,9 +50,6 @@ body {
   opacity: 0;
 }
 
-.intro-section {
-  opacity: 1;
-}
 .versus-section {
   padding: 0;
 }

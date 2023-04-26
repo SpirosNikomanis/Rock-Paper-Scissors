@@ -41,6 +41,10 @@ let computerWins = 0;
 
 //////////////////////////FUNCTIONS//////////////////////////
 
+document.addEventListener('DOMContentLoaded', function () {
+  introSection.classList.add('fadeIn');
+});
+
 function switchScreens(screenOut, screenIn) {
   screenOut.classList.replace('fadeIn', 'fadeOut');
   screenOut.addEventListener(
@@ -71,13 +75,14 @@ function randomOpponent() {
 
 function updateInfo(avatarChosen) {
   let oppName = randomOpponent();
-  avatarFullDisplayBox.setAttribute('src', `./assets/${avatarChosen}.webp`);
-  vsPlayerImg.setAttribute('src', `./assets/${avatarChosen}.webp`);
-  vsCompImg.setAttribute('src', `./assets/${oppName}.png`);
-  playerGameImg.setAttribute('src', `./assets/${avatarChosen}.webp`);
-  computerGameImg.setAttribute('src', `./assets/${oppName}.png`);
+  avatarFullDisplayBox.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
+  vsPlayerImg.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
+  vsCompImg.setAttribute('src', `./assets/img/${oppName}.png`);
+  playerGameImg.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
+  computerGameImg.setAttribute('src', `./assets/img/${oppName}.png`);
   playerName.textContent = userName;
   comName.textContent = oppName;
+  computerName = oppName;
 }
 
 function getComputerChoice() {
@@ -104,12 +109,12 @@ function getChoices(e) {
 function displayChoices(playerPick, computerPick) {
   playerChoiceDisplay.firstElementChild.setAttribute(
     'src',
-    `./assets/${playerPick}.png`
+    `./assets/img/${playerPick}.png`
   );
 
   computerChoiceDisplay.firstElementChild.setAttribute(
     'src',
-    `./assets/${computerPick}.png`
+    `./assets/img/${computerPick}.png`
   );
 }
 
@@ -166,15 +171,7 @@ function countDown(seconds, elem) {
   if (seconds < 1) {
     clearTimeout(timer);
     resetGame();
-    gameOverSection.classList.replace('fadeIn', 'fadeOut');
-    gameOverSection.addEventListener(
-      'animationend',
-      () => {
-        introSection.classList.remove('hidden');
-        introSection.gameOverSection.classList.replace('fadeOut', 'hidden');
-      },
-      { once: true }
-    );
+    switchScreens(gameOverSection, introSection);
   }
 }
 
@@ -184,7 +181,7 @@ function createLives() {
     let lifeimg = document.createElement('IMG');
     newLife.className = `life`;
     lifeimg.className = 'small-img';
-    lifeimg.setAttribute('src', './assets/Heart.png');
+    lifeimg.setAttribute('src', './assets/img/Heart.png');
     playerLifeBar.append(newLife);
     newLife.append(lifeimg);
   }
@@ -193,7 +190,7 @@ function createLives() {
     let lifeimg = document.createElement('IMG');
     newLife.className = `life`;
     lifeimg.className = 'small-img';
-    lifeimg.setAttribute('src', './assets/Heart.png');
+    lifeimg.setAttribute('src', './assets/img/Heart.png');
     comLifeBar.append(newLife);
     newLife.append(lifeimg);
   }
@@ -210,7 +207,6 @@ function removeAllLives() {
 
 function removeLife(loser) {
   if (loser === 'player') {
-    console.log(playerLifeBar.length);
     playerLifeBar.removeChild(playerLifeBar.lastElementChild);
   }
   if (loser === 'com') {
