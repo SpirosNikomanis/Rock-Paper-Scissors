@@ -325,12 +325,10 @@ label {
 }
 
 .player-scoreboard {
-  /* background-color: #06b6d1; */
   display: flex;
   gap: var(--spacer);
 }
 .computer-scoreboard {
-  /* background-color: #06b6d1; */
   display: flex;
   flex-direction: row-reverse;
   gap: var(--spacer);
@@ -338,19 +336,29 @@ label {
 .score-wrapper {
   display: flex;
   flex-direction: column;
-  place-content: center;
+  justify-content: center;
   gap: var(--spacer);
-  text-align: center;
+}
+
+.player-side {
+  align-items: flex-start;
+}
+.computer-side {
+  align-items: flex-end;
 }
 
 .username-display {
   color: var(--bg-accent);
 }
 
-.lifebar {
+.player-lifebar,
+.computer-lifebar {
   width: 300px;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
+}
+.computer-lifebar {
+  justify-content: flex-end;
 }
 
 .life {

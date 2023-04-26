@@ -13,7 +13,7 @@
   </head>
   <body>
     <!-------- INTRO SECTION  -------->
-    <div class="intro-section hidden" tabindex="-1">
+    <div class="intro-section fadeIn" tabindex="-1">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -145,16 +145,16 @@
       <button class="start-button avatar-lock" style="opacity: 0">Start</button>
     </div>
     <!-------- VERSUS SECTION  -------->
-    <div class="versus-section fadeIn">
+    <div class="versus-section hidden">
       <div class="versus-container">
         <div class="left-half">
           <div class="versus-player full-image">
-            <img src="./assets/boy-1.webp" alt="" />
+            <img class="versus-player-img" src="./assets/boy-1.webp" alt="" />
           </div>
         </div>
         <div class="right-half">
           <div class="versus-com full-image">
-            <img src="./assets/Robot.png" alt="" />
+            <img class="versus-com-img" src="./assets/Robot.png" alt="" />
           </div>
         </div>
         <div class="versus-text">VS</div>
@@ -165,52 +165,20 @@
       <div class="scoreboard">
         <div class="player-scoreboard">
           <div class="avatar-img full-image">
-            <img src="./assets/boy-1.webp" alt="" />
+            <img class="playerGame-avatar" src="./assets/boy-1.webp" alt="" />
           </div>
-          <div class="score-wrapper">
-            <div class="username-display">Mike</div>
-            <div class="lifebar">
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-            </div>
+          <div class="score-wrapper player-side">
+            <div class="playerUserName-display">Mike</div>
+            <div class="player-lifebar"></div>
           </div>
         </div>
         <div class="computer-scoreboard">
           <div class="avatar-img full-image">
-            <img src="./assets/Robot.png" alt="" />
+            <img class="computerGame-avatar" src="./assets/Robot.png" alt="" />
           </div>
-          <div class="score-wrapper">
-            <div class="username-display">Computer</div>
-            <div class="lifebar">
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-              <div class="life">
-                <img class="small-img" src="./assets/Heart.png" alt="" />
-              </div>
-            </div>
+          <div class="score-wrapper computer-side">
+            <div class="comUserName-display">Computer</div>
+            <div class="computer-lifebar"></div>
           </div>
         </div>
       </div>
@@ -221,11 +189,11 @@
         </div>
         <div class="outcome-display">Win</div>
         <div class="computerChoice-display">
-          <img src="" alt="?" />
+          <img style="transform: rotateY(180deg)" src="" alt="?" />
         </div>
       </div>
 
-      <div class="btns__container">
+      <div class="btns-container">
         <button id="Rock" class="selection-button" style="--size: 6; --hue: 10">
           Rock
         </button>
@@ -261,9 +229,9 @@
         </div>
       </div>
       <div class="gameWinner"></div>
-      <div class="countdown-timer">
+      <div class="countdown">
         <p class="blinking-text">Press Enter to play again</p>
-        <div class="timeLeft">5</div>
+        <div id="countdownTimer">10</div>
       </div>
     </div>
     <script></script>

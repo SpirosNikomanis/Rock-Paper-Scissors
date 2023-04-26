@@ -41,7 +41,7 @@
   z-index: -1;
 }
 
-.btns__container button {
+.btns-container button {
   --size: 10;
   --bezel: 0.8;
   --fade: 0.7;
@@ -87,8 +87,8 @@
   transition: transform 40ms ease-in, background 90ms ease-out,
     box-shadow 120ms ease-out;
 }
-.btns__container button::before,
-.btns__container button::after {
+.btns-container button::before,
+.btns-container button::after {
   box-sizing: border-box;
   content: '';
   position: absolute;
@@ -100,7 +100,7 @@
   transition: transform 40ms ease-in, opacity 90ms linear,
     background 90ms ease-out, box-shadow 120ms ease-out;
 }
-.btns__container button::before {
+.btns-container button::before {
   --throw: 8px;
   transform: scale(var(--fade));
   background-image: linear-gradient(
@@ -109,7 +109,7 @@
   );
   opacity: 0.5;
 }
-.btns__container button::after {
+.btns-container button::after {
   --throw: 3px;
   transform: scale(var(--bezel));
   border: 2px solid hsla(var(--hue), var(--saturation), 15%, 0.6);
@@ -119,23 +119,23 @@
     0 1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3),
     0 -1px var(--throw) hsla(var(--hue), var(--saturation), 10%, 0.3);
 }
-.btns__container button:hover {
+.btns-container button:hover {
   --lightness: 70%;
 }
-.btns__container button:hover::before {
+.btns-container button:hover::before {
   transform: scale(var(--bezel));
 }
-.btns__container button:hover::after {
+.btns-container button:hover::after {
   background-image: linear-gradient(
     hsla(var(--hue), var(--saturation), 30%, 0.3),
     hsla(var(--hue), var(--saturation), 60%, 0.3)
   );
 }
-.btns__container button:active {
+.btns-container button:active {
   --saturation: 100%;
   font-size: calc(var(--font-size) * (1 - var(--hover-size)));
 }
-.btns__container button:active::before {
+.btns-container button:active::before {
   --throw: 8px;
   transform: scale(calc(var(--bezel)));
   opacity: 0.41;
@@ -144,15 +144,15 @@
     0 -1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.3),
     0 1px var(--throw) hsla(var(--hue), var(--saturation), 90%, 0.3);
 }
-.btns__container button:active::after {
+.btns-container button:active::after {
   --throw: 3px;
   transform: scale(calc(var(--bezel) - var(--hover-size)));
   border: 2px solid hsla(var(--hue), var(--saturation), 15%, 0.8);
 }
-.btns__container button:focus {
+.btns-container button:focus {
   --lightness: 60%;
 }
-.btns__container button:disabled {
+.btns-container button:disabled {
   --hue: 270;
   --saturation: 10%;
   --lightness: 83%;
