@@ -28,7 +28,7 @@ body {
   font-family: var(--ff);
   font-size: var(--fs-normal);
   background-image: url(../assets/img/bg.jpg);
-  padding-top: 15em;
+  padding-top: calc(var(--spacer) * 15);
 }
 .intro-section,
 .username-section,
@@ -240,12 +240,12 @@ label {
   cursor: pointer;
 }
 
+#random {
+  padding: 20px;
+}
 #random img {
-  width: 50%;
-  height: 50%;
-  object-fit: contain;
+  object-fit: scale-down;
   cursor: pointer;
-  position: relative;
 }
 
 .option-img:hover {
@@ -294,21 +294,16 @@ label {
 
 .versus-player {
   position: absolute;
-  top: 45%;
-  left: 45%;
+  top: 40%;
+  left: 35%;
   opacity: 0;
 }
 
 .versus-com {
   position: absolute;
-  top: 45%;
-  right: 45%;
+  top: 40%;
+  right: 35%;
   opacity: 0;
-}
-
-.full-image {
-  width: 75px;
-  height: 150px;
 }
 
 /* ============================================= 
@@ -344,7 +339,19 @@ label {
   align-items: flex-end;
 }
 
-.username-display {
+.avatar-img {
+  width: 100px;
+  height: 100px;
+}
+
+.playerGame-avatar,
+.computerGame-avatar {
+  object-fit: contain;
+}
+
+.playerUserName-display,
+.comUserName-display {
+  font-size: var(--fs-normal);
   color: var(--bg-accent);
 }
 
@@ -359,8 +366,20 @@ label {
 }
 
 .life {
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
+}
+
+.outcome-display {
+  font-size: var(--fs-medium);
+  color: var(--bg-secondary);
+}
+
+.playerChoice-display,
+.computerChoice-display {
+  width: 250px;
+  height: 250px;
+  opacity: 0;
 }
 
 .game-container {
@@ -376,13 +395,28 @@ label {
 ==============================================*/
 
 .announcement-container {
-  width: 80%;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: var(--spacer);
+  gap: calc(var(--spacer) * 2);
 }
 .announcement-text {
   font-size: var(--fs-medium);
   color: var(--bg-secondary);
+}
+
+.trophy-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.countdown {
+  font-size: var(--fs-normal);
+  margin-bottom: calc(var(--spacer) * 3);
+  text-align: center;
+}
+
+.replay {
+  margin-bottom: var(--spacer);
 }

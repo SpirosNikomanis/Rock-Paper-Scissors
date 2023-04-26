@@ -170,6 +170,10 @@
 .slide-left {
   position: absolute;
   left: 50%;
+
+  -webkit-animation: 1500ms slide-from-left forwards,
+    4500ms slide-from-left-reversed 4500ms forwards;
+
   animation: 1500ms slide-from-left forwards,
     4500ms slide-from-left-reversed 4500ms forwards;
 }
@@ -178,6 +182,10 @@
 .slide-right {
   position: absolute;
   right: 50%;
+
+  -webkit-animation: 1500ms slide-from-right forwards,
+    4500ms slide-from-right-reversed 4500ms forwards;
+
   animation: 1500ms slide-from-right forwards,
     4500ms slide-from-right-reversed 4500ms forwards;
 }
@@ -185,7 +193,11 @@
 /* Element to be moved.*/
 .slide-middle {
   position: absolute;
-  top: 46%;
+  top: 50%;
+
+  -webkit-animation: 1500ms slide-to-middle forwards,
+    4500ms slide-to-middle-reversed 4500ms forwards;
+
   animation: 1500ms slide-to-middle forwards,
     4500ms slide-to-middle-reversed 4500ms forwards;
 }
@@ -208,7 +220,7 @@
   }
 
   100% {
-    top: 46%;
+    top: 50%;
     opacity: 1;
   }
 }
@@ -237,7 +249,7 @@
 
 @keyframes slide-to-middle-reversed {
   from {
-    top: 46%;
+    top: 50%;
     opacity: 1;
   }
   to {

@@ -134,12 +134,17 @@
               <img src="./assets/img/girl-5.webp" alt="girl-5" />
             </div>
             <div id="random" class="option-img">
-              <img src="./assets/img/questionmark.webp" alt="random" />
+              <img src="./assets/img/random.webp" alt="random" />
             </div>
           </div>
         </div>
         <div class="fullDisplay-option">
-          <img id="full-avatar" class="full-image" src="?" alt="full-image" />
+          <img
+            id="full-avatar"
+            class="full-image"
+            src="./assets/img/random.webp"
+            alt="full-image"
+          />
         </div>
       </div>
       <button class="start-button avatar-lock" style="opacity: 0">Start</button>
@@ -148,7 +153,7 @@
     <div class="versus-section hidden">
       <div class="versus-container">
         <div class="left-half">
-          <div class="versus-player full-image">
+          <div class="versus-player">
             <img
               class="versus-player-img"
               src="./assets/img/boy-1.webp"
@@ -158,7 +163,7 @@
         </div>
         <div class="right-half">
           <div class="versus-com full-image">
-            <img class="versus-com-img" src="./assets/img/Robot.png" alt="" />
+            <img class="versus-com-img" src="./assets/img/Robot.webp" alt="" />
           </div>
         </div>
         <div class="versus-text">VS</div>
@@ -168,10 +173,10 @@
     <div class="game-section hidden">
       <div class="scoreboard">
         <div class="player-scoreboard">
-          <div class="avatar-img full-image">
+          <div class="avatar-img">
             <img
               class="playerGame-avatar"
-              src="./assets/img/boy-1.webp"
+              src="./assets/img/random.webp"
               alt=""
             />
           </div>
@@ -181,10 +186,10 @@
           </div>
         </div>
         <div class="computer-scoreboard">
-          <div class="avatar-img full-image">
+          <div class="avatar-img">
             <img
               class="computerGame-avatar"
-              src="./assets/img/Robot.png"
+              src="./assets/img/random.webp"
               alt=""
             />
           </div>
@@ -197,11 +202,16 @@
 
       <div class="game-container">
         <div class="playerChoice-display">
-          <img src="" alt="?" />
+          <img class="playerChoice" src="" alt="" />
         </div>
-        <div class="outcome-display">Win</div>
+        <div class="outcome-display"></div>
         <div class="computerChoice-display">
-          <img style="transform: rotateY(180deg)" src="" alt="?" />
+          <img
+            class="computerChoice"
+            style="transform: rotateY(180deg)"
+            src=""
+            alt=""
+          />
         </div>
       </div>
 
@@ -232,18 +242,17 @@
         <h1 class="title">Game Over</h1>
       </div>
       <div class="announcement-container">
-        <div class="trophy-img full-image">
-          <img src="./assets/img/Trophy.png" alt="" />
+        <div class="trophy-img">
+          <img src="./assets/img/Trophy.webp" alt="" />
         </div>
         <div class="announcement-text">Player Wins</div>
-        <div class="trophy-img full-image">
-          <img src="./assets/img/Trophy.png" alt="" />
+        <div class="trophy-img">
+          <img src="./assets/img/Trophy.webp" alt="" />
         </div>
       </div>
-      <div class="gameWinner"></div>
       <div class="countdown">
-        <p class="blinking-text">Press Enter to play again</p>
-        <div id="countdownTimer">10</div>
+        <p class="blinking-text replay">Press Enter to play again</p>
+        <div><span id="countdownTimer">10</span></div>
       </div>
     </div>
     <script></script>

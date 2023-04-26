@@ -32,6 +32,7 @@ const winnerText = document.querySelector('.announcement-text');
 const playerLifeBar = document.querySelector('.player-lifebar');
 const comLifeBar = document.querySelector('.computer-lifebar');
 const lives = document.querySelectorAll('.life');
+const countdownTime = document.querySelector('#countdownTimer');
 
 let chars = [];
 let userName = 'Player 1';
@@ -72,14 +73,57 @@ function randomOpponent() {
       break;
   }
 }
+function randomAvatar() {
+  randomChoice = Math.floor(Math.random() * 10);
+  switch (randomChoice) {
+    case 0:
+      return 'boy-1';
+    case 1:
+      return 'boy-2';
+    case 2:
+      return 'boy-3';
+    case 3:
+      return 'boy-4';
+    case 4:
+      return 'boy-5';
+    case 5:
+      return 'girl-1';
+    case 6:
+      return 'girl-2';
+    case 7:
+      return 'girl-3';
+    case 8:
+      return 'girl-4';
+    case 9:
+      return 'girl-5';
+    default:
+      break;
+  }
+}
 
 function updateInfo(avatarChosen) {
   let oppName = randomOpponent();
-  avatarFullDisplayBox.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
-  vsPlayerImg.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
-  vsCompImg.setAttribute('src', `./assets/img/${oppName}.png`);
-  playerGameImg.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
-  computerGameImg.setAttribute('src', `./assets/img/${oppName}.png`);
+  ``;
+
+  if (avatarChosen === 'random') {
+    let randomPlayer = randomAvatar();
+    avatarFullDisplayBox.setAttribute(
+      'src',
+      `./assets/img/${randomPlayer}.webp`
+    );
+    vsPlayerImg.setAttribute('src', `./assets/img/${randomPlayer}.webp`);
+    playerGameImg.setAttribute('src', `./assets/img/${randomPlayer}.webp`);
+  } else {
+    avatarFullDisplayBox.setAttribute(
+      'src',
+      `./assets/img/${avatarChosen}.webp`
+    );
+    vsPlayerImg.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
+    playerGameImg.setAttribute('src', `./assets/img/${avatarChosen}.webp`);
+  }
+
+  vsCompImg.setAttribute('src', `./assets/img/${oppName}.webp`);
+  computerGameImg.setAttribute('src', `./assets/img/${oppName}.webp`);
   playerName.textContent = userName;
   comName.textContent = oppName;
   computerName = oppName;
@@ -107,14 +151,16 @@ function getChoices(e) {
 }
 
 function displayChoices(playerPick, computerPick) {
+  playerChoiceDisplay.style.opacity = 1;
   playerChoiceDisplay.firstElementChild.setAttribute(
     'src',
-    `./assets/img/${playerPick}.png`
+    `./assets/img/${playerPick}.webp`
   );
 
+  computerChoiceDisplay.style.opacity = 1;
   computerChoiceDisplay.firstElementChild.setAttribute(
     'src',
-    `./assets/img/${computerPick}.png`
+    `./assets/img/${computerPick}.webp`
   );
 }
 
@@ -168,6 +214,7 @@ function countDown(seconds, elem) {
   element.textContent = seconds;
   seconds--;
   let timer = setTimeout('countDown(' + seconds + ',"' + elem + '")', 1000);
+
   if (seconds < 1) {
     clearTimeout(timer);
     resetGame();
@@ -181,7 +228,7 @@ function createLives() {
     let lifeimg = document.createElement('IMG');
     newLife.className = `life`;
     lifeimg.className = 'small-img';
-    lifeimg.setAttribute('src', './assets/img/Heart.png');
+    lifeimg.setAttribute('src', './assets/img/Heart.webp');
     playerLifeBar.append(newLife);
     newLife.append(lifeimg);
   }
@@ -190,7 +237,7 @@ function createLives() {
     let lifeimg = document.createElement('IMG');
     newLife.className = `life`;
     lifeimg.className = 'small-img';
-    lifeimg.setAttribute('src', './assets/img/Heart.png');
+    lifeimg.setAttribute('src', './assets/img/Heart.webp');
     comLifeBar.append(newLife);
     newLife.append(lifeimg);
   }
@@ -226,9 +273,14 @@ function resetGame() {
     avatarFullDisplayBox.setAttribute('src', `?`);
     startButton.style.opacity = 0;
   }
-  playerChoiceDisplay.firstElementChild.setAttribute('src', `?`);
+  outcomeDisplay.textContent = ``;
 
+  playerChoiceDisplay.firstElementChild.setAttribute('src', `?`);
+  playerChoiceDisplay.style.opacity = 0;
   computerChoiceDisplay.firstElementChild.setAttribute('src', `?`);
+  computerChoiceDisplay.style.opacity = 0;
+  avatarFullDisplayBox.setAttribute('src', `./assets/img/random.webp`);
+  countdownTime.style.color = 'inherit';
 
   removeAllLives();
 
