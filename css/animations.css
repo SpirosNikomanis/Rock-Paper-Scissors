@@ -87,7 +87,7 @@
   display: block;
   pointer-events: none;
   animation-name: fadeOut;
-  animation-duration: 1500ms;
+  animation-duration: 1000ms;
   animation-timing-function: ease-in;
   animation-fill-mode: forwards;
   -webkit-animation-name: fadeOut;
@@ -110,7 +110,7 @@
   display: block;
   pointer-events: all;
   animation-name: fadeIn;
-  animation-duration: 1500ms;
+  animation-duration: 1000ms;
   animation-timing-function: ease-in;
   animation-delay: 500ms;
   animation-fill-mode: forwards;

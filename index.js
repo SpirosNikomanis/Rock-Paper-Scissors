@@ -23,6 +23,7 @@ const playerGameImg = document.querySelector('.playerGame-avatar');
 const computerGameImg = document.querySelector('.computerGame-avatar');
 const playerName = document.querySelector('.playerUserName-display');
 const comName = document.querySelector('.comUserName-display');
+const roundPlayed = document.querySelector('.round-number');
 const gameButtons = document.querySelectorAll('.selection-button');
 const playerChoiceDisplay = document.querySelector('.playerChoice-display');
 const computerChoiceDisplay = document.querySelector('.computerChoice-display');
@@ -33,12 +34,17 @@ const playerLifeBar = document.querySelector('.player-lifebar');
 const comLifeBar = document.querySelector('.computer-lifebar');
 const lives = document.querySelectorAll('.life');
 const countdownTime = document.querySelector('#countdownTimer');
+const arrow = document.getElementsByClassName('arrow');
+const gameMode = document.getElementsByClassName('mode-options');
 
 let chars = [];
 let userName = 'Player 1';
 let computerName = 'Computer';
+let modeOptions = ['Normal', 'Ranked', 'Unlimited'];
+let selected = 0;
 let playerWins = 0;
 let computerWins = 0;
+let roundNumber = 0;
 
 //////////////////////////FUNCTIONS//////////////////////////
 
@@ -57,6 +63,26 @@ function switchScreens(screenOut, screenIn) {
     { once: true }
   );
 }
+
+function modeSelection() {
+  return (gameMode[0].textContent = modeOptions[selected % modeOptions.length]);
+}
+
+modeSelection();
+
+arrow[0].onclick = function () {
+  if (selected > 0) {
+    selected--;
+  } else {
+    selected = modeOptions.length - 1;
+  }
+  modeSelection();
+};
+
+arrow[1].onclick = function () {
+  selected++;
+  modeSelection();
+};
 
 function randomOpponent() {
   randomChoice = Math.floor(Math.random() * 4);
@@ -148,6 +174,7 @@ function getChoices(e) {
   let computerChoice = getComputerChoice();
   displayChoices(playerChoice, computerChoice);
   playRound(playerChoice, computerChoice);
+  displayRound();
 }
 
 function displayChoices(playerPick, computerPick) {
@@ -162,6 +189,34 @@ function displayChoices(playerPick, computerPick) {
     'src',
     `./assets/img/${computerPick}.webp`
   );
+}
+
+function normalMode() {
+  createPlayerLives();
+  createComLives();
+  gameButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      gameOver('Normal');
+    });
+  });
+}
+
+function rankedMode() {
+  createPlayerLives();
+  gameButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+      gameOver('Ranked');
+    });
+  });
+}
+
+function checkGameMode() {
+  if (gameMode[0].textContent === 'Normal') {
+    normalMode();
+  }
+  if (gameMode[0].textContent === 'Ranked') {
+    rankedMode();
+  }
 }
 
 function playRound(player, computer) {
@@ -192,20 +247,50 @@ function displayOutcome(outcome) {
   }
 }
 
-function gameOver() {
+function displayRound() {
+  ++roundNumber;
+  roundPlayed.textContent = `Round ${roundNumber}`;
+}
+
+function gameOver(mode) {
+  if (mode === 'Ranked') {
+    rankedModeOver();
+  }
+  if (mode === 'Normal') {
+    normalModeOver();
+  }
+}
+
+function rankedModeOver() {
+  if (computerWins === 5) {
+    gameButtons.forEach((button) => {
+      button.disabled = true;
+    });
+
+    switchScreens(gameScreen, gameOverSection);
+    winnerText.textContent = `${computerName} Wins!`;
+    setTimeout(() => {
+      countDown(10, 'countdownTimer');
+    }, 2500);
+  }
+}
+
+function normalModeOver() {
   if (playerWins === 5 || computerWins === 5) {
     gameButtons.forEach((button) => {
       button.disabled = true;
     });
-    setTimeout(() => {
-      if (playerWins === 5) {
-        winnerText.textContent = `${userName} Wins!`;
-      } else {
-        winnerText.textContent = `${computerName} Wins!`;
-      }
-      countDown(10, 'countdownTimer');
-    }, 1500);
+
     switchScreens(gameScreen, gameOverSection);
+
+    if (playerWins === 5) {
+      winnerText.textContent = `${userName} Wins!`;
+    } else {
+      winnerText.textContent = `${computerName} Wins!`;
+    }
+    setTimeout(() => {
+      countDown(10, 'countdownTimer');
+    }, 2500);
   }
 }
 
@@ -222,7 +307,7 @@ function countDown(seconds, elem) {
   }
 }
 
-function createLives() {
+function createPlayerLives() {
   for (let i = 0; i < 5; i++) {
     let newLife = document.createElement('DIV');
     let lifeimg = document.createElement('IMG');
@@ -232,6 +317,9 @@ function createLives() {
     playerLifeBar.append(newLife);
     newLife.append(lifeimg);
   }
+}
+
+function createComLives() {
   for (let i = 0; i < 5; i++) {
     let newLife = document.createElement('DIV');
     let lifeimg = document.createElement('IMG');
@@ -254,35 +342,47 @@ function removeAllLives() {
 
 function removeLife(loser) {
   if (loser === 'player') {
-    playerLifeBar.removeChild(playerLifeBar.lastElementChild);
+    if (!playerLifeBar.hasChildNodes()) {
+      return;
+    } else {
+      playerLifeBar.removeChild(playerLifeBar.lastElementChild);
+    }
   }
   if (loser === 'com') {
-    comLifeBar.removeChild(comLifeBar.lastElementChild);
+    if (!comLifeBar.hasChildNodes()) {
+      return;
+    } else {
+      comLifeBar.removeChild(comLifeBar.lastElementChild);
+    }
+  }
+}
+
+function resetAvatarBox() {
+  if (document.querySelector('.option-img.active')) {
+    document.querySelector('.option-img.active').style.filter =
+      'grayscale(0.84)';
+    document.querySelector('.option-img.active').classList.remove('active');
   }
 }
 
 function resetGame() {
   chars = [];
-  textarea.value = chars.join('');
   playerWins = 0;
   computerWins = 0;
-  if (document.querySelector('.option-img.active')) {
-    document.querySelector('.option-img.active').style.filter =
-      'grayscale(0.84)';
-    document.querySelector('.option-img.active').classList.remove('active');
-    avatarFullDisplayBox.setAttribute('src', `?`);
-    startButton.style.opacity = 0;
-  }
-  outcomeDisplay.textContent = ``;
+  selected = 0;
 
+  textarea.value = chars.join('');
+  outcomeDisplay.textContent = ``;
   playerChoiceDisplay.firstElementChild.setAttribute('src', `?`);
   playerChoiceDisplay.style.opacity = 0;
   computerChoiceDisplay.firstElementChild.setAttribute('src', `?`);
   computerChoiceDisplay.style.opacity = 0;
   avatarFullDisplayBox.setAttribute('src', `./assets/img/random.webp`);
   countdownTime.style.color = 'inherit';
+  startButton.style.opacity = 0;
 
   removeAllLives();
+  resetAvatarBox();
 
   gameButtons.forEach((button) => {
     button.disabled = false;
@@ -320,18 +420,13 @@ submitButton.addEventListener('click', () => {
   textarea.value = chars.join('');
   userName = chars.join('');
   userNameDisplay.textContent = userName;
-  console.log(userName);
-
+  checkGameMode();
   switchScreens(userNameSection, avatarSection);
 });
 
 avatarOptions.forEach((box) => {
   box.addEventListener('click', () => {
-    if (document.querySelector('.option-img.active')) {
-      document.querySelector('.option-img.active').style.filter =
-        'grayscale(0.84)';
-      document.querySelector('.option-img.active').classList.remove('active');
-    }
+    resetAvatarBox();
     box.classList.add('active');
     box.style.filter = 'grayscale(0)';
     updateInfo(box.id);
@@ -340,7 +435,6 @@ avatarOptions.forEach((box) => {
 });
 
 startButton.addEventListener('click', () => {
-  createLives();
   switchScreens(avatarSection, versusSection);
 });
 
@@ -368,8 +462,4 @@ gameScreen.addEventListener('animationend', () => {
 
 gameButtons.forEach((button) => {
   button.addEventListener('click', getChoices);
-});
-
-gameButtons.forEach((button) => {
-  button.addEventListener('click', gameOver);
 });

@@ -31,6 +31,7 @@ body {
   padding-top: calc(var(--spacer) * 15);
 }
 .intro-section,
+.gameMode-section,
 .username-section,
 .avatar-section,
 .versus-section,
@@ -50,6 +51,9 @@ body {
   opacity: 0;
 }
 
+.gameMode-section {
+  opacity: 1;
+}
 .versus-section {
   padding: 0;
 }
@@ -83,6 +87,24 @@ img {
   -webkit-text-stroke-width: 0;
   text-decoration: none;
   pointer-events: none;
+}
+
+.setting {
+  display: flex;
+  font-size: var(--fs-normal);
+  color: var(--bg-accent);
+  gap: var(--spacer);
+  position: absolute;
+  top: 30%;
+}
+
+.setting-container {
+  width: 250px;
+}
+.arrow,
+.arrow::selection {
+  cursor: pointer;
+  background: transparent;
 }
 
 .intro-links {
@@ -369,10 +391,16 @@ label {
   width: 40px;
   height: 40px;
 }
+.round-number {
+  font-size: var(--fs-medium);
+  color: var(--bg-accent);
+}
 
 .outcome-display {
   font-size: var(--fs-medium);
   color: var(--bg-secondary);
+  width: 500px;
+  text-align: center;
 }
 
 .playerChoice-display,
@@ -388,6 +416,11 @@ label {
   justify-content: space-evenly;
   align-items: center;
   flex: 1;
+}
+
+.btns-container {
+  display: flex;
+  gap: 5em;
 }
 
 /* ============================================= 

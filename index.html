@@ -13,7 +13,7 @@
   </head>
   <body>
     <!-------- INTRO SECTION  -------->
-    <div class="intro-section" tabindex="-1">
+    <div class="intro-section hidden" tabindex="-1">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -28,9 +28,17 @@
       </ul>
     </div>
     <!-------- USERNAME SECTION  -------->
-    <div class="username-section hidden">
+    <div class="username-section fadeIn">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
+      </div>
+      <div class="setting">
+        <span class="setting-tittle">Game Mode :</span>
+        <div class="setting-container">
+          <span class="arrow"><</span>
+          <span class="mode-options">Option 1</span>
+          <span class="arrow">></span>
+        </div>
       </div>
       <div class="keyboard-container">
         <div class="username-textarea">
@@ -185,6 +193,11 @@
             <div class="player-lifebar"></div>
           </div>
         </div>
+        <div class="rounds-container">
+          <div class="rounds-display">
+            <span class="round-number">Round 1</span>
+          </div>
+        </div>
         <div class="computer-scoreboard">
           <div class="avatar-img">
             <img
@@ -204,7 +217,7 @@
         <div class="playerChoice-display">
           <img class="playerChoice" src="" alt="" />
         </div>
-        <div class="outcome-display"></div>
+        <div class="outcome-display">Make your Choice</div>
         <div class="computerChoice-display">
           <img
             class="computerChoice"
