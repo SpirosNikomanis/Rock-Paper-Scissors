@@ -5,11 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RockPaperScissors</title>
-    <link rel="stylesheet" href="./css/normalize.css" />
-    <link rel="stylesheet" href="./css/buttons.css" />
-    <link rel="stylesheet" href="./css/animations.css" />
-    <link rel="stylesheet" href="./css/main.css" />
-    <script src="app.js" defer></script>
+    <link rel="stylesheet" href="../css/normalize.css" />
+    <link rel="stylesheet" href="../css/buttons.css" />
+    <link rel="stylesheet" href="../css/animations.css" />
+    <link rel="stylesheet" href="../css/main.css" />
+    <script src="../src/app.js" defer></script>
   </head>
   <body>
     <!-------- INTRO SECTION  -------->
@@ -43,7 +43,7 @@
       <div class="keyboard-container">
         <div class="username-textarea">
           <label for="textarea">Enter your username</label>
-          <textarea id="textarea" maxlength="15" disabled></textarea>
+          <textarea id="textarea" maxlength="15" disabled>Username</textarea>
         </div>
         <div class="username-keyboard">
           <div class="keyboard-row">
@@ -108,41 +108,41 @@
         <div class="options-display">
           <div class="options-row">
             <div id="boy-1" class="option-img">
-              <img src="./assets/img/boy-1.webp" alt="boy-1" />
+              <img src="../assets/img/boy-1.webp" alt="boy-1" />
             </div>
             <div id="boy-2" class="option-img">
-              <img src="./assets/img/boy-2.webp" alt="boy-2" />
+              <img src="../assets/img/boy-2.webp" alt="boy-2" />
             </div>
             <div id="boy-3" class="option-img">
-              <img src="./assets/img/boy-3.webp" alt="boy-3" />
+              <img src="../assets/img/boy-3.webp" alt="boy-3" />
             </div>
             <div id="boy-4" class="option-img">
-              <img src="./assets/img/boy-4.webp" alt="boy-4" />
+              <img src="../assets/img/boy-4.webp" alt="boy-4" />
             </div>
           </div>
           <div class="options-row">
             <div id="boy-5" class="option-img">
-              <img src="./assets/img/boy-5.webp" alt="boy-5" />
+              <img src="../assets/img/boy-5.webp" alt="boy-5" />
             </div>
             <div id="girl-1" class="option-img">
-              <img src="./assets/img/girl-1.webp" alt="girl-1" />
+              <img src="../assets/img/girl-1.webp" alt="girl-1" />
             </div>
             <div id="girl-2" class="option-img">
-              <img src="./assets/img/girl-2.webp" alt="girl-2" />
+              <img src="../assets/img/girl-2.webp" alt="girl-2" />
             </div>
             <div id="girl-3" class="option-img">
-              <img src="./assets/img/girl-3.webp" alt="girl-3" />
+              <img src="../assets/img/girl-3.webp" alt="girl-3" />
             </div>
           </div>
           <div class="last-row">
             <div id="girl-4" class="option-img">
-              <img src="./assets/img/girl-4.webp" alt="girl-4" />
+              <img src="../assets/img/girl-4.webp" alt="girl-4" />
             </div>
             <div id="girl-5" class="option-img">
-              <img src="./assets/img/girl-5.webp" alt="girl-5" />
+              <img src="../assets/img/girl-5.webp" alt="girl-5" />
             </div>
             <div id="random" class="option-img">
-              <img src="./assets/img/random.webp" alt="random" />
+              <img src="../assets/img/random.webp" alt="random" />
             </div>
           </div>
         </div>
@@ -150,7 +150,7 @@
           <img
             id="full-avatar"
             class="full-image"
-            src="./assets/img/random.webp"
+            src="../assets/img/random.webp"
             alt="full-image"
           />
         </div>
@@ -164,14 +164,14 @@
           <div class="versus-player">
             <img
               class="versus-player-img"
-              src="./assets/img/boy-1.webp"
+              src="../assets/img/boy-1.webp"
               alt=""
             />
           </div>
         </div>
         <div class="right-half">
           <div class="versus-com full-image">
-            <img class="versus-com-img" src="./assets/img/Robot.webp" alt="" />
+            <img class="versus-com-img" src="../assets/img/Robot.webp" alt="" />
           </div>
         </div>
         <div class="versus-text">VS</div>
@@ -184,7 +184,7 @@
           <div class="avatar-img">
             <img
               class="playerGame-avatar"
-              src="./assets/img/random.webp"
+              src="../assets/img/random.webp"
               alt=""
             />
           </div>
@@ -202,7 +202,7 @@
           <div class="avatar-img">
             <img
               class="computerGame-avatar"
-              src="./assets/img/random.webp"
+              src="../assets/img/random.webp"
               alt=""
             />
           </div>
@@ -256,13 +256,14 @@
       </div>
       <div class="announcement-container">
         <div class="trophy-img">
-          <img src="./assets/img/Trophy.webp" alt="" />
+          <img src="../assets/img/Trophy.webp" alt="" />
         </div>
         <div class="announcement-text">Player Wins</div>
         <div class="trophy-img">
-          <img src="./assets/img/Trophy.webp" alt="" />
+          <img src="../assets/img/Trophy.webp" alt="" />
         </div>
       </div>
+      <div class="score-display"></div>
       <div class="countdown">
         <p class="blinking-text replay">Press Enter to play again</p>
         <div><span id="countdownTimer">10</span></div>
