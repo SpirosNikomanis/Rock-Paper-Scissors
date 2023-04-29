@@ -4,11 +4,10 @@ const avatarSection = document.querySelector('.avatar-section');
 const startButton = document.querySelector('.start-button');
 const versusSection = document.querySelector('.versus-section');
 const keyboardButtons = document.querySelectorAll('.btn');
-const textarea = document.querySelector('textarea');
+const textareaTextContent = document.querySelector('textarea');
 const deleteButton = document.querySelector('.delete');
 const capsButton = document.querySelector('.caps');
 const submitButton = document.querySelector('.submit');
-let userNameDisplay = document.querySelector('#textarea');
 const avatarOptions = document.querySelectorAll('.option-img');
 const avatarFullDisplayBox = document.querySelector('#full-avatar');
 const leftHalf = document.querySelector('.left-half');
@@ -33,7 +32,6 @@ const winnerText = document.querySelector('.announcement-text');
 const playerLifeBar = document.querySelector('.player-lifebar');
 const comLifeBar = document.querySelector('.computer-lifebar');
 const lives = document.querySelectorAll('.life');
-const countdownTime = document.querySelector('#countdownTimer');
 const arrow = document.getElementsByClassName('arrow');
 const gameMode = document.getElementsByClassName('mode-options');
 
@@ -85,7 +83,7 @@ arrow[1].onclick = function () {
 };
 
 function randomOpponent() {
-  randomChoice = Math.floor(Math.random() * 4);
+  let randomChoice = Math.floor(Math.random() * 4);
   switch (randomChoice) {
     case 0:
       return 'Dracula';
@@ -100,7 +98,7 @@ function randomOpponent() {
   }
 }
 function randomAvatar() {
-  randomChoice = Math.floor(Math.random() * 10);
+  let randomChoice = Math.floor(Math.random() * 10);
   switch (randomChoice) {
     case 0:
       return 'boy-1';
@@ -156,7 +154,7 @@ function updateInfo(avatarChosen) {
 }
 
 function getComputerChoice() {
-  randomChoice = Math.floor(Math.random() * 3);
+  let randomChoice = Math.floor(Math.random() * 3);
   switch (randomChoice) {
     case 0:
       return 'Rock';
@@ -172,6 +170,7 @@ function getComputerChoice() {
 function getChoices(e) {
   let playerChoice = e.target.id;
   let computerChoice = getComputerChoice();
+  console.log(textareaTextContent.value);
   displayChoices(playerChoice, computerChoice);
   playRound(playerChoice, computerChoice);
   displayRound();
@@ -196,28 +195,28 @@ function normalMode() {
   createComLives();
   gameButtons.forEach((button) => {
     button.addEventListener('click', () => {
-      gameOver('Normal');
+      gameOver();
     });
   });
 }
 
-function rankedMode() {
-  createPlayerLives();
-  gameButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-      gameOver('Ranked');
-    });
-  });
-}
+// function rankedMode() {
+//   createPlayerLives();
+//   gameButtons.forEach((button) => {
+//     button.addEventListener("click", () => {
+//       gameOver();
+//     });
+//   });
+// }
 
-function checkGameMode() {
-  if (gameMode[0].textContent === 'Normal') {
-    normalMode();
-  }
-  if (gameMode[0].textContent === 'Ranked') {
-    rankedMode();
-  }
-}
+// function checkGameMode() {
+//   if (gameMode[0].textContent === "Normal") {
+//     normalMode();
+//   }
+//   if (gameMode[0].textContent === "Ranked") {
+//     rankedMode();
+//   }
+// }
 
 function playRound(player, computer) {
   if (
@@ -249,65 +248,76 @@ function displayOutcome(outcome) {
 
 function displayRound() {
   ++roundNumber;
+  console.log(roundNumber);
   roundPlayed.textContent = `Round ${roundNumber}`;
 }
 
-function gameOver(mode) {
-  if (mode === 'Ranked') {
-    rankedModeOver();
-  }
-  if (mode === 'Normal') {
-    normalModeOver();
-  }
+function countDown() {
+  let timeleft = 10;
+  let downloadTimer = setInterval(function () {
+    if (timeleft <= 0) {
+      clearInterval(downloadTimer);
+      resetGame();
+      switchScreens(gameOverSection, introSection);
+    } else {
+      document.getElementById('countdownTimer').innerText = timeleft;
+    }
+    timeleft -= 1;
+  }, 1000);
 }
 
-function rankedModeOver() {
-  if (computerWins === 5) {
-    gameButtons.forEach((button) => {
-      button.disabled = true;
-    });
-
-    switchScreens(gameScreen, gameOverSection);
-    const scoreDisplay = document.querySelector('.score-display');
-    scoreDisplay.textContent = `${playerWins}`;
-    winnerText.textContent = `${computerName} Wins!`;
-    setTimeout(() => {
-      countDown(10, 'countdownTimer');
-    }, 2500);
-  }
-}
-
-function normalModeOver() {
+function gameOver() {
   if (playerWins === 5 || computerWins === 5) {
     gameButtons.forEach((button) => {
       button.disabled = true;
     });
-
-    switchScreens(gameScreen, gameOverSection);
+    setTimeout(() => {
+      countDown();
+      switchScreens(gameScreen, gameOverSection);
+    }, 2500);
 
     if (playerWins === 5) {
       winnerText.textContent = `${userName} Wins!`;
     } else {
       winnerText.textContent = `${computerName} Wins!`;
     }
-    setTimeout(() => {
-      countDown(10, 'countdownTimer');
-    }, 2500);
   }
 }
 
-function countDown(seconds, elem) {
-  const element = document.getElementById(elem);
-  element.textContent = seconds;
-  seconds--;
-  let timer = setTimeout('countDown(' + seconds + ',"' + elem + '")', 1000);
+// function rankedModeOver() {
+//   if (computerWins === 5) {
+//     gameButtons.forEach((button) => {
+//       button.disabled = true;
+//     });
 
-  if (seconds < 1) {
-    clearTimeout(timer);
-    resetGame();
-    switchScreens(gameOverSection, introSection);
-  }
-}
+//     switchScreens(gameScreen, gameOverSection);
+//     console.log(textarea.value);
+//     scoreDisplay.textContent = `${playerWins}`;
+//     winnerText.textContent = `${computerName} Wins!`;
+// setTimeout(() => {
+//   countDown(10, "countdownTimer");
+// }, 2500);
+// }
+// }
+
+// function normalModeOver() {
+//   if (playerWins === 5 || computerWins === 5) {
+//     gameButtons.forEach((button) => {
+//       button.disabled = true;
+//     });
+
+//     switchScreens(gameScreen, gameOverSection);
+
+//     if (playerWins === 5) {
+//       winnerText.textContent = `${userName} Wins!`;
+//     } else {
+//       winnerText.textContent = `${computerName} Wins!`;
+//     }
+//     setTimeout(() => {
+//       countDown(10, "countdownTimer");
+//     }, 2500);
+//   }
+// }
 
 function createPlayerLives() {
   for (let i = 0; i < 5; i++) {
@@ -369,18 +379,21 @@ function resetAvatarBox() {
 
 function resetGame() {
   chars = [];
+  userName = 'Player 1';
+  computerName = 'Computer';
+  selected = 0;
   playerWins = 0;
   computerWins = 0;
-  selected = 0;
+  roundNumber = 0;
 
-  textarea.value = chars.join('');
+  textareaTextContent.value = chars.join('');
+  roundPlayed.textContent = `Round ${roundNumber}`;
   outcomeDisplay.textContent = ``;
   playerChoiceDisplay.firstElementChild.setAttribute('src', `?`);
   playerChoiceDisplay.style.opacity = 0;
   computerChoiceDisplay.firstElementChild.setAttribute('src', `?`);
   computerChoiceDisplay.style.opacity = 0;
   avatarFullDisplayBox.setAttribute('src', `../assets/img/random.webp`);
-  countdownTime.style.color = 'inherit';
   startButton.style.opacity = 0;
 
   removeAllLives();
@@ -396,21 +409,21 @@ introSection.addEventListener('keyup', function (e) {
   console.log(e.keyCode);
   if (e.keyCode == 13) {
     chars = [];
-    textarea.value = chars.join('');
+    textareaTextContent.value = chars.join('');
     switchScreens(introSection, userNameSection);
   }
 });
 
 keyboardButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
-    textarea.value += btn.innerText; //display buttons in textarea
-    chars = textarea.value.split('');
+    textareaTextContent.value += btn.innerText; //display buttons in textarea
+    chars = textareaTextContent.value.split('');
   });
 });
 
 deleteButton.addEventListener('click', () => {
   chars.pop();
-  textarea.value = chars.join('');
+  textareaTextContent.value = chars.join('');
 });
 
 capsButton.addEventListener('click', () => {
@@ -418,11 +431,12 @@ capsButton.addEventListener('click', () => {
     btn.classList.toggle('lower');
   });
 });
+
 submitButton.addEventListener('click', () => {
-  textarea.value = chars.join('');
+  textareaTextContent.value = chars.join('');
   userName = chars.join('');
-  userNameDisplay.textContent = userName;
-  checkGameMode();
+  textareaTextContent.textContent = userName;
+  // checkGameMode();
   switchScreens(userNameSection, avatarSection);
 });
 
@@ -464,4 +478,7 @@ gameScreen.addEventListener('animationend', () => {
 
 gameButtons.forEach((button) => {
   button.addEventListener('click', getChoices);
+});
+gameButtons.forEach((button) => {
+  button.addEventListener('click', gameOver);
 });
