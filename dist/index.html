@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../css/buttons.css" />
     <link rel="stylesheet" href="../css/animations.css" />
     <link rel="stylesheet" href="../css/main.css" />
-    <script type="module" src="../src/app.js" defer></script>
+    <script type="module" src="../src/app.js"></script>
   </head>
   <body>
     <!-------- INTRO SECTION  -------->
@@ -28,7 +28,7 @@
       </ul>
     </div>
     <!-------- USERNAME SECTION  -------->
-    <div class="username-section fadeIn">
+    <div class="username-section hidden">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -99,7 +99,7 @@
       </div>
     </div>
     <!-------- AVATAR SECTION  -------->
-    <div class="avatar-section hidden">
+    <div class="avatar-section fadeIn">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -107,45 +107,60 @@
       <div class="options-container">
         <div class="options-display">
           <div class="options-row">
-            <div id="boy-1" class="option-img">
-              <img src="../assets/img/boy-1.webp" alt="boy-1" />
+            <div class="option-img">
+              <img id="boy-1" src="../assets/img/boy-1.webp" alt="boy-1" />
             </div>
-            <div id="boy-2" class="option-img">
-              <img src="../assets/img/boy-2.webp" alt="boy-2" />
+
+            <div class="option-img">
+              <img id="boy-2" src="../assets/img/boy-2.webp" alt="boy-2" />
             </div>
-            <div id="boy-3" class="option-img">
-              <img src="../assets/img/boy-3.webp" alt="boy-3" />
+
+            <div class="option-img">
+              <img id="boy-3" src="../assets/img/boy-3.webp" alt="boy-3" />
             </div>
-            <div id="boy-4" class="option-img">
-              <img src="../assets/img/boy-4.webp" alt="boy-4" />
+
+            <div class="option-img">
+              <img id="boy-4" src="../assets/img/boy-4.webp" alt="boy-4" />
             </div>
           </div>
+
           <div class="options-row">
-            <div id="boy-5" class="option-img">
-              <img src="../assets/img/boy-5.webp" alt="boy-5" />
+            <div class="option-img">
+              <img id="boy-5" src="../assets/img/boy-5.webp" alt="boy-5" />
             </div>
-            <div id="girl-1" class="option-img">
-              <img src="../assets/img/girl-1.webp" alt="girl-1" />
+
+            <div class="option-img">
+              <img id="girl-1" src="../assets/img/girl-1.webp" alt="girl-1" />
             </div>
-            <div id="girl-2" class="option-img">
-              <img src="../assets/img/girl-2.webp" alt="girl-2" />
+
+            <div class="option-img">
+              <img id="girl-2" src="../assets/img/girl-2.webp" alt="girl-2" />
             </div>
-            <div id="girl-3" class="option-img">
-              <img src="../assets/img/girl-3.webp" alt="girl-3" />
+
+            <div class="option-img">
+              <img id="girl-3" src="../assets/img/girl-3.webp" alt="girl-3" />
             </div>
           </div>
-          <div class="last-row">
-            <div id="girl-4" class="option-img">
-              <img src="../assets/img/girl-4.webp" alt="girl-4" />
+
+          <div class="options-row">
+            <div class="option-img">
+              <img id="girl-4" src="../assets/img/girl-4.webp" alt="girl-4" />
             </div>
-            <div id="girl-5" class="option-img">
-              <img src="../assets/img/girl-5.webp" alt="girl-5" />
+
+            <div class="option-img">
+              <img id="girl-5" src="../assets/img/girl-5.webp" alt="girl-5" />
             </div>
+
             <div id="random" class="option-img">
-              <img src="../assets/img/random.webp" alt="random" />
+              <img
+                id="randomImg"
+                src="../assets/img/random.webp"
+                alt="random"
+              />
             </div>
           </div>
         </div>
+
         <div class="fullDisplay-option">
           <img
             id="full-avatar"
@@ -155,6 +170,7 @@
           />
         </div>
       </div>
+
       <button class="start-button avatar-lock" style="opacity: 0">Start</button>
     </div>
     <!-------- VERSUS SECTION  -------->

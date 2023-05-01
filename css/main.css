@@ -241,11 +241,11 @@ label {
   padding: 0.2em;
 }
 
-.last-row {
+/* .last-row {
   display: flex;
   gap: var(--spacer);
   padding: 0.2em;
-}
+} */
 .option-img {
   width: 80px;
   height: 80px;
@@ -256,6 +256,7 @@ label {
 .option-img:active {
   outline: 0;
 }
+
 .option-img img {
   object-fit: cover;
   object-position: top center;
