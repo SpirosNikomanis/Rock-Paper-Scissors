@@ -1,12 +1,19 @@
 export let Game = {
-  startGame: function (e, currentPlayer, currentEnemy) {
-    this.getPlayerChoice(e, currentPlayer, currentEnemy);
+  startGame: function (e, currentPlayer, currentEnemy, lives) {
+    this.getPlayerChoice(e, currentPlayer, currentEnemy, lives);
+    this.gameOver(currentPlayer, currentEnemy, lives);
   },
 
-  getPlayerChoice: function (e, currentPlayer, currentEnemy) {
+  getPlayerChoice: function (e, currentPlayer, currentEnemy, lives) {
     let computerChoice = this.getComputerChoice();
     this.displayChoices(e.target.id, computerChoice);
-    this.playRound(e.target.id, computerChoice, currentPlayer, currentEnemy);
+    this.playRound(
+      e.target.id,
+      computerChoice,
+      currentPlayer,
+      currentEnemy,
+      lives
+    );
   },
 
   getComputerChoice: function () {
@@ -22,45 +29,51 @@ export let Game = {
   },
 
   displayChoices: function (playerChoice, computerChoice) {
-    document.querySelector(
-      '.playerChoice'
-    ).src = `../assets/img/${playerChoice}.webp`;
-    document.querySelector('.playerChoice-display').style.opacity = 1;
+    const playerPick = document.querySelector('.playerChoice');
+    playerPick.src = `../assets/img/${playerChoice}.webp`;
 
-    document.querySelector(
-      '.computerChoice'
-    ).src = `../assets/img/${computerChoice}.webp`;
+    const computerPick = document.querySelector('.computerChoice');
+    computerPick.src = `../assets/img/${computerChoice}.webp`;
+
+    document.querySelector('.playerChoice-display').style.opacity = 1;
     document.querySelector('.computerChoice-display').style.opacity = 1;
   },
 
-  playRound: function (player, computer, currentPlayer, currentEnemy) {
+  playRound: function (player, computer, currentPlayer, currentEnemy, lives) {
+    lives.displayRound();
+
     if (
       (player === 'Rock' && computer === 'Scissors') ||
       (player === 'Paper' && computer === 'Rock') ||
       (player === 'Scissors' && computer === 'Paper')
     ) {
+      lives.removeLife('com');
       currentPlayer.updateScore();
       this.displayOutcome('Win');
     } else if (player === computer) {
       this.displayOutcome('Tie');
     } else {
+      lives.removeLife('player');
       currentEnemy.updateScore();
       this.displayOutcome('Loss');
     }
+
     console.log(currentPlayer.score, currentEnemy.score);
   },
 
   displayOutcome: function (outcome) {
+    const outcomeDisplay = document.querySelector('.outcome-display');
+
     if (outcome === 'Win') {
-      document.querySelector('.outcome-display').textContent = `You Win!`;
+      outcomeDisplay.textContent = `You Win!`;
     } else if (outcome === 'Loss') {
-      document.querySelector('.outcome-display').textContent = `You Lose!`;
+      outcomeDisplay.textContent = `You Lose!`;
     } else {
-      document.querySelector('.outcome-display').textContent = `It's a Tie!`;
+      outcomeDisplay.textContent = `It's a Tie!`;
     }
   },
 
-  gameOver: function (currentPlayer, currentEnemy) {
+  gameOver: function (currentPlayer, currentEnemy, lives) {
     if (currentPlayer.score === 5 || currentEnemy.score === 5) {
       const announcement = document.querySelector('.announcement-text');
 
@@ -73,6 +86,56 @@ export let Game = {
       } else {
         announcement.textContent = `${currentEnemy.username} Wins!`;
       }
+
+      lives.switchScreens(
+        document.querySelector('.game-section'),
+        document.querySelector('.gameOver-section')
+      );
+
+      setTimeout(() => {
+        this.countDown(currentPlayer, currentEnemy, lives);
+      }, 1500);
     }
+  },
+
+  countDown: function (currentPlayer, currentEnemy, lives) {
+    let timeleft = 10;
+
+    document.getElementById('countdownTimer').innerText = timeleft;
+
+    let downloadTimer = setInterval(function () {
+      if (timeleft <= 0) {
+        clearInterval(downloadTimer);
+
+        document
+          .querySelector('.gameOver-section')
+          .classList.replace('fadeIn', 'hidden');
+
+        document
+          .querySelector('.intro-section')
+          .classList.replace('hidden', 'fadeIn');
+
+        Game.resetGame(currentPlayer, currentEnemy, lives);
+      } else {
+        document.getElementById('countdownTimer').innerText = timeleft;
+      }
+
+      timeleft -= 1;
+    }, 1000);
+  },
+
+  resetGame: function (currentPlayer, currentEnemy, lives) {
+    currentPlayer.resetChoice();
+    currentPlayer.resetScore();
+    currentEnemy.resetChoice();
+    currentEnemy.resetScore();
+    lives.removeAllLives();
+
+    document.querySelector('.playerChoice-display').style.opacity = 0;
+    document.querySelector('.computerChoice-display').style.opacity = 0;
+
+    document.querySelectorAll('.selection-button').forEach((button) => {
+      button.disabled = false;
+    });
   },
 };

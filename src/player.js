@@ -72,8 +72,6 @@ export default class Player {
         document.querySelector(
           '.playerGame-avatar'
         ).src = `../assets/img/random.webp`;
-
-        this.score = 0;
       });
   }
 }
