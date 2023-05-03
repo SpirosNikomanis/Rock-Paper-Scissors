@@ -11,6 +11,7 @@ export default class Enemy {
 
     (this.randomChoice = function () {
       let randomChoice = Math.floor(Math.random() * 4);
+
       switch (randomChoice) {
         case 0:
           this.username = 'Dracula';
@@ -31,9 +32,11 @@ export default class Enemy {
         document.querySelector(
           '.versus-com-img'
         ).src = `../assets/img/${this.username}.webp`;
+
         document.querySelector(
           '.computerGame-avatar'
         ).src = `../assets/img/${this.username}.webp`;
+
         this.displayName();
       }),
       (this.displayName = function () {
@@ -44,9 +47,12 @@ export default class Enemy {
         document.querySelector(
           '.versus-com-img'
         ).src = `../assets/img/random.webp`;
+
         document.querySelector(
           '.computerGame-avatar'
         ).src = `../assets/img/random.webp`;
+
+        document.querySelector('.computerChoice-display').style.opacity = 0;
       });
   }
 }

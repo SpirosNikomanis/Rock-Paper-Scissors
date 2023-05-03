@@ -13,6 +13,7 @@ export default class Player {
           id;
         } else {
           let random = Math.floor(Math.random() * 10);
+
           switch (random) {
             case 0:
               id = 'boy-1';
@@ -72,6 +73,8 @@ export default class Player {
         document.querySelector(
           '.playerGame-avatar'
         ).src = `../assets/img/random.webp`;
+
+        document.querySelector('.playerChoice-display').style.opacity = 0;
       });
   }
 }

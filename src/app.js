@@ -83,8 +83,6 @@ arrow[1].onclick = function () {
 //   });
 // }
 
-//   selected = 0;
-
 //////////////////////////EVENT LISTENERS//////////////////////////
 
 introSection.addEventListener('keyup', function (e) {

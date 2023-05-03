@@ -135,8 +135,6 @@ export let Game = {
     UIupdate.resetRound();
     UIupdate.resetAvatarBox();
 
-    document.querySelector('.playerChoice-display').style.opacity = 0;
-    document.querySelector('.computerChoice-display').style.opacity = 0;
     document.querySelector('.outcome-display').textContent = 'Make your choice';
 
     document.querySelectorAll('.selection-button').forEach((button) => {
