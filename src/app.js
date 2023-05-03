@@ -1,39 +1,38 @@
-import Player from "./player.js";
-import Enemy from "./enemy.js";
-import { Game } from "./game.js";
-import { UIupdate } from "./updateUI.js";
+import Player from './player.js';
+import Enemy from './enemy.js';
+import { Game } from './game.js';
+import { UIupdate } from './updateUI.js';
 
-const introSection = document.querySelector(".intro-section");
-const userNameSection = document.querySelector(".username-section");
-const avatarSection = document.querySelector(".avatar-section");
+const introSection = document.querySelector('.intro-section');
+const userNameSection = document.querySelector('.username-section');
+const avatarSection = document.querySelector('.avatar-section');
 
-const startButton = document.querySelector(".start-button");
-const versusSection = document.querySelector(".versus-section");
-const keyboardButtons = document.querySelectorAll(".btn");
-const textareaTextContent = document.querySelector("textarea");
-const deleteButton = document.querySelector(".delete");
-const capsButton = document.querySelector(".caps");
-const submitButton = document.querySelector(".submit");
-const avatarOptions = document.querySelectorAll(".option-img");
-const versusText = document.querySelector(".versus-text");
-const arrow = document.getElementsByClassName("arrow");
-const gameMode = document.getElementsByClassName("mode-options");
+const startButton = document.querySelector('.start-button');
+const versusSection = document.querySelector('.versus-section');
+const keyboardButtons = document.querySelectorAll('.btn');
+const textareaTextContent = document.querySelector('textarea');
+const deleteButton = document.querySelector('.delete');
+const capsButton = document.querySelector('.caps');
+const submitButton = document.querySelector('.submit');
+const avatarOptions = document.querySelectorAll('.option-img');
+const versusText = document.querySelector('.versus-text');
+const arrow = document.getElementsByClassName('arrow');
+const gameMode = document.getElementsByClassName('mode-options');
 
 let chars = [];
-let userName = "Player 1";
-let computerName = "Computer";
-let modeOptions = ["Normal", "Ranked", "Unlimited"];
+let userName = 'Player 1';
+let computerName = 'Computer';
+let modeOptions = ['Normal', 'Ranked', 'Unlimited'];
 let selected = 0;
 let playerWins = 0;
 let computerWins = 0;
 let currentPlayer = new Player(userName, playerWins);
 let currentEnemy = new Enemy(computerName, computerWins);
-console.log(currentPlayer);
-console.log(currentEnemy);
+
 //////////////////////////FUNCTIONS//////////////////////////
 
-document.addEventListener("DOMContentLoaded", function () {
-  introSection.classList.add("fadeIn");
+document.addEventListener('DOMContentLoaded', function () {
+  introSection.classList.add('fadeIn');
 });
 
 function modeSelection() {
@@ -84,58 +83,39 @@ arrow[1].onclick = function () {
 //   });
 // }
 
-// function resetGame() {
-//   chars = [];
-//   userName = 'Player 1';
-//   computerName = 'Computer';
 //   selected = 0;
-//   playerWins = 0;
-//   computerWins = 0;
-//   roundNumber = 0;
 
-//   textareaTextContent.value = chars.join('');
-//   roundPlayed.textContent = `Round ${roundNumber}`;
-//   outcomeDisplay.textContent = ``;
-//   playerChoiceDisplay.firstElementChild.src = `?`;
-//   playerChoiceDisplay.style.opacity = 0;
-//   computerChoiceDisplay.firstElementChild.src = `?`;
-//   computerChoiceDisplay.style.opacity = 0;
-//   startButton.style.opacity = 0;
-//   removeAllLives();
-//   resetAvatarBox();
-// }
 //////////////////////////EVENT LISTENERS//////////////////////////
 
-introSection.addEventListener("keyup", function (e) {
-  console.log(e.keyCode);
+introSection.addEventListener('keyup', function (e) {
   if (e.keyCode == 13) {
     chars = [];
-    textareaTextContent.value = chars.join("");
+    textareaTextContent.value = chars.join('');
     UIupdate.switchScreens(introSection, userNameSection);
   }
 });
 
 //display buttons in textarea
 keyboardButtons.forEach((btn) => {
-  btn.addEventListener("click", () => {
+  btn.addEventListener('click', () => {
     textareaTextContent.value += btn.innerText;
-    chars = textareaTextContent.value.split("");
+    chars = textareaTextContent.value.split('');
   });
 });
 
-deleteButton.addEventListener("click", () => {
+deleteButton.addEventListener('click', () => {
   chars.pop();
-  textareaTextContent.value = chars.join("");
+  textareaTextContent.value = chars.join('');
 });
 
-capsButton.addEventListener("click", () => {
+capsButton.addEventListener('click', () => {
   keyboardButtons.forEach((btn) => {
-    btn.classList.toggle("lower");
+    btn.classList.toggle('lower');
   });
 });
 
-submitButton.addEventListener("click", () => {
-  currentPlayer.username = chars.join("");
+submitButton.addEventListener('click', () => {
+  currentPlayer.username = chars.join('');
   currentPlayer.usernameDisplay(currentPlayer.username);
   UIupdate.createPlayerLives();
   UIupdate.createEnemyLives();
@@ -143,36 +123,41 @@ submitButton.addEventListener("click", () => {
 });
 
 avatarOptions.forEach((box) => {
-  box.addEventListener("click", (e) => {
+  box.addEventListener('click', (e) => {
     currentPlayer.choice(e.target.id);
     currentEnemy.randomChoice();
     UIupdate.resetAvatarBox();
-    box.classList.add("active");
-    box.style.filter = "grayscale(0)";
+    box.classList.add('active');
+    box.style.filter = 'grayscale(0)';
     startButton.style.opacity = 1;
   });
 });
 
-startButton.addEventListener("click", () => {
+startButton.addEventListener('click', () => {
   UIupdate.switchScreens(avatarSection, versusSection);
   setTimeout(() => {
-    UIupdate.vsSlideIn();
+    UIupdate.vsSlideToggle();
   }, 100);
 });
 
-versusText.addEventListener("animationend", () => {
-  const gameScreen = document.querySelector(".game-section");
+versusText.addEventListener('animationend', () => {
+  const gameScreen = document.querySelector('.game-section');
 
   setTimeout(() => {
     UIupdate.switchScreens(versusSection, gameScreen);
   }, 2500);
 });
 
-// gameScreen.addEventListener("animationend", () => {});
+document.querySelector('.game-section').addEventListener(
+  'animationend',
+  () => {
+    UIupdate.vsSlideToggle();
+  },
+  { once: true }
+);
 
-document.querySelectorAll(".selection-button").forEach((button) => {
-  button.addEventListener("click", (e) => {
+document.querySelectorAll('.selection-button').forEach((button) => {
+  button.addEventListener('click', (e) => {
     Game.startGame(e, currentPlayer, currentEnemy, UIupdate);
-    UIupdate.vsSlideOut();
   });
 });

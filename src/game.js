@@ -80,23 +80,22 @@ export let Game = {
   },
 
   gameOver: function (currentPlayer, currentEnemy, UIupdate) {
-    if (currentPlayer.score === 5 || currentEnemy.score === 5) {
-      const announcement = document.querySelector('.announcement-text');
+    const announcement = document.querySelector('.announcement-text');
+    const gameScreen = document.querySelector('.game-section');
+    const gameOverScreen = document.querySelector('.gameOver-section');
 
-      const gameScreen = document.querySelector('.game-section');
-      const gameOverScreen = document.querySelector('.gameOver-section');
+    if (currentPlayer.score === 5 || currentEnemy.score === 5) {
+      if (currentPlayer.score === 5) {
+        announcement.textContent = `${currentPlayer.username} Wins!`;
+      } else {
+        announcement.textContent = `${currentEnemy.username} Wins!`;
+      }
 
       document.querySelectorAll('.selection-button').forEach((button) => {
         button.disabled = true;
       });
 
       UIupdate.switchScreens(gameScreen, gameOverScreen);
-
-      if (currentPlayer.score === 5) {
-        announcement.textContent = `${currentPlayer.username} Wins!`;
-      } else {
-        announcement.textContent = `${currentEnemy.username} Wins!`;
-      }
 
       setTimeout(() => {
         this.countDown(currentPlayer, currentEnemy, UIupdate);
@@ -128,8 +127,10 @@ export let Game = {
   resetGame: function (currentPlayer, currentEnemy, UIupdate) {
     currentPlayer.resetChoice();
     currentPlayer.resetScore();
+    currentPlayer.username = 'Player 1';
     currentEnemy.resetChoice();
     currentEnemy.resetScore();
+    currentEnemy.username = 'Computer';
     UIupdate.removeAllLives();
     UIupdate.resetRound();
     UIupdate.resetAvatarBox();
