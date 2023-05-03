@@ -20,53 +20,53 @@ export let Game = {
     let randomChoice = Math.floor(Math.random() * 3);
     switch (randomChoice) {
       case 0:
-        return 'Rock';
+        return "Rock";
       case 1:
-        return 'Paper';
+        return "Paper";
       case 2:
-        return 'Scissors';
+        return "Scissors";
     }
   },
 
   displayChoices: function (playerChoice, computerChoice) {
-    const playerPick = document.querySelector('.playerChoice');
+    const playerPick = document.querySelector(".playerChoice");
     playerPick.src = `../assets/img/${playerChoice}.webp`;
 
-    const computerPick = document.querySelector('.computerChoice');
+    const computerPick = document.querySelector(".computerChoice");
     computerPick.src = `../assets/img/${computerChoice}.webp`;
 
-    document.querySelector('.playerChoice-display').style.opacity = 1;
-    document.querySelector('.computerChoice-display').style.opacity = 1;
+    document.querySelector(".playerChoice-display").style.opacity = 1;
+    document.querySelector(".computerChoice-display").style.opacity = 1;
   },
 
   playRound: function (player, computer, currentPlayer, currentEnemy, lives) {
     lives.displayRound();
 
     if (
-      (player === 'Rock' && computer === 'Scissors') ||
-      (player === 'Paper' && computer === 'Rock') ||
-      (player === 'Scissors' && computer === 'Paper')
+      (player === "Rock" && computer === "Scissors") ||
+      (player === "Paper" && computer === "Rock") ||
+      (player === "Scissors" && computer === "Paper")
     ) {
-      lives.removeLife('com');
+      lives.removeLife("com");
       currentPlayer.updateScore();
-      this.displayOutcome('Win');
+      this.displayOutcome("Win");
     } else if (player === computer) {
-      this.displayOutcome('Tie');
+      this.displayOutcome("Tie");
     } else {
-      lives.removeLife('player');
+      lives.removeLife("player");
       currentEnemy.updateScore();
-      this.displayOutcome('Loss');
+      this.displayOutcome("Loss");
     }
 
     console.log(currentPlayer.score, currentEnemy.score);
   },
 
   displayOutcome: function (outcome) {
-    const outcomeDisplay = document.querySelector('.outcome-display');
+    const outcomeDisplay = document.querySelector(".outcome-display");
 
-    if (outcome === 'Win') {
+    if (outcome === "Win") {
       outcomeDisplay.textContent = `You Win!`;
-    } else if (outcome === 'Loss') {
+    } else if (outcome === "Loss") {
       outcomeDisplay.textContent = `You Lose!`;
     } else {
       outcomeDisplay.textContent = `It's a Tie!`;
@@ -75,22 +75,22 @@ export let Game = {
 
   gameOver: function (currentPlayer, currentEnemy, lives) {
     if (currentPlayer.score === 5 || currentEnemy.score === 5) {
-      const announcement = document.querySelector('.announcement-text');
+      const announcement = document.querySelector(".announcement-text");
 
-      document.querySelectorAll('.selection-button').forEach((button) => {
+      const gameScreen = document.querySelector(".game-section");
+      const gameOverScreen = document.querySelector(".gameOver-section");
+
+      document.querySelectorAll(".selection-button").forEach((button) => {
         button.disabled = true;
       });
+
+      lives.switchScreens(gameScreen, gameOverScreen);
 
       if (currentPlayer.score === 5) {
         announcement.textContent = `${currentPlayer.username} Wins!`;
       } else {
         announcement.textContent = `${currentEnemy.username} Wins!`;
       }
-
-      lives.switchScreens(
-        document.querySelector('.game-section'),
-        document.querySelector('.gameOver-section')
-      );
 
       setTimeout(() => {
         this.countDown(currentPlayer, currentEnemy, lives);
@@ -101,23 +101,18 @@ export let Game = {
   countDown: function (currentPlayer, currentEnemy, lives) {
     let timeleft = 10;
 
-    document.getElementById('countdownTimer').innerText = timeleft;
+    document.getElementById("countdownTimer").innerText = timeleft;
 
     let downloadTimer = setInterval(function () {
+      const introScreen = document.querySelector(".intro-section");
+      const gameOverScreen = document.querySelector(".gameOver-section");
+
       if (timeleft <= 0) {
+        lives.switchScreens(gameOverScreen, introScreen);
         clearInterval(downloadTimer);
-
-        document
-          .querySelector('.gameOver-section')
-          .classList.replace('fadeIn', 'hidden');
-
-        document
-          .querySelector('.intro-section')
-          .classList.replace('hidden', 'fadeIn');
-
         Game.resetGame(currentPlayer, currentEnemy, lives);
       } else {
-        document.getElementById('countdownTimer').innerText = timeleft;
+        document.getElementById("countdownTimer").innerText = timeleft;
       }
 
       timeleft -= 1;
@@ -130,11 +125,14 @@ export let Game = {
     currentEnemy.resetChoice();
     currentEnemy.resetScore();
     lives.removeAllLives();
+    lives.resetRound();
+    lives.resetAvatarBox();
 
-    document.querySelector('.playerChoice-display').style.opacity = 0;
-    document.querySelector('.computerChoice-display').style.opacity = 0;
+    document.querySelector(".playerChoice-display").style.opacity = 0;
+    document.querySelector(".computerChoice-display").style.opacity = 0;
+    document.querySelector(".outcome-display").textContent = "Make your choice";
 
-    document.querySelectorAll('.selection-button').forEach((button) => {
+    document.querySelectorAll(".selection-button").forEach((button) => {
       button.disabled = false;
     });
   },
