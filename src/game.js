@@ -1,13 +1,31 @@
 export let Game = {
-  startGame: function (e, currentPlayer, currentEnemy, UIupdate) {
+  checkMode: () => {
+    const gameModesDisplay = document.getElementsByClassName('mode-options');
+
+    let mode;
+
+    if (gameModesDisplay[0].textContent === 'Normal') mode = 'Normal';
+    if (gameModesDisplay[0].textContent === 'Ranked') mode = 'Ranked';
+
+    return mode;
+  },
+
+  setCurrentMode: (UIupdate) => {
+    let currentMode = Game.checkMode();
+    UIupdate.displayLives(currentMode);
+  },
+
+  playRound: function (e, currentPlayer, currentEnemy, UIupdate) {
     this.getPlayerChoice(e, currentPlayer, currentEnemy, UIupdate);
-    this.gameOver(currentPlayer, currentEnemy, UIupdate);
+    this.checkGameOver(currentPlayer, currentEnemy, UIupdate, this.checkMode());
   },
 
   getPlayerChoice: function (e, currentPlayer, currentEnemy, UIupdate) {
     let computerChoice = this.getComputerChoice();
+
     this.displayChoices(e.target.id, computerChoice);
-    this.playRound(
+
+    this.gameRound(
       e.target.id,
       computerChoice,
       currentPlayer,
@@ -39,7 +57,7 @@ export let Game = {
     document.querySelector('.computerChoice-display').style.opacity = 1;
   },
 
-  playRound: function (
+  gameRound: function (
     player,
     computer,
     currentPlayer,
@@ -79,28 +97,47 @@ export let Game = {
     }
   },
 
-  gameOver: function (currentPlayer, currentEnemy, UIupdate) {
-    const announcement = document.querySelector('.announcement-text');
+  normalModeOver: (currentPlayer, currentEnemy) => {
+    if (currentPlayer.score === 5 || currentEnemy.score === 5) {
+      return 'GameOver';
+    }
+  },
+
+  rankedModeOver: (currentEnemy) => {
+    if (currentEnemy.score === 5) {
+      return 'GameOver';
+    }
+  },
+
+  checkGameOver: (currentPlayer, currentEnemy, UIupdate, currentMode) => {
+    if (
+      Game.normalModeOver(currentPlayer, currentEnemy) === 'GameOver' ||
+      Game.rankedModeOver(currentPlayer, currentEnemy) === 'GameOver'
+    ) {
+      Game.gameOver(currentPlayer, currentEnemy, UIupdate, currentMode);
+    }
+  },
+
+  gameOver: function (currentPlayer, currentEnemy, UIupdate, currentMode) {
     const gameScreen = document.querySelector('.game-section');
     const gameOverScreen = document.querySelector('.gameOver-section');
 
-    if (currentPlayer.score === 5 || currentEnemy.score === 5) {
-      if (currentPlayer.score === 5) {
-        announcement.textContent = `${currentPlayer.username} Wins!`;
-      } else {
-        announcement.textContent = `${currentEnemy.username} Wins!`;
-      }
-
-      document.querySelectorAll('.selection-button').forEach((button) => {
-        button.disabled = true;
-      });
-
-      UIupdate.switchScreens(gameScreen, gameOverScreen);
-
-      setTimeout(() => {
-        this.countDown(currentPlayer, currentEnemy, UIupdate);
-      }, 1500);
+    if (currentMode === 'Normal') {
+      UIupdate.winnerNormalMode(currentPlayer, currentEnemy);
     }
+    if (currentMode === 'Ranked') {
+      UIupdate.winnerRankedMode(currentPlayer, currentEnemy);
+    }
+
+    document.querySelectorAll('.selection-button').forEach((button) => {
+      button.disabled = true;
+    });
+
+    setTimeout(() => {
+      this.countDown(currentPlayer, currentEnemy, UIupdate);
+    }, 1500);
+
+    UIupdate.switchScreens(gameScreen, gameOverScreen);
   },
 
   countDown: function (currentPlayer, currentEnemy, UIupdate) {
@@ -125,19 +162,25 @@ export let Game = {
   },
 
   resetGame: function (currentPlayer, currentEnemy, UIupdate) {
+    const outcomeDisplay = document.querySelector('.outcome-display');
+    const gameButtons = document.querySelectorAll('.selection-button');
+    const startButton = document.querySelector('.start-button');
+
     currentPlayer.resetChoice();
     currentPlayer.resetScore();
     currentPlayer.username = 'Player 1';
+    currentEnemy.username = 'Computer';
     currentEnemy.resetChoice();
     currentEnemy.resetScore();
-    currentEnemy.username = 'Computer';
+
     UIupdate.removeAllLives();
     UIupdate.resetRound();
     UIupdate.resetAvatarBox();
+    UIupdate.vsSlideToggle();
 
-    document.querySelector('.outcome-display').textContent = 'Make your choice';
-
-    document.querySelectorAll('.selection-button').forEach((button) => {
+    startButton.style.opacity = 0;
+    outcomeDisplay.textContent = 'Make your choice';
+    gameButtons.forEach((button) => {
       button.disabled = false;
     });
   },

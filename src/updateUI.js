@@ -1,6 +1,9 @@
 const playerLifeBar = document.querySelector('.player-lifebar');
 const comLifeBar = document.querySelector('.computer-lifebar');
 const round = document.querySelector('.round-number');
+
+const announcement = document.querySelector('.announcement-text');
+
 let roundNumber = 0;
 
 export let UIupdate = {
@@ -24,6 +27,27 @@ export let UIupdate = {
     }
   },
 
+  displayMode: function (modeOptions, modeOptionSelected) {
+    const gameModesDisplay = document.getElementsByClassName('mode-options');
+
+    return (gameModesDisplay[0].textContent =
+      modeOptions[modeOptionSelected % modeOptions.length]);
+  },
+
+  winnerNormalMode: (currentPlayer, currentEnemy) => {
+    if (currentPlayer.score === 5)
+      return (announcement.textContent = `${currentPlayer.username} Wins!`);
+    if (currentEnemy.score === 5)
+      return (announcement.textContent = `${currentEnemy.username} Wins!`);
+  },
+
+  winnerRankedMode: (currentPlayer, currentEnemy) => {
+    if (currentEnemy.score === 5) {
+      console.log(currentPlayer.score);
+      return (announcement.textContent = `${currentPlayer.score} Wins`);
+    }
+  },
+
   vsSlideToggle: function () {
     document.querySelector('.left-half').classList.toggle('slide-right');
     document.querySelector('.right-half').classList.toggle('slide-left');
@@ -40,6 +64,17 @@ export let UIupdate = {
   resetRound: function () {
     roundNumber = 0;
     round.textContent = `Round ${roundNumber}`;
+  },
+
+  displayLives: (currentMode) => {
+    if (currentMode === 'Normal') {
+      UIupdate.createPlayerLives();
+      UIupdate.createEnemyLives();
+    }
+
+    if (currentMode === 'Ranked') {
+      UIupdate.createPlayerLives();
+    }
   },
 
   createPlayerLives: function () {
