@@ -7,7 +7,7 @@ const announcement = document.querySelector('.announcement-text');
 let roundNumber = 0;
 
 export let UIupdate = {
-  switchScreens: function (screenOut, screenIn) {
+  switchScreens: (screenOut, screenIn) => {
     screenOut.classList.replace('fadeIn', 'fadeOut');
     screenOut.addEventListener(
       'animationend',
@@ -19,7 +19,7 @@ export let UIupdate = {
     );
   },
 
-  resetAvatarBox: function () {
+  resetAvatarBox: () => {
     if (document.querySelector('.option-img.active')) {
       document.querySelector('.option-img.active').style.filter =
         'grayscale(0.84)';
@@ -27,7 +27,7 @@ export let UIupdate = {
     }
   },
 
-  displayMode: function (modeOptions, modeOptionSelected) {
+  displayMode: (modeOptions, modeOptionSelected) => {
     const gameModesDisplay = document.getElementsByClassName('mode-options');
 
     return (gameModesDisplay[0].textContent =
@@ -43,12 +43,11 @@ export let UIupdate = {
 
   winnerRankedMode: (currentPlayer, currentEnemy) => {
     if (currentEnemy.score === 5) {
-      console.log(currentPlayer.score);
       return (announcement.textContent = `${currentPlayer.score} Wins`);
     }
   },
 
-  vsSlideToggle: function () {
+  vsSlideToggle: () => {
     document.querySelector('.left-half').classList.toggle('slide-right');
     document.querySelector('.right-half').classList.toggle('slide-left');
     document.querySelector('.versus-text').classList.toggle('slide-middle');
@@ -56,12 +55,12 @@ export let UIupdate = {
     document.querySelector('.versus-com').classList.toggle('reveal-avatar');
   },
 
-  displayRound: function () {
+  displayRound: () => {
     ++roundNumber;
     round.textContent = `Round ${roundNumber}`;
   },
 
-  resetRound: function () {
+  resetRound: () => {
     roundNumber = 0;
     round.textContent = `Round ${roundNumber}`;
   },
@@ -77,7 +76,7 @@ export let UIupdate = {
     }
   },
 
-  createPlayerLives: function () {
+  createPlayerLives: () => {
     for (let i = 0; i < 5; i++) {
       let newLife = document.createElement('DIV');
       let lifeimg = document.createElement('IMG');
@@ -89,7 +88,7 @@ export let UIupdate = {
     }
   },
 
-  createEnemyLives: function () {
+  createEnemyLives: () => {
     for (let i = 0; i < 5; i++) {
       let newLife = document.createElement('DIV');
       let lifeimg = document.createElement('IMG');
@@ -101,7 +100,7 @@ export let UIupdate = {
     }
   },
 
-  removeLife: function (loser) {
+  removeLife: (loser) => {
     if (loser === 'player') {
       if (!playerLifeBar.hasChildNodes()) {
         return;
@@ -119,7 +118,7 @@ export let UIupdate = {
     }
   },
 
-  removeAllLives: function () {
+  removeAllLives: () => {
     while (playerLifeBar.hasChildNodes()) {
       playerLifeBar.removeChild(playerLifeBar.firstChild);
     }

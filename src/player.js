@@ -2,13 +2,13 @@ export default class Player {
   constructor(username, score) {
     (this.username = username),
       (this.score = score),
-      (this.updateScore = function () {
+      (this.updateScore = () => {
         return ++this.score;
       }),
-      (this.resetScore = function () {
+      (this.resetScore = () => {
         this.score = 0;
       }),
-      (this.choice = function (id) {
+      (this.choice = (id) => {
         if (id !== 'randomImg') {
           id;
         } else {
@@ -58,10 +58,10 @@ export default class Player {
           '.playerGame-avatar'
         ).src = `../assets/img/${id}.webp`;
       }),
-      (this.usernameDisplay = function (name) {
+      (this.usernameDisplay = (name) => {
         document.querySelector('.playerUserName-display').textContent = name;
       }),
-      (this.resetChoice = function () {
+      (this.resetChoice = () => {
         document.querySelector(
           '#full-avatar'
         ).src = `../assets/img/random.webp`;

@@ -97,24 +97,22 @@ export let Game = {
     }
   },
 
-  normalModeOver: (currentPlayer, currentEnemy) => {
-    if (currentPlayer.score === 5 || currentEnemy.score === 5) {
-      return 'GameOver';
-    }
-  },
-
-  rankedModeOver: (currentEnemy) => {
-    if (currentEnemy.score === 5) {
-      return 'GameOver';
-    }
-  },
-
-  checkGameOver: (currentPlayer, currentEnemy, UIupdate, currentMode) => {
+  gameOverConditions: (currentMode, currentPlayer, currentEnemy) => {
     if (
-      Game.normalModeOver(currentPlayer, currentEnemy) === 'GameOver' ||
-      Game.rankedModeOver(currentPlayer, currentEnemy) === 'GameOver'
+      (currentMode === 'Normal' &&
+        (currentPlayer.score === 5 || currentEnemy.score === 5)) ||
+      (currentMode === 'Ranked' && currentEnemy.score === 5)
     ) {
-      Game.gameOver(currentPlayer, currentEnemy, UIupdate, currentMode);
+      return 'GameOver';
+    }
+  },
+
+  checkGameOver: function (currentPlayer, currentEnemy, UIupdate, currentMode) {
+    if (
+      this.gameOverConditions(currentMode, currentPlayer, currentEnemy) ===
+      'GameOver'
+    ) {
+      this.gameOver(currentPlayer, currentEnemy, UIupdate, currentMode);
     }
   },
 
@@ -166,11 +164,11 @@ export let Game = {
     const gameButtons = document.querySelectorAll('.selection-button');
     const startButton = document.querySelector('.start-button');
 
-    currentPlayer.resetChoice();
-    currentPlayer.resetScore();
     currentPlayer.username = 'Player 1';
     currentEnemy.username = 'Computer';
+    currentPlayer.resetChoice();
     currentEnemy.resetChoice();
+    currentPlayer.resetScore();
     currentEnemy.resetScore();
 
     UIupdate.removeAllLives();

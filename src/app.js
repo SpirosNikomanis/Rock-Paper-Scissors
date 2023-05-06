@@ -44,12 +44,12 @@ console.log(currentPlayer);
 
 //////////////////////////FUNCTIONS//////////////////////////
 
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', () => {
   introScreen.classList.add('fadeIn');
   UIupdate.displayMode(modeOptions, modeOptionSelected);
 });
 
-arrow[0].onclick = function () {
+arrow[0].onclick = () => {
   if (modeOptionSelected > 0) {
     modeOptionSelected--;
   } else {
@@ -58,14 +58,14 @@ arrow[0].onclick = function () {
   UIupdate.displayMode(modeOptions, modeOptionSelected);
 };
 
-arrow[1].onclick = function () {
+arrow[1].onclick = () => {
   modeOptionSelected++;
   UIupdate.displayMode(modeOptions, modeOptionSelected);
 };
 
 //////////////////////////EVENT LISTENERS//////////////////////////
 
-introScreen.addEventListener('keyup', function (e) {
+introScreen.addEventListener('keyup', (e) => {
   if (e.keyCode == 13) {
     chars = [];
     textareaDisplay.value = chars.join('');
