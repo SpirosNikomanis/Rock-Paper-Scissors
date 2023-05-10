@@ -1,3 +1,23 @@
+const availableAvatars = [
+  'boy-1',
+  'boy-2',
+  'boy-3',
+  'boy-4',
+  'boy-5',
+  'girl-1',
+  'girl-2',
+  'girl-3',
+  'girl-4',
+  'girl-5',
+];
+
+const RANDOM_NUMBER = Math.floor(Math.random() * 10);
+
+function getAvatarChoice(avatarID) {
+  if (avatarID !== 'random') return avatarID;
+  return availableAvatars[RANDOM_NUMBER];
+}
+
 export default class Player {
   constructor(username, score) {
     (this.username = username),
@@ -9,11 +29,9 @@ export default class Player {
         this.score = 0;
       }),
       (this.choice = (id) => {
-        if (id !== 'randomImg') {
+        if (id !== 'random') {
           id;
         } else {
-          let random = Math.floor(Math.random() * 10);
-
           switch (random) {
             case 0:
               id = 'boy-1';

@@ -241,11 +241,6 @@ label {
   padding: 0.2em;
 }
 
-/* .last-row {
-  display: flex;
-  gap: var(--spacer);
-  padding: 0.2em;
-} */
 .option-img {
   width: 80px;
   height: 80px;
@@ -264,16 +259,15 @@ label {
 }
 
 #random {
-  padding: 20px;
-}
-#random img {
-  object-fit: scale-down;
-  cursor: pointer;
+  background-image: url('../assets/img/random.webp');
+  background-size: 40%;
+  background-repeat: no-repeat;
+  background-position: center center;
 }
 
 .option-img:hover {
   transform: scale(1.05);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.493);
   z-index: 100;
 }
 
@@ -289,7 +283,7 @@ label {
 
 .versus-text {
   height: 100px;
-  width: 10%;
+  max-width: 10%;
   font-size: 5rem;
   color: white;
   top: 50%;
@@ -320,6 +314,8 @@ label {
   top: 40%;
   left: 35%;
   opacity: 0;
+  max-width: 300px;
+  max-height: 250px;
 }
 
 .versus-com {
@@ -327,6 +323,8 @@ label {
   top: 40%;
   right: 35%;
   opacity: 0;
+  max-width: 300px;
+  max-height: 250px;
 }
 
 /* ============================================= 

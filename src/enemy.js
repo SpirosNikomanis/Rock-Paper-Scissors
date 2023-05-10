@@ -1,3 +1,5 @@
+const versusImg = document.querySelector('.versus-com-img');
+const computerAvatar = document.querySelector('.computerGame-avatar');
 export default class Enemy {
   constructor(username, score) {
     (this.username = username),
@@ -29,28 +31,18 @@ export default class Enemy {
       this.displayChoice();
     }),
       (this.displayChoice = function () {
-        document.querySelector(
-          '.versus-com-img'
-        ).src = `../assets/img/${this.username}.webp`;
-
-        document.querySelector(
-          '.computerGame-avatar'
-        ).src = `../assets/img/${this.username}.webp`;
+        versusImg.src = `../assets/img/${this.username}.webp`;
+        computerAvatar.src = `../assets/img/${this.username}.webp`;
 
         this.displayName();
       }),
       (this.displayName = function () {
-        document.querySelector('.comUserName-display').textContent =
-          this.username;
+        const comUserName = document.querySelector('.comUserName-display');
+        comUserName.textContent = this.username;
       }),
       (this.resetChoice = function () {
-        document.querySelector(
-          '.versus-com-img'
-        ).src = `../assets/img/random.webp`;
-
-        document.querySelector(
-          '.computerGame-avatar'
-        ).src = `../assets/img/random.webp`;
+        versusImg.src = `../assets/img/random.webp`;
+        computerAvatar.src = `../assets/img/random.webp`;
 
         document.querySelector('.computerChoice-display').style.opacity = 0;
       });

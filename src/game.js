@@ -1,3 +1,8 @@
+let UIupdates;
+let currentPlayer;
+let currentEnemy;
+let currentMode;
+
 export let Game = {
   checkMode: () => {
     const gameModesDisplay = document.getElementsByClassName('mode-options');
@@ -48,13 +53,13 @@ export let Game = {
 
   displayChoices: function (playerChoice, computerChoice) {
     const playerPick = document.querySelector('.playerChoice');
-    playerPick.src = `../assets/img/${playerChoice}.webp`;
-
     const computerPick = document.querySelector('.computerChoice');
-    computerPick.src = `../assets/img/${computerChoice}.webp`;
 
     document.querySelector('.playerChoice-display').style.opacity = 1;
     document.querySelector('.computerChoice-display').style.opacity = 1;
+
+    playerPick.src = `../assets/img/${playerChoice}.webp`;
+    computerPick.src = `../assets/img/${computerChoice}.webp`;
   },
 
   gameRound: function (

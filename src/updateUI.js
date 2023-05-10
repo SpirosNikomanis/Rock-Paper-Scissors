@@ -1,129 +1,140 @@
-const playerLifeBar = document.querySelector('.player-lifebar');
-const comLifeBar = document.querySelector('.computer-lifebar');
-const round = document.querySelector('.round-number');
+// import { eventListenersManager } from './eventListenersManager';
 
-const announcement = document.querySelector('.announcement-text');
+// const playerLifeBar = document.querySelector('.player-lifebar');
+// const comLifeBar = document.querySelector('.computer-lifebar');
+// const round = document.querySelector('.round-number');
+// const announcement = document.querySelector('.announcement-text');
 
-let roundNumber = 0;
+// let roundNumber = 0;
+// let UIupdate;
+// let currentPlayer;
+// let currentEnemy;
+// let currentMode;
 
-export let UIupdate = {
-  switchScreens: (screenOut, screenIn) => {
-    screenOut.classList.replace('fadeIn', 'fadeOut');
-    screenOut.addEventListener(
-      'animationend',
-      () => {
-        screenIn.classList.replace('hidden', 'fadeIn');
-        screenOut.classList.replace('fadeOut', 'hidden');
-      },
-      { once: true }
-    );
-  },
+// export let UIupdates = {
+//   // switchScreens: (screenOut, screenIn) =>
+//   //   eventListenersManager.toggleScreens(screenOut, screenIn),
+//   // {
+//   //   screenOut.classList.replace('fadeIn', 'fadeOut');
+//   //   screenOut.addEventListener(
+//   //     'animationend',
+//   //     () => {
+//   //       screenIn.classList.replace('hidden', 'fadeIn');
+//   //       screenOut.classList.replace('fadeOut', 'hidden');
+//   //     },
+//   //     { once: true }
+//   //   );
 
-  resetAvatarBox: () => {
-    if (document.querySelector('.option-img.active')) {
-      document.querySelector('.option-img.active').style.filter =
-        'grayscale(0.84)';
-      document.querySelector('.option-img.active').classList.remove('active');
-    }
-  },
+//   // resetAvatarBox: (box) => {
+//   //   //toggle avatarboxes active onclick
 
-  displayMode: (modeOptions, modeOptionSelected) => {
-    const gameModesDisplay = document.getElementsByClassName('mode-options');
+//   //   const isActive = document.querySelector('.option-img.active');
 
-    return (gameModesDisplay[0].textContent =
-      modeOptions[modeOptionSelected % modeOptions.length]);
-  },
+//   //   if (isActive) {
+//   //     isActive.style.filter = 'grayscale(0.84)';
+//   //     isActive.classList.remove('active');
+//   //   }
+//   //   box.classList.add('active');
+//   //   box.style.filter = 'grayscale(0)';
+//   // },
 
-  winnerNormalMode: (currentPlayer, currentEnemy) => {
-    if (currentPlayer.score === 5)
-      return (announcement.textContent = `${currentPlayer.username} Wins!`);
-    if (currentEnemy.score === 5)
-      return (announcement.textContent = `${currentEnemy.username} Wins!`);
-  },
+//   // displayMode: (modeOptions, modeOptionSelected) => {
+//   //   const gameModesDisplay = document.getElementsByClassName('mode-options');
 
-  winnerRankedMode: (currentPlayer, currentEnemy) => {
-    if (currentEnemy.score === 5) {
-      return (announcement.textContent = `${currentPlayer.score} Wins`);
-    }
-  },
+//   //   return (gameModesDisplay[0].textContent =
+//   //     modeOptions[modeOptionSelected % modeOptions.length]);
+//   // },
 
-  vsSlideToggle: () => {
-    document.querySelector('.left-half').classList.toggle('slide-right');
-    document.querySelector('.right-half').classList.toggle('slide-left');
-    document.querySelector('.versus-text').classList.toggle('slide-middle');
-    document.querySelector('.versus-player').classList.toggle('reveal-avatar');
-    document.querySelector('.versus-com').classList.toggle('reveal-avatar');
-  },
+//   winnerNormalMode: (currentPlayer, currentEnemy) => {
+//     if (currentPlayer.score === 5)
+//       return (announcement.textContent = `${currentPlayer.username} Wins!`);
+//     if (currentEnemy.score === 5)
+//       return (announcement.textContent = `${currentEnemy.username} Wins!`);
+//   },
 
-  displayRound: () => {
-    ++roundNumber;
-    round.textContent = `Round ${roundNumber}`;
-  },
+//   winnerRankedMode: (currentPlayer, currentEnemy) => {
+//     if (currentEnemy.score === 5) {
+//       return (announcement.textContent = `${currentPlayer.score} Wins`);
+//     }
+//   },
 
-  resetRound: () => {
-    roundNumber = 0;
-    round.textContent = `Round ${roundNumber}`;
-  },
+//   // vsSlideToggle: () => {
+//   //   document.querySelector('.left-half').classList.toggle('slide-right');
+//   //   document.querySelector('.right-half').classList.toggle('slide-left');
+//   //   document.querySelector('.versus-text').classList.toggle('slide-middle');
+//   //   document.querySelector('.versus-player').classList.toggle('reveal-avatar');
+//   //   document.querySelector('.versus-com').classList.toggle('reveal-avatar');
+//   // },
 
-  displayLives: (currentMode) => {
-    if (currentMode === 'Normal') {
-      UIupdate.createPlayerLives();
-      UIupdate.createEnemyLives();
-    }
+//   displayRound: () => {
+//     ++roundNumber;
+//     round.textContent = `Round ${roundNumber}`;
+//   },
 
-    if (currentMode === 'Ranked') {
-      UIupdate.createPlayerLives();
-    }
-  },
+//   resetRound: () => {
+//     roundNumber = 0;
+//     round.textContent = `Round ${roundNumber}`;
+//   },
 
-  createPlayerLives: () => {
-    for (let i = 0; i < 5; i++) {
-      let newLife = document.createElement('DIV');
-      let lifeimg = document.createElement('IMG');
-      newLife.className = `life`;
-      lifeimg.className = 'small-img';
-      lifeimg.src = '../assets/img/Heart.webp';
-      playerLifeBar.append(newLife);
-      newLife.append(lifeimg);
-    }
-  },
+//   displayLives: (currentMode) => {
+//     if (currentMode === 'Normal') {
+//       UIupdate.createPlayerLives();
+//       UIupdate.createEnemyLives();
+//     }
 
-  createEnemyLives: () => {
-    for (let i = 0; i < 5; i++) {
-      let newLife = document.createElement('DIV');
-      let lifeimg = document.createElement('IMG');
-      newLife.className = `life`;
-      lifeimg.className = 'small-img';
-      lifeimg.src = '../assets/img/Heart.webp';
-      comLifeBar.append(newLife);
-      newLife.append(lifeimg);
-    }
-  },
+//     if (currentMode === 'Ranked') {
+//       UIupdate.createPlayerLives();
+//     }
+//   },
 
-  removeLife: (loser) => {
-    if (loser === 'player') {
-      if (!playerLifeBar.hasChildNodes()) {
-        return;
-      } else {
-        playerLifeBar.removeChild(playerLifeBar.lastElementChild);
-      }
-    }
+//   createPlayerLives: () => {
+//     for (let i = 0; i < 5; i++) {
+//       let newLife = document.createElement('DIV');
+//       let lifeimg = document.createElement('IMG');
+//       newLife.className = `life`;
+//       lifeimg.className = 'small-img';
+//       lifeimg.src = '../assets/img/Heart.webp';
+//       playerLifeBar.append(newLife);
+//       newLife.append(lifeimg);
+//     }
+//   },
 
-    if (loser === 'com') {
-      if (!comLifeBar.hasChildNodes()) {
-        return;
-      } else {
-        comLifeBar.removeChild(comLifeBar.lastElementChild);
-      }
-    }
-  },
+//   createEnemyLives: () => {
+//     for (let i = 0; i < 5; i++) {
+//       let newLife = document.createElement('DIV');
+//       let lifeimg = document.createElement('IMG');
+//       newLife.className = `life`;
+//       lifeimg.className = 'small-img';
+//       lifeimg.src = '../assets/img/Heart.webp';
+//       comLifeBar.append(newLife);
+//       newLife.append(lifeimg);
+//     }
+//   },
 
-  removeAllLives: () => {
-    while (playerLifeBar.hasChildNodes()) {
-      playerLifeBar.removeChild(playerLifeBar.firstChild);
-    }
-    while (comLifeBar.hasChildNodes()) {
-      comLifeBar.removeChild(comLifeBar.firstChild);
-    }
-  },
-};
+//   removeLife: (loser) => {
+//     if (loser === 'player') {
+//       if (!playerLifeBar.hasChildNodes()) {
+//         return;
+//       } else {
+//         playerLifeBar.removeChild(playerLifeBar.lastElementChild);
+//       }
+//     }
+
+//     if (loser === 'com') {
+//       if (!comLifeBar.hasChildNodes()) {
+//         return;
+//       } else {
+//         comLifeBar.removeChild(comLifeBar.lastElementChild);
+//       }
+//     }
+//   },
+
+//   removeAllLives: () => {
+//     while (playerLifeBar.hasChildNodes()) {
+//       playerLifeBar.removeChild(playerLifeBar.firstChild);
+//     }
+//     while (comLifeBar.hasChildNodes()) {
+//       comLifeBar.removeChild(comLifeBar.firstChild);
+//     }
+//   },
+// };
