@@ -9,11 +9,15 @@
     <link rel="stylesheet" href="../css/buttons.css" />
     <link rel="stylesheet" href="../css/animations.css" />
     <link rel="stylesheet" href="../css/main.css" />
-    <script type="module" src="../src/newAvatar.js"></script>
+    <!-- <script type="module" src="../src/Player.js"></script> -->
+    <!-- <script type="module" src="../src/Keyboard.js"></script> -->
+    <!-- <script type="module" src="../src/Game.js"></script> -->
+    <script type="module" src="../src/app.js"></script>
   </head>
   <body>
     <!-------- INTRO SECTION  -------->
-    <div class="intro-section" tabindex="-1">
+
+    <div class="intro-section hidden" tabindex="-1">
       <div class="game-title">
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
@@ -35,15 +39,20 @@
       <div class="setting">
         <span class="setting-tittle">Game Mode :</span>
         <div class="setting-container">
-          <span class="arrow"><</span>
-          <span class="mode-options">Option 0</span>
-          <span class="arrow">></span>
+          <span id="left-arrow" class="arrow"><</span>
+          <span class="mode-option">Normal</span>
+          <span id="right-arrow" class="arrow">></span>
         </div>
       </div>
       <div class="keyboard-container">
         <div class="username-textarea">
           <label for="textarea">Enter your username</label>
-          <textarea id="textarea" maxlength="15" disabled>Username</textarea>
+          <textarea
+            id="textarea"
+            maxlength="15"
+            placeholder="Player 01"
+            disabled
+          ></textarea>
         </div>
         <div class="username-keyboard">
           <div class="keyboard-row">
@@ -104,68 +113,15 @@
         <h1 class="title">ROCK SCISSORS PAPER</h1>
       </div>
       <div class="blinking-text select-prompt">Select Your Avatar</div>
-      <div class="options-container">
-        <div class="options-display">
-          <div class="options-row">
-            <div class="option-img">
-              <img id="boy-1" src="../assets/img/boy-1.webp" alt="boy-1" />
-            </div>
 
-            <div class="option-img">
-              <img id="boy-2" src="../assets/img/boy-2.webp" alt="boy-2" />
-            </div>
-
-            <div class="option-img">
-              <img id="boy-3" src="../assets/img/boy-3.webp" alt="boy-3" />
-            </div>
-
-            <div class="option-img">
-              <img id="boy-4" src="../assets/img/boy-4.webp" alt="boy-4" />
-            </div>
-          </div>
-
-          <div class="options-row">
-            <div class="option-img">
-              <img id="boy-5" src="../assets/img/boy-5.webp" alt="boy-5" />
-            </div>
-
-            <div class="option-img">
-              <img id="girl-1" src="../assets/img/girl-1.webp" alt="girl-1" />
-            </div>
-
-            <div class="option-img">
-              <img id="girl-2" src="../assets/img/girl-2.webp" alt="girl-2" />
-            </div>
-
-            <div class="option-img">
-              <img id="girl-3" src="../assets/img/girl-3.webp" alt="girl-3" />
-            </div>
-          </div>
-
-          <div class="options-row">
-            <div class="option-img">
-              <img id="girl-4" src="../assets/img/girl-4.webp" alt="girl-4" />
-            </div>
-
-            <div class="option-img">
-              <img id="girl-5" src="../assets/img/girl-5.webp" alt="girl-5" />
-            </div>
-
-            <div id="random" class="option-img"></div>
-          </div>
-        </div>
-
-        <div class="fullDisplay-option">
-          <img
-            id="full-avatar"
-            class="full-image"
-            src="../assets/img/random.webp"
-            alt="full-image"
-          />
-        </div>
+      <div class="avatars-container">
+        <div class="options-container"></div>
+      </div>
+      <div class="avatar" id="full-avatar">
+        <img class="avatarFullDisplay" src="" alt="" />
       </div>
 
-      <button class="start-button avatar-lock" style="opacity: 0">Start</button>
+      <button class="start-button" style="opacity: 0">Start</button>
     </div>
     <!-------- VERSUS SECTION  -------->
     <div class="versus-section hidden">
@@ -194,12 +150,12 @@
           <div class="avatar-img">
             <img
               class="playerGame-avatar"
-              src="../assets/img/random.webp"
+              src="../assets/img/Random.webp"
               alt=""
             />
           </div>
           <div class="score-wrapper player-side">
-            <div class="playerUserName-display">Mike</div>
+            <div class="playerUserName-display"></div>
             <div class="player-lifebar"></div>
           </div>
         </div>
@@ -212,27 +168,27 @@
           <div class="avatar-img">
             <img
               class="computerGame-avatar"
-              src="../assets/img/random.webp"
+              src="../assets/img/Random.webp"
               alt=""
             />
           </div>
           <div class="score-wrapper computer-side">
-            <div class="comUserName-display">Computer</div>
-            <div class="computer-lifebar"></div>
+            <div class="comUserName-display"></div>
+            <div class="opponent-lifebar"></div>
           </div>
         </div>
       </div>
 
       <div class="game-container">
         <div class="playerChoice-display">
-          <img src="" class="playerChoice" alt="" />
+          <img class="playerChoice" src="" alt="" />
         </div>
         <div class="outcome-display">Make your Choice</div>
         <div class="computerChoice-display">
           <img
-            style="transform: rotateY(180deg)"
-            src=""
             class="computerChoice"
+            src=""
+            style="transform: rotateY(180deg)"
             alt=""
           />
         </div>

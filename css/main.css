@@ -227,35 +227,39 @@ label {
   color: var(--bg-secondary);
 }
 
+.avatars-container {
+  display: flex;
+  justify-content: space-around;
+}
+
 .options-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  width: 50%;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  max-width: 50%;
 }
 
-.options-row {
-  display: flex;
-  justify-content: space-evenly;
-  gap: var(--spacer);
-  padding: 0.2em;
+.options-container .avatar {
+  width: 75px;
+  height: 100px;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-size: cover;
+}
+button#Random {
+  background-size: contain;
 }
 
-.option-img {
-  width: 80px;
-  height: 80px;
-  filter: grayscale(0.84);
-}
-
-.option-img:focus,
+/* .option-img:focus,
 .option-img:active {
   outline: 0;
-}
+} */
 
-.option-img img {
-  object-fit: cover;
-  object-position: top center;
-  cursor: pointer;
+.avatar-fullDisplay .avatar {
+  max-width: 300px;
+  max-height: 300px;
 }
 
 #random {
@@ -263,12 +267,6 @@ label {
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center center;
-}
-
-.option-img:hover {
-  transform: scale(1.05);
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.493);
-  z-index: 100;
 }
 
 /* ============================================= 
@@ -406,6 +404,9 @@ label {
 .computerChoice-display {
   width: 250px;
   height: 250px;
+}
+.playerChoice-display img,
+.computerChoice-display img {
   opacity: 0;
 }
 
@@ -451,4 +452,8 @@ label {
 
 .replay {
   margin-bottom: var(--spacer);
+}
+
+img.newLife {
+  max-width: 30px;
 }
