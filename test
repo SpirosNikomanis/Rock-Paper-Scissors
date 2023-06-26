@@ -1,0 +1,15 @@
+let countdown = setInterval(hello, 1000);
+
+// console.log('hi');
+
+// clearInterval(countdown);
+
+let i = 5;
+
+function hello() {
+  if (i > 0) {
+    console.log(i);
+    return i--;
+  }
+  clearInterval(countdown);
+}

@@ -1,6 +1,6 @@
 import { Select, addGlobalListener, isEnterPressed } from './utilities.js';
 
-const introScreen = Select('.intro-section');
+const introScreen = document.querySelector('.intro-section');
 const usernameScreen = Select('.username-section');
 const avatarScreen = Select('.avatar-section');
 const vsScreen = Select('.versus-section');
@@ -28,9 +28,7 @@ let Screen = {
 };
 
 export function loadIntroScreen() {
-  Screen.fadeOut(gameOverScreen);
   Screen.fadeIn(introScreen);
-  setTimeout(() => Screen.hide(gameOverScreen), 1500);
 }
 
 export function reloadIntroScreen() {
@@ -38,8 +36,9 @@ export function reloadIntroScreen() {
 }
 
 export function loadUsernameScreen() {
-  addGlobalListener(introScreen, 'keydown', '.intro-section', (e) => {
-    if (isEnterPressed(e)) Screen.switch(introScreen, usernameScreen);
+  introScreen.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter') return;
+    Screen.switch(introScreen, usernameScreen);
   });
 }
 

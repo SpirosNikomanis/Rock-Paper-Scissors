@@ -1,11 +1,11 @@
-import {
-  loadGameOverScreen,
-  loadIntroScreen,
-  loadUsernameScreen,
-  reloadIntroScreen,
-} from './Screen.js';
+import { loadGameOverScreen, reloadIntroScreen } from './Screen.js';
 import { Lifebar } from './Player.js';
-import { Select, SelectAll, randomIndexItem } from './utilities.js';
+import {
+  Select,
+  SelectAll,
+  isEnterPressed,
+  randomIndexItem,
+} from './utilities.js';
 
 const modeDisplayElement = SelectAll('.mode-option');
 const playerChoicePrintElement = Select('.playerChoice');
@@ -142,7 +142,7 @@ export let Game = {
       this.getWinner().setWinner();
       loadGameOverScreen();
       setTimeout(() => {
-        setInterval(startCountdown, 1000);
+        startCountdown();
       }, 2000);
     }
   },
@@ -165,7 +165,7 @@ export let Game = {
     gameWinnerDisplayElement.textContent = `${this.GameWinner} Wins`;
   },
 
-  reset() {},
+  reset() {}, //TODO ADD RESET FUNCTIONS
 };
 
 function disableGameButtons() {
@@ -175,25 +175,23 @@ function disableGameButtons() {
 let timeleft = 10;
 
 function startCountdown() {
+  const GameOverScreen = document.querySelector('.gameOver-section');
   const countdownTimer = Select('#countdownTimer');
   countdownTimer.innerText = timeleft;
-  if (timeleft > 0) {
-    countdownTimer.innerText = timeleft;
-    return timeleft--;
-  }
-  clearInterval(startCountdown);
-  timeleft = null;
-}
 
-// document
-//   .querySelector('.gameOver-section')
-//   .addEventListener('keydown', function (e) {
-//     if (e.key === 'Enter') stopCountdown(); //REPLACE WITH RELOAD GAME SECTION
-//   });
+  GameOverScreen.addEventListener('keydown', () => {
+    clearInterval(countdown);
+    reloadIntroScreen(); //TODO ADD RESET  AND LOAD GAME SCREEN
+  });
 
-function stopCountdown() {
-  clearInterval(startCountdown);
-  timeleft = null;
+  let countdown = setInterval(() => {
+    if (timeleft > 0) {
+      countdownTimer.innerText = timeleft;
+      return timeleft--;
+    }
+    clearInterval(countdown);
+    reloadIntroScreen();
+  }, 1000);
 }
 
 (function initGame() {
