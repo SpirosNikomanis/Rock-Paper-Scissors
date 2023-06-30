@@ -10,7 +10,7 @@ const usernameScreen = Select('.username-section');
 
 let textareaChars;
 export let username;
-// // // TODO CREATE KEYBOARD CONTAINER AND REPLACE PARENT
+
 export let Keyboard = {
   addListeners() {
     addGlobalListener(usernameScreen, 'click', '.arrow', (e) => Mode.toggle(e));

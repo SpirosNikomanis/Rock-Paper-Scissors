@@ -1,6 +1,3 @@
-<!-- // ADD RESETS -->
-<!-- // SET AVATAR IMGS -->
-<!-- SET GAMEUSERNAMES -->
 <!-- SET HIGHSCORE FUNCTION -->
 <!-- ADD DATABASE -->
 <!-- HIGHSCORE PAGE -->
