@@ -85,10 +85,6 @@ export let Game = {
     return (this.PlayerWins = 0);
   },
 
-  resetPlayerWins() {
-    return (this.PlayerWins = 0);
-  },
-
   Round: {
     Choices: ['Rock', 'Paper', 'Scissors'],
     playerChoice: '',
