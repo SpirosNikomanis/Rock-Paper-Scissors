@@ -407,7 +407,7 @@ button#Random {
 }
 .playerChoice-display img,
 .computerChoice-display img {
-  opacity: 0;
+  visibility: hidden;
 }
 
 .game-container {

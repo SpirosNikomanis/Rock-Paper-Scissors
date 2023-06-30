@@ -1,11 +1,16 @@
-import { VsAnimation } from "./Screen.js";
-import { itemByRandomID as RandomID, Select } from "./utilities.js";
+import { Game } from './Game.js';
+import { VsAnimation } from './Screen.js';
+import { itemByRandomID as RandomID, Select } from './utilities.js';
 
-const containerElement = Select(".options-container");
-const avatarFullDisplayElement = Select(".avatarFullDisplay");
+const containerElement = Select('.options-container');
+const avatarFullDisplayElement = Select('.avatarFullDisplay');
+const playerAvatarVSDisplay = Select('.versus-player-img');
+const enemyAvatarVSDisplay = Select('.versus-com-img');
+
+const startButton = Select('.start-button');
 
 class Player {
-  constructor(_username = "Player01") {
+  constructor(_username = 'Player01') {
     this.username = _username;
   }
   set Avatar(avatar) {
@@ -17,7 +22,7 @@ class Player {
 }
 
 class Avatar {
-  constructor(_id = "Random") {
+  constructor(_id = 'Random') {
     this.id = _id;
     this.imgSrc = `../assets/img/${this.id}.png`;
     this.fullDisplayImgSrc = `../assets/img/${this.id}.webp`;
@@ -35,14 +40,14 @@ class AvatarButtons {
   }
 
   static createButton({ id, imgSrc }) {
-    const newAvatarbutton = document.createElement("button");
+    const newAvatarbutton = document.createElement('button');
 
     newAvatarbutton.id = id;
-    newAvatarbutton.classList = "avatar";
-    newAvatarbutton.style.filter = "grayscale(0.84)";
+    newAvatarbutton.classList = 'avatar';
+    newAvatarbutton.style.filter = 'grayscale(0.84)';
     newAvatarbutton.style.backgroundImage = `url(${imgSrc})`;
 
-    newAvatarbutton.addEventListener("click", (e) => {
+    newAvatarbutton.addEventListener('click', (e) => {
       isClicked(e);
     });
 
@@ -81,7 +86,7 @@ let IDs = () => {
   return IDlist;
 };
 
-const EnemyAvatarsID = ["Dracula", "Witch", "Robot", "Frankenstein"]; //2
+const EnemyAvatarsID = ['Dracula', 'Witch', 'Robot', 'Frankenstein']; //2
 const PlayerAvatarsID = [...IDs()];
 
 const EnemyAvatars = EnemyAvatarsID.map((ID) => (ID = new Avatar(ID)));
@@ -90,8 +95,8 @@ const PlayerAvatars = PlayerAvatarsID.map((ID) => (ID = new Avatar(ID)));
 let tempAvatar = new Avatar();
 PlayerAvatars.push(tempAvatar);
 
-const Player01 = new Player();
-const Enemy = new Player("Enemy");
+export const Player01 = new Player();
+export const Enemy = new Player('Enemy');
 
 (function createAvatarButton() {
   const buttonsContainer = new AvatarButtons(containerElement);
@@ -105,46 +110,59 @@ const Enemy = new Player("Enemy");
 })();
 
 function isClicked(e) {
-  highlight(e.target);
+  addHighlight(e.target);
   tempAvatar = clickedAvatar(e.target.id);
   tempAvatar.preview();
 
-  document.querySelector(".start-button").style.opacity = 1;
-  VsAnimation();
-
-  // //TO BE MOVED TO FUNCTION,SUBMIT ONCLICK
-  //TEST PURPOSE ONLY
-
-  Player01.Avatar = tempAvatar;
-  Enemy.Avatar = RandomID("Random", EnemyAvatars);
-
-  console.log(Player01);
-  console.log(Enemy);
+  startButton.style.opacity = 1;
 }
 
-function highlight(element) {
-  let activeButton = Select(".avatar.active");
+export function setGameAvatars() {
+  Player01.Avatar = tempAvatar;
+  Enemy.Avatar = RandomID('Random', EnemyAvatars);
+  Enemy.username = Enemy.Avatar.id;
+}
+
+export function printVsAvatars() {
+  playerAvatarVSDisplay.src = Player01.avatar.fullDisplayImgSrc;
+  enemyAvatarVSDisplay.src = Enemy.avatar.fullDisplayImgSrc;
+}
+
+export function removeHighlight() {
+  let activeButton = Select('.avatar.active');
 
   if (activeButton) {
-    activeButton.classList.remove("active");
-    activeButton.style.filter = "grayscale(0.84)";
+    activeButton.classList.remove('active');
+    activeButton.style.filter = 'grayscale(0.84)';
   }
-  element.classList.add("active");
-  element.style.filter = "grayscale(0)";
 }
+
+export function resetAvatarPreview() {
+  startButton.style.opacity = 0;
+
+  tempAvatar.fullDisplayImgSrc = '../assets/img/Random.webp';
+  tempAvatar.preview();
+}
+
+function addHighlight(element) {
+  removeHighlight();
+  element.classList.add('active');
+  element.style.filter = 'grayscale(0)';
+}
+
 const clickedAvatar = (id) => {
-  if (id !== "Random") return new Avatar(id);
-  return new Avatar(RandomID("Random", PlayerAvatars).id);
+  if (id !== 'Random') return new Avatar(id);
+  return new Avatar(RandomID('Random', PlayerAvatars).id);
 };
 
 class Life {
   constructor() {}
 
   static create() {
-    const newLife = document.createElement("img");
+    const newLife = document.createElement('img');
 
-    newLife.classList = "life-img";
-    newLife.src = "../assets/img/Heart.webp";
+    newLife.classList = 'life-img';
+    newLife.src = '../assets/img/Heart.webp';
 
     //TEMP to be added by Css
     newLife.style.width = `80px`;
@@ -157,6 +175,7 @@ export class Lifebar {
   constructor(containerElement) {
     this.container = containerElement;
     this.lives = [];
+    this.i = this.lives.length;
   }
 
   add(life) {
@@ -180,6 +199,7 @@ export class Lifebar {
   }
 
   reset() {
+    this.lives.length = 0;
     for (let i = 1; i <= NUMBER_OF_LIVES; i++) {
       let newLife = Life.create();
       this.add(newLife);
@@ -187,10 +207,9 @@ export class Lifebar {
   }
 }
 
-// const playerAvatarDisplayElements = [playerVsImg, playerGameImg];
-// const enemyAvatarDisplayElements = [opponentVsImg, opponentGameImg];
-
-//TODO ADD FUNCTIONS
-// addGlobalListener(avatarScreen, 'click', '.start-button', () => {
-//   appScreen.VsAnimation();
-// });
+startButton.addEventListener('click', () => {
+  setGameAvatars();
+  printVsAvatars();
+  VsAnimation();
+  Game.initGame();
+});

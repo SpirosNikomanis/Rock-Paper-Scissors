@@ -1,16 +1,18 @@
-import { loadGameOverScreen, reloadIntroScreen } from './Screen.js';
-import { Lifebar } from './Player.js';
 import {
-  Select,
-  SelectAll,
-  isEnterPressed,
-  randomIndexItem,
-} from './utilities.js';
+  loadGameOverScreen,
+  reloadGameScreen,
+  reloadIntroScreen,
+} from './Screen.js';
+import { Lifebar, setGameAvatars } from './Player.js';
+import { Enemy, Player01 } from './Player.js';
+import { Select, SelectAll, randomIndexItem } from './utilities.js';
+import { resetApp } from './app.js';
 
 const modeDisplayElement = SelectAll('.mode-option');
+const roundDisplayElement = Select('.round-number');
 const playerChoicePrintElement = Select('.playerChoice');
 const enemyChoicePrintElement = Select('.computerChoice');
-let resultDisplayElement = Select('div.outcome-display');
+const resultDisplayElement = Select('div.outcome-display');
 const GameButtons = SelectAll('.selection-button');
 
 const PlayerLifebar = new Lifebar(Select('.player-lifebar'));
@@ -45,12 +47,14 @@ export let Mode = {
 };
 
 export let Game = {
+  // //TODO MAKE PRIVATE PLAYER SCORE
+
   Settings: {
-    mode: Mode.Selection,
-    playerName: 'Player01',
-    enemyName: 'Enemy',
-    playerAvatar: '',
-    enemyAvatar: '',
+    mode: 'Normal',
+    playerNameDisplay: Select('.playerUserName-display'),
+    enemyNameDisplay: Select('.comUserName-display'),
+    playerAvatarDisplay: Select('.playerGame-avatar'),
+    enemyAvatarDisplay: Select('.computerGame-avatar'),
 
     setPlayerLives() {
       PlayerLifebar.reset();
@@ -58,38 +62,75 @@ export let Game = {
     },
 
     setEnemyLives() {
-      this.mode != 'Ranked' ? EnemyLifebar.reset() : false;
+      if (this.mode === 'Ranked') {
+        return (EnemyLifebar.lives.length = 0);
+      }
+      EnemyLifebar.reset();
       return this;
     },
   },
 
+  initGame() {
+    this.Settings.mode = Mode.Selection;
+    this.Settings.setPlayerLives().setEnemyLives();
+    this.setPlayerWins();
+    this.Settings.playerNameDisplay.textContent = Player01.username;
+    this.Settings.playerAvatarDisplay.src = Player01.avatar.fullDisplayImgSrc;
+    this.Settings.enemyAvatarDisplay.src = Enemy.avatar.fullDisplayImgSrc;
+    this.Settings.enemyNameDisplay.textContent = Enemy.Avatar.id;
+    this.Round.updateRound();
+  },
+
+  setPlayerWins() {
+    return (this.PlayerWins = 0);
+  },
+
+  resetPlayerWins() {
+    return (this.PlayerWins = 0);
+  },
+
   Round: {
     Choices: ['Rock', 'Paper', 'Scissors'],
-    roundNumber: 0,
+    playerChoice: '',
+    enemyChoice: '',
     roundWinner: '',
+    roundNumber: 1,
 
     getChoices(e) {
+      this.updateRound();
       this.playerChoice = e.target.id;
       this.enemyChoice = randomIndexItem(this.Choices);
-
-      this.updateCounter().printChoices().play();
-      Game.GameOver();
+      this.printChoices('visible').playRound();
+      this.roundNumber++;
     },
 
-    printChoices() {
+    updateRound() {
+      roundDisplayElement.textContent = `Round ${this.roundNumber}`;
+      return this;
+    },
+
+    printChoices(shown) {
       playerChoicePrintElement.src = `../assets/img/${this.playerChoice}.webp`;
       enemyChoicePrintElement.src = `../assets/img/${this.enemyChoice}.webp`;
 
-      playerChoicePrintElement.style.opacity = 1;
-      enemyChoicePrintElement.style.opacity = 1;
+      playerChoicePrintElement.style.visibility = `${shown}`;
+      enemyChoicePrintElement.style.visibility = `${shown}`;
 
       return this;
     },
 
-    play() {
+    resetChoices() {
+      this.printChoices('hidden');
+
+      return this;
+    },
+
+    playRound() {
       if (this.playerChoice == this.enemyChoice) {
         this.roundWinner = 'tie';
-        this.updateWinner();
+        this.updateRoundWinner();
+        console.log(Game.PlayerWins);
+
         return this;
       }
       if (
@@ -98,31 +139,37 @@ export let Game = {
         (this.playerChoice == 'Scissors' && this.enemyChoice == 'Paper')
       ) {
         EnemyLifebar.remove();
-        this.roundWinner = `${Game.Settings.playerName}`;
-        this.updateWinner();
+        this.roundWinner = `${Player01.username}`;
+        this.updateRoundWinner();
+        console.log(Game.PlayerWins);
+
         return this;
       }
       PlayerLifebar.remove();
-      this.roundWinner = `${Game.Settings.enemyName}`;
-      this.updateWinner();
+      this.roundWinner = `${Enemy.username}`;
+      this.updateRoundWinner();
+      console.log(Game.PlayerWins);
+
       return this;
     },
 
-    updateWinner() {
-      Game.isOver()
-        ? (resultDisplayElement.textContent = 'Game Over')
-        : this.roundWinner == 'tie'
+    updateRoundWinner() {
+      if (Game.isOver()) return Game.GameOver();
+      this.roundWinner == 'tie'
         ? (resultDisplayElement.textContent = `It's a tie!`)
         : (resultDisplayElement.textContent = `${this.roundWinner} Wins!`);
+
+      if (
+        Game.Settings.mode == 'Ranked' &&
+        this.roundWinner == `${Player01.username}`
+      )
+        Game.PlayerWins++;
     },
 
-    updateCounter() {
-      const roundDisplayElement = Select('.round-number');
-
-      this.roundNumber++;
-
-      roundDisplayElement.textContent = `Round ${this.roundNumber}`;
-
+    resetRound() {
+      this.roundWinner = '';
+      this.roundNumber = 1;
+      resultDisplayElement.textContent = 'Make your Choice';
       return this;
     },
   },
@@ -137,14 +184,13 @@ export let Game = {
   },
 
   GameOver() {
-    if (this.isOver()) {
-      disableGameButtons();
-      this.getWinner().setWinner();
-      loadGameOverScreen();
-      setTimeout(() => {
-        startCountdown();
-      }, 2000);
-    }
+    resultDisplayElement.textContent = 'Game Over';
+    disableGameButtons('disable');
+    this.getWinner().setWinner();
+    loadGameOverScreen();
+    setTimeout(() => {
+      startCountdown();
+    }, 2000);
   },
 
   getWinner() {
@@ -153,9 +199,9 @@ export let Game = {
 
     this.Settings.mode == 'Normal'
       ? playerScore > enemyScore
-        ? (this.GameWinner = `${Game.Settings.playerName}`)
-        : (this.GameWinner = `${Game.Settings.enemyName}`)
-      : (this.playerWins = Game.Round.roundNumber);
+        ? (this.GameWinner = `${Player01.username}`)
+        : (this.GameWinner = `${Enemy.username}`)
+      : (this.GameWinner = `${Player01.username} ${Game.PlayerWins}`);
 
     return this;
   },
@@ -165,23 +211,39 @@ export let Game = {
     gameWinnerDisplayElement.textContent = `${this.GameWinner} Wins`;
   },
 
-  reset() {}, //TODO ADD RESET FUNCTIONS
+  reset() {
+    this.Round.resetRound().resetChoices();
+    disableGameButtons();
+    setGameAvatars();
+  },
 };
 
-function disableGameButtons() {
-  GameButtons.forEach((btn) => (btn.disabled = true));
+GameButtons.forEach((btn) =>
+  btn.addEventListener('click', (e) => {
+    Game.Round.getChoices(e);
+  })
+);
+
+function disableGameButtons(value) {
+  GameButtons.forEach((btn) => {
+    if (value == 'disable') return (btn.disabled = true);
+    return (btn.disabled = false);
+  });
 }
 
 let timeleft = 10;
 
 function startCountdown() {
-  const GameOverScreen = document.querySelector('.gameOver-section');
+  const GameOverScreen = Select('.gameOver-section');
   const countdownTimer = Select('#countdownTimer');
   countdownTimer.innerText = timeleft;
 
   GameOverScreen.addEventListener('keydown', () => {
     clearInterval(countdown);
-    reloadIntroScreen(); //TODO ADD RESET  AND LOAD GAME SCREEN
+    Game.reset();
+    Game.initGame();
+    reloadGameScreen();
+    timeleft = 10;
   });
 
   let countdown = setInterval(() => {
@@ -190,15 +252,9 @@ function startCountdown() {
       return timeleft--;
     }
     clearInterval(countdown);
+    Game.reset();
+    resetApp();
     reloadIntroScreen();
+    timeleft = 10;
   }, 1000);
 }
-
-(function initGame() {
-  Game.Settings.setPlayerLives().setEnemyLives();
-  Game.Round.updateCounter();
-
-  GameButtons.forEach((btn) =>
-    btn.addEventListener('click', (e) => Game.Round.getChoices(e))
-  );
-})();

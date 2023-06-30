@@ -1,6 +1,7 @@
-import { Select, addGlobalListener, isEnterPressed } from './utilities.js';
+// import { Player01 } from './Player.js';
+import { Select } from './utilities.js';
 
-const introScreen = document.querySelector('.intro-section');
+const introScreen = Select('.intro-section');
 const usernameScreen = Select('.username-section');
 const avatarScreen = Select('.avatar-section');
 const vsScreen = Select('.versus-section');
@@ -58,6 +59,10 @@ export function loadGameOverScreen() {
   setTimeout(() => {
     Screen.switch(gameScreen, gameOverScreen);
   }, 1500);
+}
+
+export function reloadGameScreen() {
+  Screen.switch(gameOverScreen, gameScreen);
 }
 
 function toggleSliders() {
