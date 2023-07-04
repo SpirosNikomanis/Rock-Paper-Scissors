@@ -1,4 +1,3 @@
-// import { Player01 } from './Player.js';
 import { Select } from './utilities.js';
 
 const introScreen = Select('.intro-section');

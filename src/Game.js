@@ -21,16 +21,10 @@ const EnemyLifebar = new Lifebar(Select('.opponent-lifebar'));
 export let Mode = {
   _Options: ['Normal', 'Ranked'],
   _Option: 0,
-  selection: 'Normal',
-
-  get Selection() {
-    return (this.selection =
-      this._Options[this._Option % this._Options.length]);
-  },
 
   update() {
-    modeDisplayElement[0].textContent = this.Selection;
-    console.log(this.Selection);
+    modeDisplayElement[0].textContent =
+      this._Options[this._Option % this._Options.length];
   },
 
   toggle(e) {
@@ -45,6 +39,8 @@ export let Mode = {
     }
   },
 };
+
+Mode.update();
 
 export let Game = {
   // //TODO MAKE PRIVATE PLAYER SCORE
@@ -71,7 +67,7 @@ export let Game = {
   },
 
   initGame() {
-    this.Settings.mode = Mode.Selection;
+    this.Settings.mode = modeDisplayElement[0].textContent;
     this.Settings.setPlayerLives().setEnemyLives();
     this.setPlayerWins();
     this.Settings.playerNameDisplay.textContent = Player01.username;
