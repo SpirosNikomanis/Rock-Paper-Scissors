@@ -52,7 +52,7 @@
   --saturation: 100%;
   --lightness: 50%;
   --button-size: calc(1rem * var(--size));
-  /* --font-size: calc(100% * var(--size) / 6); */
+  --font-size: calc(100% * var(--size) / 6);
   cursor: pointer;
   position: relative;
   outline: none;

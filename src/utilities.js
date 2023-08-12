@@ -8,10 +8,6 @@ export function addGlobalListener(parent, type, selector, callback, options) {
   );
 }
 
-export function isEnterPressed(e) {
-  return e.key === "Enter" ? true : false;
-}
-
 export function Select(selector, parent = document) {
   return parent.querySelector(selector);
 }
@@ -28,4 +24,5 @@ export let itemByRandomID = (id, arr) =>
 export let filteredArray = (id, arr) => arr.filter((val) => val.id !== id);
 
 export let randomIndexItem = (arr) => arr[randomIndexNumber(arr)];
+
 export let randomIndexNumber = (arr) => Math.floor(Math.random() * arr.length);

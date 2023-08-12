@@ -1,3 +1,58 @@
+#logo {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: fill 1.5s ease forwards 4s;
+}
+
+#odin_text {
+  position: absolute;
+  bottom: 1%;
+  right: 5%;
+}
+
+#logo path:nth-child(1) {
+  stroke-dasharray: 704;
+  stroke-dashoffset: 704;
+  animation: line-anim 3s ease forwards 0.3s;
+}
+#logo path:nth-child(2) {
+  stroke-dasharray: 480;
+  stroke-dashoffset: 480;
+  animation: line-anim 3s ease forwards 0.6s;
+}
+#logo path:nth-child(3) {
+  stroke-dasharray: 640;
+  stroke-dashoffset: 640;
+  animation: line-anim 3s ease forwards 0.9s;
+}
+#logo path:nth-child(4) {
+  stroke-dasharray: 640;
+  stroke-dashoffset: 640;
+  animation: line-anim 3s ease forwards 1.2s;
+}
+#logo path:nth-child(5) {
+  stroke-dasharray: 768;
+  stroke-dashoffset: 768;
+  animation: line-anim 3s ease forwards 1.3s;
+}
+
+@keyframes line-anim {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes fill {
+  from {
+    fill: transparent;
+  }
+  to {
+    fill: white;
+  }
+}
+
 /* ============================================= 
             GAME TITLE ANIMATION
 ==============================================*/
@@ -88,11 +143,11 @@
   pointer-events: none;
   animation-name: fadeOut;
   animation-duration: 1000ms;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
   animation-fill-mode: forwards;
   -webkit-animation-name: fadeOut;
   -webkit-animation-duration: 1000ms;
-  -webkit-animation-timing-function: ease-in;
+  -webkit-animation-timing-function: ease-out;
   -webkit-animation-fill-mode: forwards;
 }
 

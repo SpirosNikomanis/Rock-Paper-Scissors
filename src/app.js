@@ -1,17 +1,70 @@
-import { loadIntroScreen, loadUsernameScreen } from './Screen.js';
-import { Keyboard, textareaElement } from './Keyboard.js';
-import { removeHighlight, resetAvatarPreview } from './Player.js';
+import { VsAnimation, loadAvatarScreen, loadIntroScreen } from './Screen.js';
+import {
+  Computer,
+  Player01,
+  setComputerName,
+  setPlayerName,
+} from './Player.js';
+import { Avatar, setAvatars } from './Avatar.js';
+import { Keyboard, setUsername } from './Keyboard.js';
+import { Select } from './utilities.js';
+import { createGame, updateGameButtonsDisabledState } from './Game.js';
+import Mode from './Mode.js';
+import { ComLifebar, PlayerLifebar } from './Lifebar.js';
+const submitBtn = Select('.submit');
+const startButton = Select('.start-button');
 
-document.addEventListener('DOMContentLoaded', initiateApp);
+const App = {
+  init() {
+    loadIntroScreen();
+    Keyboard.addListeners();
+    Mode.reset();
+  },
 
-function initiateApp() {
-  loadIntroScreen();
-  loadUsernameScreen();
-  Keyboard.addListeners();
-}
+  reset() {
+    this.resetKeyboard();
+    this.resetMode();
+    this.resetAvatar();
+    this.resetLifeBars();
+    this.resetPlayerData();
+  },
 
-export function resetApp() {
-  textareaElement.value = '';
-  removeHighlight();
-  resetAvatarPreview();
-}
+  resetKeyboard() {
+    Keyboard.reset();
+  },
+
+  resetAvatar() {
+    Avatar.resetAvatarSelection();
+  },
+
+  resetLifeBars() {
+    PlayerLifebar.reset();
+    ComLifebar.reset();
+  },
+
+  resetMode() {
+    Mode.reset();
+  },
+
+  resetPlayerData() {
+    Player01.reset();
+    Computer.reset();
+  },
+};
+
+document.addEventListener('DOMContentLoaded', App.init);
+
+submitBtn.addEventListener('click', () => {
+  Mode.update();
+  setPlayerName(Player01, setUsername());
+  loadAvatarScreen();
+});
+
+startButton.addEventListener('click', () => {
+  setAvatars(Player01, Computer);
+  setComputerName(Computer);
+  createGame();
+  VsAnimation();
+
+  updateGameButtonsDisabledState(false);
+});

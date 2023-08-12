@@ -28,8 +28,15 @@ body {
   font-family: var(--ff);
   font-size: var(--fs-normal);
   background-image: url(../assets/img/bg.jpg);
-  padding-top: calc(var(--spacer) * 15);
+  /* padding-top: calc(var(--spacer) * 15); */
 }
+
+.Loading_Screen {
+  background: black;
+  height: 100vh;
+  width: 100%;
+}
+
 .intro-section,
 .gameMode-section,
 .username-section,
@@ -388,6 +395,7 @@ button#Random {
   width: 40px;
   height: 40px;
 }
+
 .round-number {
   font-size: var(--fs-medium);
   color: var(--bg-accent);
@@ -405,10 +413,11 @@ button#Random {
   width: 250px;
   height: 250px;
 }
-.playerChoice-display img,
+
+/* .playerChoice-display img,
 .computerChoice-display img {
   visibility: hidden;
-}
+} */
 
 .game-container {
   width: 80%;

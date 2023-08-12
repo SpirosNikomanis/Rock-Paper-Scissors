@@ -1,4 +1,0 @@
-<!-- SET HIGHSCORE FUNCTION -->
-<!-- ADD DATABASE -->
-<!-- HIGHSCORE PAGE -->
-<!-- CREDITS PAGE -->

@@ -1,252 +1,244 @@
-import {
-  loadGameOverScreen,
-  reloadGameScreen,
-  reloadIntroScreen,
-} from './Screen.js';
-import { Lifebar, setGameAvatars } from './Player.js';
-import { Enemy, Player01 } from './Player.js';
-import { Select, SelectAll, randomIndexItem } from './utilities.js';
-import { resetApp } from './app.js';
+import { ComLifebar, PlayerLifebar } from './Lifebar.js';
+import Mode from './Mode.js';
+import { Computer, Player01 } from './Player.js';
+import { loadGameOverScreen } from './Screen.js';
+import { checkAndUpdateTop10 } from './firebase.js';
+import { SelectAll, Select, randomIndexItem } from './utilities.js';
 
-const modeDisplayElement = SelectAll('.mode-option');
-const roundDisplayElement = Select('.round-number');
-const playerChoicePrintElement = Select('.playerChoice');
-const enemyChoicePrintElement = Select('.computerChoice');
-const resultDisplayElement = Select('div.outcome-display');
-const GameButtons = SelectAll('.selection-button');
+class Game {
+  constructor() {
+    this.playerWins = 0;
+    this.Winner = null;
+    this.Round = 0;
+  }
 
-const PlayerLifebar = new Lifebar(Select('.player-lifebar'));
-const EnemyLifebar = new Lifebar(Select('.opponent-lifebar'));
+  getPlayerWins() {
+    return this.playerWins;
+  }
 
-export let Mode = {
-  _Options: ['Normal', 'Ranked'],
-  _Option: 0,
+  incrementPlayerWins() {
+    this.playerWins++;
+  }
 
-  update() {
-    modeDisplayElement[0].textContent =
-      this._Options[this._Option % this._Options.length];
-  },
-
-  toggle(e) {
-    if (e.target.id == 'right-arrow') {
-      this._Option++;
-      this.update();
-    } else {
-      this._option > 0
-        ? this._Option--
-        : (this._Option = this._Options.length - 1);
-      this.update();
-    }
-  },
-};
-
-Mode.update();
-
-export let Game = {
-  // //TODO MAKE PRIVATE PLAYER SCORE
-
-  Settings: {
-    mode: 'Normal',
-    playerNameDisplay: Select('.playerUserName-display'),
-    enemyNameDisplay: Select('.comUserName-display'),
-    playerAvatarDisplay: Select('.playerGame-avatar'),
-    enemyAvatarDisplay: Select('.computerGame-avatar'),
-
-    setPlayerLives() {
-      PlayerLifebar.reset();
-      return this;
-    },
-
-    setEnemyLives() {
-      if (this.mode === 'Ranked') {
-        return (EnemyLifebar.lives.length = 0);
-      }
-      EnemyLifebar.reset();
-      return this;
-    },
-  },
-
-  initGame() {
-    this.Settings.mode = modeDisplayElement[0].textContent;
-    this.Settings.setPlayerLives().setEnemyLives();
-    this.setPlayerWins();
-    this.Settings.playerNameDisplay.textContent = Player01.username;
-    this.Settings.playerAvatarDisplay.src = Player01.avatar.fullDisplayImgSrc;
-    this.Settings.enemyAvatarDisplay.src = Enemy.avatar.fullDisplayImgSrc;
-    this.Settings.enemyNameDisplay.textContent = Enemy.Avatar.id;
-    this.Round.updateRound();
-  },
-
-  setPlayerWins() {
-    return (this.PlayerWins = 0);
-  },
-
-  Round: {
-    Choices: ['Rock', 'Paper', 'Scissors'],
-    playerChoice: '',
-    enemyChoice: '',
-    roundWinner: '',
-    roundNumber: 1,
-
-    getChoices(e) {
-      this.updateRound();
-      this.playerChoice = e.target.id;
-      this.enemyChoice = randomIndexItem(this.Choices);
-      this.printChoices('visible').playRound();
-      this.roundNumber++;
-    },
-
-    updateRound() {
-      roundDisplayElement.textContent = `Round ${this.roundNumber}`;
-      return this;
-    },
-
-    printChoices(shown) {
-      playerChoicePrintElement.src = `../assets/img/${this.playerChoice}.webp`;
-      enemyChoicePrintElement.src = `../assets/img/${this.enemyChoice}.webp`;
-
-      playerChoicePrintElement.style.visibility = `${shown}`;
-      enemyChoicePrintElement.style.visibility = `${shown}`;
-
-      return this;
-    },
-
-    resetChoices() {
-      this.printChoices('hidden');
-
-      return this;
-    },
-
-    playRound() {
-      if (this.playerChoice == this.enemyChoice) {
-        this.roundWinner = 'tie';
-        this.updateRoundWinner();
-        console.log(Game.PlayerWins);
-
-        return this;
-      }
-      if (
-        (this.playerChoice == 'Rock' && this.enemyChoice == 'Scissors') ||
-        (this.playerChoice == 'Paper' && this.enemyChoice == 'Rock') ||
-        (this.playerChoice == 'Scissors' && this.enemyChoice == 'Paper')
-      ) {
-        EnemyLifebar.remove();
-        this.roundWinner = `${Player01.username}`;
-        this.updateRoundWinner();
-        console.log(Game.PlayerWins);
-
-        return this;
-      }
-      PlayerLifebar.remove();
-      this.roundWinner = `${Enemy.username}`;
-      this.updateRoundWinner();
-      console.log(Game.PlayerWins);
-
-      return this;
-    },
-
-    updateRoundWinner() {
-      if (Game.isOver()) return Game.GameOver();
-      this.roundWinner == 'tie'
-        ? (resultDisplayElement.textContent = `It's a tie!`)
-        : (resultDisplayElement.textContent = `${this.roundWinner} Wins!`);
-
-      if (
-        Game.Settings.mode == 'Ranked' &&
-        this.roundWinner == `${Player01.username}`
-      )
-        Game.PlayerWins++;
-    },
-
-    resetRound() {
-      this.roundWinner = '';
-      this.roundNumber = 1;
-      resultDisplayElement.textContent = 'Make your Choice';
-      return this;
-    },
-  },
-
-  isOver() {
-    return (this.Settings.mode == 'Ranked' &&
-      PlayerLifebar.lives.length == 0) ||
-      (this.Settings.mode == 'Normal' &&
-        (PlayerLifebar.lives.length == 0 || EnemyLifebar.lives.length == 0))
-      ? true
-      : false;
-  },
-
-  GameOver() {
-    resultDisplayElement.textContent = 'Game Over';
-    disableGameButtons('disable');
-    this.getWinner().setWinner();
-    loadGameOverScreen();
-    setTimeout(() => {
-      startCountdown();
-    }, 2000);
-  },
+  isGameOver() {
+    return false;
+  }
 
   getWinner() {
-    let playerScore = PlayerLifebar.lives.length;
-    let enemyScore = EnemyLifebar.lives.length;
+    return null;
+  }
 
-    this.Settings.mode == 'Normal'
-      ? playerScore > enemyScore
-        ? (this.GameWinner = `${Player01.username}`)
-        : (this.GameWinner = `${Enemy.username}`)
-      : (this.GameWinner = `${Player01.username} ${Game.PlayerWins}`);
+  incrementRound() {
+    this.Round++;
+  }
+}
+
+class NormalGame extends Game {
+  constructor() {
+    super();
+  }
+
+  isGameOver() {
+    return PlayerLifebar.lives.length === 0 || ComLifebar.lives.length === 0;
+  }
+
+  setWinner() {
+    const playerScore = PlayerLifebar.lives.length;
+    const computerScore = ComLifebar.lives.length;
+
+    this.Winner =
+      playerScore > computerScore ? Player01.username : Computer.username;
+
+    return `${this.Winner} wins!`;
+  }
+}
+
+class RankedGame extends Game {
+  constructor() {
+    super();
+  }
+
+  isGameOver() {
+    return PlayerLifebar.lives.length === 0;
+  }
+
+  setWinner() {
+    return `${Player01.username} has ${this.getPlayerWins()} wins`;
+  }
+}
+
+const Round = {
+  Choices: ['Rock', 'Paper', 'Scissors'],
+  playerChoice: null,
+  ComputerChoice: null,
+  roundWinner: null,
+
+  getChoice(e) {
+    this.playerChoice = e.target.id;
+    this.ComputerChoice = randomIndexItem(this.Choices);
 
     return this;
   },
 
-  setWinner() {
-    const gameWinnerDisplayElement = Select('.announcement-text');
-    gameWinnerDisplayElement.textContent = `${this.GameWinner} Wins`;
+  printChoice() {
+    const playerChoicePrintElement = Select('.playerChoice');
+    const ComputerChoicePrintElement = Select('.computerChoice');
+
+    playerChoicePrintElement.src = `../assets/img/${this.playerChoice}.webp`;
+    ComputerChoicePrintElement.src = `../assets/img/${this.ComputerChoice}.webp`;
+
+    return this;
   },
 
-  reset() {
-    this.Round.resetRound().resetChoices();
-    disableGameButtons();
-    setGameAvatars();
+  playRound() {
+    if (this.playerChoice === this.ComputerChoice) {
+      this.roundWinner = 'tie';
+
+      return this;
+    }
+    if (
+      (this.playerChoice === 'Rock' && this.ComputerChoice === 'Scissors') ||
+      (this.playerChoice === 'Paper' && this.ComputerChoice === 'Rock') ||
+      (this.playerChoice === 'Scissors' && this.ComputerChoice === 'Paper')
+    ) {
+      this.roundWinner = `${Player01.username}`;
+      ComLifebar.removeLife();
+
+      return this;
+    }
+    this.roundWinner = `${Computer.username}`;
+
+    PlayerLifebar.removeLife();
+
+    return this;
+  },
+
+  updateRoundWinner() {
+    const RoundWinnerDisplayElement = Select('.outcome-display');
+
+    if (this.roundWinner !== 'tie') {
+      RoundWinnerDisplayElement.textContent = `${Round.roundWinner} wins this round!`;
+    } else {
+      RoundWinnerDisplayElement.textContent = 'Tie!';
+    }
   },
 };
 
-GameButtons.forEach((btn) =>
-  btn.addEventListener('click', (e) => {
-    Game.Round.getChoices(e);
-  })
-);
+let game;
 
-function disableGameButtons(value) {
+export function createGame() {
+  const selectedMode = Mode.get();
+  console.log('Selected Mode:', selectedMode);
+
+  if (selectedMode === 'Normal') {
+    game = new NormalGame();
+    PlayerLifebar.createLives();
+    ComLifebar.createLives();
+  }
+
+  if (selectedMode === 'Ranked') {
+    game = new RankedGame();
+    PlayerLifebar.createLives();
+  }
+
+  return game;
+}
+
+export function resetGame() {
+  const displayRound = Select('.round-number');
+
+  PlayerLifebar.reset();
+  ComLifebar.reset();
+
+  Round.playerChoice = null;
+  Round.ComputerChoice = null;
+
+  game = createGame();
+
+  // Reset round number
+  game.Round = 0;
+
+  displayRound.textContent = `Round ${game.Round}`;
+
+
+  
+  // Enable game buttons
+  updateGameButtonsDisabledState(false);
+}
+
+const GameButtons = SelectAll('.selection-button');
+
+export function updateGameButtonsDisabledState(isGameOver) {
   GameButtons.forEach((btn) => {
-    if (value == 'disable') return (btn.disabled = true);
-    return (btn.disabled = false);
+    btn.disabled = isGameOver;
   });
 }
 
-let timeleft = 10;
+updateGameButtonsDisabledState(false);
 
-function startCountdown() {
-  const GameOverScreen = Select('.gameOver-section');
-  const countdownTimer = Select('#countdownTimer');
-  countdownTimer.innerText = timeleft;
-
-  GameOverScreen.addEventListener('keydown', () => {
-    clearInterval(countdown);
-    Game.reset();
-    Game.initGame();
-    reloadGameScreen();
-    timeleft = 10;
+GameButtons.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    gameButtonClicked(e);
   });
+});
 
-  let countdown = setInterval(() => {
-    if (timeleft > 0) {
-      countdownTimer.innerText = timeleft;
-      return timeleft--;
+function gameButtonClicked(e) {
+  if (!game.isGameOver()) {
+    const displayRound = Select('.round-number');
+
+    game.incrementRound();
+    displayRound.textContent = `Round ${game.Round}`;
+
+    Round.getChoice(e).printChoice();
+    Round.playRound();
+
+    // Check if the game is an instance of NormalGame or RankedGame
+    if (game instanceof NormalGame && game.isGameOver()) {
+      const gameWinnerDisplayElement = Select('.announcement-text');
+      gameWinnerDisplayElement.textContent = game.setWinner();
+
+      Round.updateRoundWinner();
+
+      updateGameButtonsDisabledState(true);
+
+      loadGameOverScreen();
+
+      // Reset the player and enemy choices after the game ends
+      Round.playerChoice = null;
+      Round.ComputerChoice = null;
+    } else if (game instanceof RankedGame && game.isGameOver()) {
+      const gameWinnerDisplayElement = Select('.announcement-text');
+      gameWinnerDisplayElement.textContent = game.setWinner();
+
+      Round.updateRoundWinner();
+
+      updateGameButtonsDisabledState(true);
+
+      const newEntry = {
+        name: Player01.username,
+        score: game.getPlayerWins(),
+        avatar: Player01.avatar.id,
+      };
+
+      checkAndUpdateTop10(newEntry);
+
+      loadGameOverScreen();
+
+      // Reset the player and enemy choices after the game ends
+      Round.playerChoice = null;
+      Round.ComputerChoice = null;
+    } else {
+      Round.updateRoundWinner();
+
+      if (
+        game instanceof RankedGame &&
+        Round.roundWinner === Player01.username
+      ) {
+        game.incrementPlayerWins();
+      }
+
+      // Log player wins
+      console.log(`Player Wins: ${game.getPlayerWins()}`);
     }
-    clearInterval(countdown);
-    Game.reset();
-    resetApp();
-    reloadIntroScreen();
-    timeleft = 10;
-  }, 1000);
+  }
 }

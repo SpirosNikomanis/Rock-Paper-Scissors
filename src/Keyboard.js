@@ -1,46 +1,41 @@
-import { Mode } from './Game.js';
-import { Player01 } from './Player.js';
-import { loadAvatarScreen } from './Screen.js';
+import Mode from './Mode.js';
 import { addGlobalListener, Select, SelectAll } from './utilities.js';
 
-export const textareaElement = Select('textarea');
+const textElement = Select('textarea');
 const keyboardButtons = SelectAll('.btn');
-
 const usernameScreen = Select('.username-section');
 
 let textareaChars;
-export let username;
 
-export let Keyboard = {
+export const Keyboard = {
   addListeners() {
     addGlobalListener(usernameScreen, 'click', '.arrow', (e) => Mode.toggle(e));
     addGlobalListener(usernameScreen, 'click', '.btn', this.addChar);
     addGlobalListener(usernameScreen, 'click', '.delete', this.deleteChar);
     addGlobalListener(usernameScreen, 'click', '.caps', this.toggleCaps);
-    addGlobalListener(usernameScreen, 'click', '.submit', () => {
-      Player01.username = setUsername();
-      loadAvatarScreen();
-    });
   },
 
   addChar(e) {
-    textareaElement.value += e.target.innerText;
-    textareaChars = textareaElement.value.split('');
+    textElement.value += e.target.innerText;
+    textareaChars = textElement.value.split('');
   },
 
   deleteChar() {
-    if (!textareaElement.value) return;
-
+    if (!textElement.value) return;
     textareaChars.pop();
-    textareaElement.value = textareaChars.join('');
+    textElement.value = textareaChars.join('');
   },
 
   toggleCaps() {
     keyboardButtons.forEach((btn) => btn.classList.toggle('lower'));
   },
+
+  reset() {
+    textElement.value = ''; // Reset the textarea value to an empty string
+    textareaChars = []; // Reset the textareaChars array
+  },
 };
 
-function setUsername() {
-  if (textareaElement.value !== '') return textareaElement.value;
-  return 'Player01';
+export function setUsername() {
+  return textElement.value !== '' ? textElement.value : 'Player01';
 }
